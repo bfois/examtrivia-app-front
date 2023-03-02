@@ -1,0 +1,31 @@
+main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  mat-form-field{
+    margin-bottom: 10px;
+  }
+  button,
+  mat-form-field{
+    width: -webkit-fill-available;
+  }
+  button{
+    margin: 5px 0;
+
+    &[mat-button]{
+      width: auto;
+    }
+  }
+  .aligned-to-right{
+    text-align: right;
+    width: 100%;
+  }
+}
