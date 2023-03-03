@@ -8,18 +8,21 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { environment } from 'src/environments/environment';
 import { BlankComponent } from './moks/blank/blank.component';
-
+import {MatButtonModule} from '@angular/material/button';
+import { StartComponent } from './pages/public/start/start.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BlankComponent
+    BlankComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    MatButtonModule
 
   ],
   providers: [],
