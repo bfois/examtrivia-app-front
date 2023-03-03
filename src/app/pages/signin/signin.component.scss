@@ -4,6 +4,11 @@ main{
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  .button-google{
+    color: white;
+    background-color: rgb(70, 79, 255);
+
+  }
 }
 form{
   display: flex;
@@ -34,7 +39,5 @@ form{
   align-items: center;
   padding: 8px 0;
   }
-  .button-google{
-    background-color: rgb(242, 124, 13);
-  }
+
 }
