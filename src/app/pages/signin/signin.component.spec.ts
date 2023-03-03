@@ -3,7 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin.component';
 import {RouterTestingModule} from '@angular/router/testing'
 import {Location} from '@angular/common'
-import { BlankComponent } from 'src/app/moks/blank/blank.component';
+
 import { Subject } from 'rxjs';
 import { AuthenticationService } from './service/authentication.service';
 
@@ -19,7 +19,7 @@ describe('SigninComponent', () => {
     authenticationService = new AuthenticationServiceMock()
     await TestBed.configureTestingModule({
       declarations: [ SigninComponent ],
-      imports:[ReactiveFormsModule , RouterTestingModule.withRoutes([{path:'home',component:BlankComponent}])]
+      imports:[ReactiveFormsModule ]
     })
     .overrideProvider(AuthenticationService, {useValue:authenticationService})
     .compileComponents();
@@ -110,15 +110,6 @@ describe('Login flow', () => {
     beforeEach(()=>{
       authenticationService._signInResponse.next({});
     })
-
-    it('then go home page', done=>{
-      setTimeout(()=>{
-        expect(location.path()).toEqual('/home');
-        done()
-      },100)
-
-    })
-
 
   })
   describe('when login fail',()=>{

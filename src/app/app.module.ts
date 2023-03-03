@@ -7,14 +7,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
 import { environment } from 'src/environments/environment';
-import { BlankComponent } from './moks/blank/blank.component';
+
 import {MatButtonModule} from '@angular/material/button';
 import { StartComponent } from './pages/public/start/start.component';
+import { RegisterComponent } from './pages/signin/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
-    BlankComponent,
-    StartComponent
+    StartComponent,
   ],
   imports: [
     BrowserModule,

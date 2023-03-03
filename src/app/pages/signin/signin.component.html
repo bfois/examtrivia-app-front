@@ -22,7 +22,7 @@
   <button mat-raised-button color="primary" test-id="login-loader" class="button-loader" *ngIf="isLoggingIn"><mat-spinner color="accent" diameter="30" ></mat-spinner></button>
 
 
-  <button mat-stroked-button color="primary">REGISTRARSE</button>
+  <button mat-stroked-button color="primary" routerLink="register">REGISTRARSE</button>
 </form>
 <button mat-raised-button class="button-google" test-id="google-button" (click)="loginGoogle()">
  <img src="../../../assets/google.png" alt="google" width="17px">  Sign in with Google</button>

@@ -1,0 +1,21 @@
+
+<main>
+  <form [formGroup]="formRegister">
+    <h1>Entrar con su cuenta:</h1>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+      <mat-error *ngIf="formRegister.get('email')!.hasError('required')"> Email is required</mat-error>
+      <mat-error *ngIf="formRegister.get('email')!.hasError('email')">Email is invalid</mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input type="password" matInput placeholder="Password" formControlName="password">
+      <mat-error *ngIf="formRegister.get('password')!.hasError('required')"> Password is required</mat-error>
+    </mat-form-field>
+
+    <button mat-stroked-button color="primary" (click)="createUser()">REGISTRARSE</button>
+  </form>
+  </main>
