@@ -1,23 +1,36 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { from, map, Observable, of } from 'rxjs';
+import { from, map, Observable, catchError,throwError } from 'rxjs';
 import firebase from 'firebase/compat/app';
-
+import { GoogleAuthProvider } from 'firebase/auth';
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
   public user$: Observable<firebase.User | null>
   constructor(
-    private auth: AngularFireAuth
+    private Afauth: AngularFireAuth
   ) {
-    this.user$ = this.auth.authState.pipe(map(user => user));
+    this.user$ = this.Afauth.authState.pipe(map(user => user));
   }
 
   signIn(params: signIn):Observable<any>{
-    return from(this.auth.signInWithEmailAndPassword(params.email, params.password));
+    return from(this.Afauth.signInWithEmailAndPassword(params.email, params.password));
+  }
+
+  loginGoogle(): Observable<any> {
+    return from(this.Afauth.signInWithPopup(new GoogleAuthProvider())).pipe(
+      catchError((error) => {
+        console.log(error);
+        return throwError(error);
+      })
+    );
   }
 }
+
+
+
+
 type signIn = {
 email: string,
 password:string

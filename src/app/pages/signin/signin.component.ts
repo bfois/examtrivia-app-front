@@ -41,4 +41,15 @@ export class SigninComponent implements OnInit {
     )
 
   }
+  loginGoogle() {
+    this.isLoggingIn = true;
+    this.authenticationService.loginGoogle().subscribe(() => {
+      this.router.navigate(['home']);
+    }, (error) => {
+      this.isLoggingIn = false;
+      this.snackBar.open(error.message, "OK", {
+        duration: 5000
+      });
+    });
+  }
 }

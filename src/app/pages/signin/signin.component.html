@@ -21,6 +21,8 @@
   <button mat-raised-button color="primary" test-id="login-button" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoggingIn">INICIAR SESION</button>
   <button mat-raised-button color="primary" test-id="login-loader" class="button-loader" *ngIf="isLoggingIn"><mat-spinner color="accent" diameter="30" ></mat-spinner></button>
 
+
   <button mat-stroked-button color="primary">REGISTRARSE</button>
 </form>
+<button mat-raised-button class="button-google" test-id="google-button" (click)="loginGoogle()">Sign in with Google</button>
 </main>
