@@ -3,6 +3,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { from, map, Observable, catchError,throwError } from 'rxjs';
 import firebase from 'firebase/compat/app';
 import { GoogleAuthProvider } from 'firebase/auth';
+import 'firebase/auth';
+import { signIn } from 'src/app/interfaces/signIn';
 @Injectable({
   providedIn: 'root'
 })
@@ -16,6 +18,9 @@ export class AuthenticationService {
 
   signIn(params: signIn):Observable<any>{
     return from(this.Afauth.signInWithEmailAndPassword(params.email, params.password));
+  }
+  signUp(email:string, password:string): Observable<any> {
+    return from(this.Afauth.createUserWithEmailAndPassword(email,password));
   }
 
   loginGoogle(): Observable<any> {
@@ -31,7 +36,3 @@ export class AuthenticationService {
 
 
 
-type signIn = {
-email: string,
-password:string
-}

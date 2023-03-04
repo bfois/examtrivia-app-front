@@ -9,16 +9,18 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { RegisterComponent } from './register/register.component';
+import { RestorePasswordComponent } from './restore-password/restore-password.component';
 const routes: Routes = [
-  {path:"", component:SigninComponent},{
-    path:"register", component:RegisterComponent
-  }
+  {path:"", component:SigninComponent},
+  {path:"register", component:RegisterComponent},
+  {path:"restorePassword", component:RestorePasswordComponent}
 ]
 
 @NgModule({
   declarations: [
     SigninComponent,
-    RegisterComponent
+    RegisterComponent,
+    RestorePasswordComponent
   ],
   imports: [
     CommonModule,

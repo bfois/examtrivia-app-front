@@ -1,8 +1,19 @@
-
+<button mat-raised-button routerLink="/signin"> < BACK </button>
 <main>
   <form [formGroup]="formRegister">
     <h1>Entrar con su cuenta:</h1>
+
     <mat-form-field>
+        <mat-label>Nombre</mat-label>
+      <input type="text" matInput placeholder="nombre" formControlName="name">
+
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Apellido</mat-label>
+      <input type="text" matInput placeholder="apellido" formControlName="lastname">
+
+    </mat-form-field>
+      <mat-form-field>
       <mat-label>Email</mat-label>
       <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
       <mat-error *ngIf="formRegister.get('email')!.hasError('required')"> Email is required</mat-error>
@@ -16,6 +27,6 @@
       <mat-error *ngIf="formRegister.get('password')!.hasError('required')"> Password is required</mat-error>
     </mat-form-field>
 
-    <button mat-stroked-button color="primary" (click)="createUser()">REGISTRARSE</button>
+    <button mat-stroked-button color="primary" (click)="createUser()" [disabled]="!formRegister.valid">REGISTRARSE</button>
   </form>
   </main>

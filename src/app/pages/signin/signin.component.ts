@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './service/authentication.service';
+import { UserService } from '../../shared/UserService';
 
 @Component({
   selector: 'app-signin',
@@ -16,7 +17,8 @@ export class SigninComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -43,7 +45,8 @@ export class SigninComponent implements OnInit {
   }
   loginGoogle() {
     this.isLoggingIn = true;
-    this.authenticationService.loginGoogle().subscribe(() => {
+    this.authenticationService.loginGoogle().subscribe((userData) => {
+      this.userService.setUser(userData); // almacenar los datos del usuario en el servicio
       this.router.navigate(['home']);
     }, (error) => {
       this.isLoggingIn = false;
@@ -52,4 +55,5 @@ export class SigninComponent implements OnInit {
       });
     });
   }
-}
+  }
+
