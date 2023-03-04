@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { passwordMatch } from 'src/app/validators/passwordMatch';
 import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
@@ -23,7 +24,11 @@ export class RegisterComponent implements OnInit {
       name:["",[Validators.required]],
       lastname:["",[Validators.required]],
       email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required]]
+      password:["",[Validators.required]],
+      confirmPassword:["",[Validators.required]]
+    },
+    {
+      validator: passwordMatch("password", "confirmPassword")
     })
   }
 

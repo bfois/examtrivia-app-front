@@ -1,7 +1,11 @@
-<button mat-raised-button routerLink="/signin"> < BACK </button>
-<main>
+
+
+<div class="container">
+  <button class="back" mat-raised-button routerLink="/signin" > BACK </button>
+  <main>
+
   <form [formGroup]="formRegister">
-    <h1>Entrar con su cuenta:</h1>
+    <h1>Registrarse en el sitio:</h1>
 
     <mat-form-field>
         <mat-label>Nombre</mat-label>
@@ -26,7 +30,15 @@
       <input type="password" matInput placeholder="Password" formControlName="password">
       <mat-error *ngIf="formRegister.get('password')!.hasError('required')"> Password is required</mat-error>
     </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirm password</mat-label>
+    <input type="password" matInput placeholder="Confirm password" formControlName="confirmPassword">
+    <mat-error *ngIf="formRegister.errors?.['passwordMissMatchError'] && formRegister.get('confirmPassword')!.hasError('required')"> Passwords do not match</mat-error>
+  </mat-form-field>
 
     <button mat-stroked-button color="primary" (click)="createUser()" [disabled]="!formRegister.valid">REGISTRARSE</button>
   </form>
-  </main>
+</main>
+</div>
+
+
