@@ -13,6 +13,7 @@ import { UserService } from '../../shared/UserService';
 export class SigninComponent implements OnInit {
   form!: FormGroup;
   isLoggingIn = false;
+  restorePassword = false;
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -54,6 +55,13 @@ export class SigninComponent implements OnInit {
         duration: 5000
       });
     });
+  }
+
+  activeRestore(){
+      this.restorePassword = true;
+  }
+  desactiveRestore(){
+    this.restorePassword = false;
   }
   }
 

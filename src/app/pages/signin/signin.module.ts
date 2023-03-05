@@ -12,8 +12,7 @@ import { RegisterComponent } from './register/register.component';
 import { RestorePasswordComponent } from './restore-password/restore-password.component';
 const routes: Routes = [
   {path:"", component:SigninComponent},
-  {path:"register", component:RegisterComponent},
-  {path:"restorePassword", component:RestorePasswordComponent}
+  {path:"register", component:RegisterComponent}
 ]
 
 @NgModule({

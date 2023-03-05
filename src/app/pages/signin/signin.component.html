@@ -1,6 +1,6 @@
 <main>
-  <div class="container">
-<form [formGroup]="form">
+  <div class="container" *ngIf="!restorePassword else restore">
+<form [formGroup]="form" >
   <h1>Entrar con su cuenta:</h1>
   <mat-form-field>
     <mat-label>Email</mat-label>
@@ -16,7 +16,7 @@
     <mat-error *ngIf="form.get('password')!.hasError('required')"> Password is required</mat-error>
   </mat-form-field>
   <div class="aligned-to-right">
-    <button mat-button test-id="recover-password-button" [disabled]="!form.get('email')!.valid" routerLink="restorePassword">Recuperar contraseña</button>
+    <button mat-button test-id="recover-password-button" [disabled]="!form.get('email')!.valid" (click)="activeRestore()">Recuperar contraseña</button>
   </div>
 
   <button mat-raised-button color="primary" test-id="login-button" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoggingIn">INICIAR SESION</button>
@@ -27,4 +27,9 @@
 </form>
 <button mat-raised-button class="button-google" test-id="google-button" (click)="loginGoogle()">
  <img src="../../../assets/google.png" alt="google" width="17px">  Sign in with Google</button></div>
+ <ng-template #restore>
+  <button (click)="desactiveRestore()">BACK TO SIGN IN</button>
+  <app-restore-password></app-restore-password>
+ </ng-template>
 </main>
+
