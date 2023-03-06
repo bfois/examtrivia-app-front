@@ -31,6 +31,17 @@ export class AuthenticationService {
       })
     );
   }
+
+
+  restorePassword(email: string): Observable<void> {
+    return from(this.Afauth.sendPasswordResetEmail(email))
+      .pipe(
+        catchError((error: any) => {
+          // manejo del error
+          return throwError(error);
+        })
+      );
+  }
 }
 
 
