@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-restore-password',
@@ -6,8 +9,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./restore-password.component.scss']
 })
 export class RestorePasswordComponent implements OnInit {
-
-  constructor() { }
+  formRestore!:FormGroup
+  constructor(private formBuilder: FormBuilder) {
+   this.formRestore = this.formBuilder.group({
+    email:["",[Validators.required, Validators.email]]
+   })
+  }
 
   ngOnInit(): void {
   }
