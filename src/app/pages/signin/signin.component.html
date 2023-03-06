@@ -1,3 +1,4 @@
+<body>
 <main>
   <div class="container" *ngIf="!restorePassword else restore">
 <form [formGroup]="form" >
@@ -29,9 +30,13 @@
 <button mat-raised-button class="button-google" test-id="google-button" (click)="loginGoogle()">
  <img src="../../../assets/google.png" alt="google" width="17px">  Sign in with Google</button></div>
  <ng-template #restore>
-  <button class="back_to_sign" (click)="desactiveRestore()" mat-button>BACK TO SIGN IN</button>
-  <h4>Ingrese el correo de la cuenta que quiere recuperar</h4>
-  <app-restore-password></app-restore-password>
+  <div class="restore">
+    <button class="back_to_sign" (click)="desactiveRestore()" mat-button>BACK TO SIGN IN</button>
+    <h4>Ingrese el correo de la cuenta que quiere recuperar</h4>
+    <app-restore-password></app-restore-password>
+  </div>
+
  </ng-template>
 </main>
 
+</body>

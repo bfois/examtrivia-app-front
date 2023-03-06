@@ -1,22 +1,30 @@
+body{
+  background-image: url(../../../assets/background.jpg);
+}
 main{
-
   display: flex;
   justify-content: center;
   align-items: center;
 height: 80vh;
   flex-direction: column;
+
   .button-google{
-    color: white;
     background-color: rgb(70, 79, 255);
 
   }
 }
 .container{
+width: 300px;
+height: 60%;
+background-color: rgb(255, 255, 255);
   padding: 10px;
   text-align: center;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.585) 0px 5px 15px;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 form{
+
   padding: 5px;
 
   display: flex;
@@ -28,6 +36,7 @@ form{
   }
   button,
   mat-form-field{
+
     width: -webkit-fill-available;
   }
   button{
@@ -40,8 +49,10 @@ form{
   .aligned-to-right{
     text-align: right;
     width: 100%;
+
   }
   .button-loader{
+
     display: flex;
   justify-content: center;
   align-items: center;
@@ -49,10 +60,20 @@ form{
   }
 
 }
-ng-template{
-  width: 100%;
+.restore{
+  background-color: rgb(255, 255, 255);
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 1px solid black;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  padding: 10px;
 }
 .back_to_sign{
   border: 1px solid black;
   margin-bottom: 20px;
+
  }
+
