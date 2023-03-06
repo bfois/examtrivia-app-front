@@ -1,6 +1,6 @@
 
 
-<div class="container">
+<div class="container" *ngIf="!posRegister else emailSend">
   <button class="back" mat-raised-button routerLink="/signin" > BACK </button>
   <main>
 
@@ -40,5 +40,12 @@
   </form>
 </main>
 </div>
+<ng-template #emailSend>
+  <div class="validarMail">
+    <p>El usuario fue creado con exito, revisa la casilla del email: <strong>{{currentUser.email}}</strong>  para validiar su cuenta</p>
+    <button class="backTemplate" mat-raised-button routerLink="/signin" > BACK </button>
+  </div>
+
+</ng-template>
 
 

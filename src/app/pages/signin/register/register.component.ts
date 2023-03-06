@@ -13,9 +13,10 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class RegisterComponent implements OnInit {
   formRegister!: FormGroup;
+  posRegister = false;
+  currentUser:any;
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router,
     private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
     private userService: UserService
@@ -49,12 +50,13 @@ export class RegisterComponent implements OnInit {
         // Envía el correo electrónico de verificación.
         userCredential.user.sendEmailVerification()
           .then(() => {
-            console.log('Correo electrónico de verificación enviado.');
             this.snackBar.open('Usuario registrado exitosamente', 'Cerrar', {
               duration: 3000
             });
             this.userService.setUser(userCredential)
-            this.router.navigate(['signin']);
+            this.currentUser = user;
+            this.posRegister = true;
+
           })
           .catch((error:any) => {
             console.error('Error al enviar el correo electrónico de verificación:', error);

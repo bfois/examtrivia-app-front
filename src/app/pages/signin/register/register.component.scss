@@ -20,3 +20,19 @@ form{
   width: 100%;
   height: 100vh;
 }
+.validarMail{
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex-direction: column;
+}
+.backTemplate{
+  background-color: blue;
+  color: white;
+}
