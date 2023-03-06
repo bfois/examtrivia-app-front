@@ -21,8 +21,8 @@
     <button mat-button test-id="recover-password-button" [disabled]="!form.get('email')!.valid" (click)="activeRestore()">Recuperar contraseña</button>
   </div>
 
-  <button mat-raised-button color="primary" test-id="login-button" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoggingIn">INICIAR SESION</button>
-  <button mat-raised-button color="primary" test-id="login-loader" class="button-loader" *ngIf="isLoggingIn"><mat-spinner color="accent" diameter="30" ></mat-spinner></button>
+  <button mat-raised-button color="primary" test-id="login-button" [disabled]="!form.valid" (click)="login()" *ngIf="!isLoading">INICIAR SESION</button>
+  <button mat-raised-button color="primary" test-id="login-loader" class="button-loader" *ngIf="isLoading"><mat-spinner color="accent" diameter="30" ></mat-spinner></button>
 
 
   <button mat-stroked-button color="primary" routerLink="register">REGISTRARSE</button>

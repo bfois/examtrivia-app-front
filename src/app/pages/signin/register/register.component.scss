@@ -1,13 +1,21 @@
+body{
+  background-image: url(../../../../assets/background.jpg);
+}
 main{
+
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 90vh;
   flex-direction: column;
 }
+
 form{
-  padding: 10px;
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: rgba(0, 0, 0, 0.585) 0px 5px 15px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -19,10 +27,11 @@ form{
 .container{
   width: 100%;
   height: 100vh;
+
 }
 .validarMail{
   font-size: 20px;
-  background-color: black;
+  background-image: url(../../../../assets/background.jpg);
   color: white;
   width: 100%;
   height: 100vh;
@@ -34,5 +43,11 @@ form{
 }
 .backTemplate{
   background-color: blue;
+  color: white;
+}
+.back{
+  margin: 20px;
+  width: 100px;
+  background-color: red;
   color: white;
 }
