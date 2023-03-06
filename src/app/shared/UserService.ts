@@ -12,6 +12,7 @@ export class UserService {
   constructor() { }
 
   setUser(user: any) {
+    localStorage.setItem('currentUser', JSON.stringify(user));
     this.userSource.next(user);
   }
 

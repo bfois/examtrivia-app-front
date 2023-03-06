@@ -13,10 +13,15 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')?? "");
+    if (currentUser) {
+      this.currentUser = currentUser;
+    }
     this.userService.currentUser.subscribe(user => {
       this.currentUser = user;
-      console.log(this.currentUser)
+      console.log(this.currentUser);
     });
   }
+
 
 }

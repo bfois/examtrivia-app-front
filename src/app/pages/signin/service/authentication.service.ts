@@ -19,8 +19,8 @@ export class AuthenticationService {
   signIn(params: signIn):Observable<any>{
     return from(this.Afauth.signInWithEmailAndPassword(params.email, params.password));
   }
-  signUp(email:string, password:string): Observable<any> {
-    return from(this.Afauth.createUserWithEmailAndPassword(email,password));
+  signUp(email: string, password: string): Promise<any> {
+    return this.Afauth.createUserWithEmailAndPassword(email, password);
   }
 
   loginGoogle(): Observable<any> {
