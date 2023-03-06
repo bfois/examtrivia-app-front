@@ -10,17 +10,22 @@ import { UserService } from '../../shared/UserService';
 export class HomeComponent implements OnInit {
   currentUser: any;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
+   }
 
   ngOnInit() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser')?? "");
+    this.userService.currentUser.subscribe(user => {
+      if (user) {
+        this.currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      }
+    });
+
+    const currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
     if (currentUser) {
       this.currentUser = currentUser;
     }
-    this.userService.currentUser.subscribe(user => {
-      this.currentUser = user;
-      console.log(this.currentUser);
-    });
   }
 
 
