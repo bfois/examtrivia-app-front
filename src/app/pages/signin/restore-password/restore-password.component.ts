@@ -26,11 +26,10 @@ export class RestorePasswordComponent implements OnInit {
   }
   restorePassword(){
     this.authService.restorePassword(this.formRestore.value.email).subscribe(()=>{
-      this.router.navigate(['signin'])
+      this.router.navigate(['']);
       this.snackBar.open("El correo para restablecer tu contraseño fue enviado con exito", "OK",{
         duration:5000
       })
-      console.log("esta funcionando")
     },(error) =>{
       this.snackBar.open(error.message, "OK",{
         duration:5000
