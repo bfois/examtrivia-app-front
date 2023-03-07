@@ -26,7 +26,6 @@ export class AuthenticationService {
   loginGoogle(): Observable<any> {
     return from(this.Afauth.signInWithPopup(new GoogleAuthProvider())).pipe(
       catchError((error) => {
-        console.log(error);
         return throwError(error);
       })
     );

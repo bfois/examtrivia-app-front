@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Materia } from 'src/app/interfaces/Materia';
 import { UserService } from '../../shared/UserService';
+import { MateriasService } from './service/materias.service';
+
 
 @Component({
   selector: 'app-home',
@@ -9,8 +13,11 @@ import { UserService } from '../../shared/UserService';
 
 export class HomeComponent implements OnInit {
   currentUser: any;
-
-  constructor(private userService: UserService) {
+  materias$: Observable<Materia[]> | undefined;
+  constructor(
+    private userService: UserService,
+    private materiasService: MateriasService
+   ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
    }
 
@@ -26,6 +33,9 @@ export class HomeComponent implements OnInit {
     if (currentUser) {
       this.currentUser = currentUser;
     }
+
+    this.materias$ = this.materiasService.getAllMaterias();
+
   }
 
 

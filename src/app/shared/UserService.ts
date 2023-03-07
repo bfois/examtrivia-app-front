@@ -15,6 +15,5 @@ export class UserService {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.userSource.next(user);
   }
-
 }
 
