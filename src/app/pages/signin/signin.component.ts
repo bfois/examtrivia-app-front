@@ -14,8 +14,9 @@ import { AuthGuard } from 'src/app/guards/auth.guard';
 export class SigninComponent implements OnInit {
   form!: FormGroup;
   isLoggingIn = false;
-  isLoading = false;
+  loading = false;
   restorePassword = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -32,45 +33,45 @@ export class SigninComponent implements OnInit {
       password:["",[Validators.required]]
     })
   }
-  login() {
-    this.isLoading = true;
-    this.authenticationService.signIn({
-      email: this.form.value.email,
-      password: this.form.value.password
-    }).subscribe(() => {
-      this.isLoading = false;
+
+  async login() {
+    this.loading = true;
+    const { email, password } = this.form.value;
+    try {
+      await this.authenticationService.signIn({ email, password }).toPromise();
+      this.loading = false;
       if (this.authGuard.getIsNotAuthenticatedOrEmailNotVerified()) {
         this.snackBar.open("Debe validar su correo electrónico para poder iniciar sesión.", "OK", {
           duration: 5000
         });
         this.authGuard.resetIsNotAuthenticatedOrEmailNotVerified()
+      } else {
+        this.router.navigate(['home'])
       }
-        else{this.router.navigate(['home'])}
-    }, (error) => {
-      this.isLoading = false;
-      this.snackBar.open(error.message, "OK",{
-        duration:5000
+    } catch (error:any) {
+      this.loading = false;
+      this.snackBar.open(error.message, "OK", {
+        duration: 5000
       })
-    });
+    }
   }
-  loginGoogle() {
+
+  async loginGoogle() {
     this.isLoggingIn = true;
-    this.authenticationService.loginGoogle().subscribe((userData) => {
+    try {
+      const userData = await this.authenticationService.loginGoogle().toPromise();
       this.userService.setUser(userData); // almacenar los datos del usuario en el servicio
       this.router.navigate(['home']);
-    }, (error) => {
+    } catch (error:any) {
       this.isLoggingIn = false;
       this.snackBar.open(error.message, "OK", {
         duration: 5000
       });
-    });
+    }
   }
 
-  activeRestore(){
-      this.restorePassword = true;
+  toggleRestorePassword() {
+      this.restorePassword = !this.restorePassword;
   }
-  desactiveRestore(){
-    this.restorePassword = false;
-  }
-  }
+}
 
