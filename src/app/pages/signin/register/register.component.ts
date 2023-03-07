@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Router } from '@angular/router';
 import { UserService } from 'src/app/shared/UserService';
 import { passwordMatch } from 'src/app/validators/passwordMatch';
 import { AuthenticationService } from '../service/authentication.service';
@@ -13,63 +12,49 @@ import { AuthenticationService } from '../service/authentication.service';
 })
 export class RegisterComponent implements OnInit {
   formRegister!: FormGroup;
+  currentUser: any;
   posRegister = false;
-  currentUser:any;
   constructor(
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
     private userService: UserService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
-      name:["",[Validators.required]],
-      lastname:["",[Validators.required]],
-      email:["",[Validators.required, Validators.email]],
-      password:["",[Validators.required]],
-      confirmPassword:["",[Validators.required]]
-    },
-    {
-      validator: passwordMatch("password", "confirmPassword")
-    })
+      name: ['', [Validators.required]],
+      lastname: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required]],
+      confirmPassword: ['', [Validators.required]]
+    }, {
+      validator: passwordMatch('password', 'confirmPassword')
+    });
   }
 
-  createUser() {
-    const user = {
-      name: this.formRegister.value.name,
-      lastname: this.formRegister.value.lastname,
-      email: this.formRegister.value.email,
-      password: this.formRegister.value.password
-    };
+  async createUser() {
+    if (!this.formRegister) {
+      return;
+    }
 
-    this.authenticationService.signUp(user.email, user.password)
-      .then(userCredential => {
-        console.log('Usuario registrado:', userCredential.user);
+    const { name, lastname, email, password } = this.formRegister.value;
+    const user = { name, lastname, email, password };
 
-        // Envía el correo electrónico de verificación.
-        userCredential.user.sendEmailVerification()
-          .then(() => {
-            this.snackBar.open('Usuario registrado exitosamente', 'Cerrar', {
-              duration: 3000
-            });
-            this.userService.setUser(userCredential)
-            this.currentUser = user;
-            this.posRegister = true;
+    try {
+      const userCredential = await this.authenticationService.signUp(user.email, user.password);
+      console.log('Usuario registrado:', userCredential.user);
 
-          })
-          .catch((error:any) => {
-            console.error('Error al enviar el correo electrónico de verificación:', error);
-            this.snackBar.open('Error al enviar el correo electrónico de verificación', 'Cerrar', {
-              duration: 3000
-            });
-          });
-      })
-      .catch(error => {
-        console.error('Error al registrar usuario:', error);
-        this.snackBar.open('Error al registrar usuario', 'Cerrar', {
-          duration: 3000
-        });
-      });
+      await userCredential.user.sendEmailVerification();
+
+      this.snackBar.open('Usuario registrado exitosamente', 'Cerrar', { duration: 3000 });
+      this.userService.setUser(userCredential);
+      this.currentUser = user;
+      this.posRegister = true;
+
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      this.snackBar.open('Error al registrar usuario', 'Cerrar', { duration: 3000 });
+    }
   }
 }

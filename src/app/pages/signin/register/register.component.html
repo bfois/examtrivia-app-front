@@ -10,17 +10,17 @@
 
     <mat-form-field>
         <mat-label>Nombre</mat-label>
-      <input type="text" matInput placeholder="nombre" formControlName="name">
+      <input type="text" matInput placeholder="nombre" formControlName="name" #nameInput>
 
     </mat-form-field>
     <mat-form-field>
       <mat-label>Apellido</mat-label>
-      <input type="text" matInput placeholder="apellido" formControlName="lastname">
+      <input type="text" matInput placeholder="apellido" formControlName="lastname" #lastnameInput>
 
     </mat-form-field>
       <mat-form-field>
       <mat-label>Email</mat-label>
-      <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email">
+      <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email"  #emailInput>
       <mat-error *ngIf="formRegister.get('email')!.hasError('required')"> Email is required</mat-error>
       <mat-error *ngIf="formRegister.get('email')!.hasError('email')">Email is invalid</mat-error>
 
@@ -28,7 +28,7 @@
 
     <mat-form-field>
       <mat-label>Password</mat-label>
-      <input type="password" matInput placeholder="Password" formControlName="password">
+      <input type="password" matInput placeholder="Password" formControlName="password" #passwordInput>
       <mat-error *ngIf="formRegister.get('password')!.hasError('required')"> Password is required</mat-error>
     </mat-form-field>
     <mat-form-field>
