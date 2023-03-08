@@ -1,4 +1,4 @@
-export interface Materia {
+export interface Disciplina {
   id: number;
   name: string;
 }

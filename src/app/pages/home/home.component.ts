@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Materia } from 'src/app/interfaces/Materia';
+import { Disciplina } from 'src/app/interfaces/Disciplina';
 import { UserService } from '../../shared/UserService';
-import { MateriasService } from './service/materias.service';
+import { DisciplinaService } from './service/disciplina.service';
 
 
 @Component({
@@ -13,10 +13,10 @@ import { MateriasService } from './service/materias.service';
 
 export class HomeComponent implements OnInit {
   currentUser: any;
-  materias$: Observable<Materia[]> | undefined;
+  materias$: Observable<Disciplina[]> | undefined;
   constructor(
     private userService: UserService,
-    private materiasService: MateriasService
+    private disciplinaService: DisciplinaService
    ) {
     this.currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
    }
@@ -34,7 +34,7 @@ export class HomeComponent implements OnInit {
       this.currentUser = currentUser;
     }
 
-    this.materias$ = this.materiasService.getAllMaterias();
+    this.materias$ = this.disciplinaService.getAllDisciplinas();
 
   }
 
