@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Disciplina } from 'src/app/interfaces/Disciplina';
-import { UserService } from '../../shared/UserService';
-import { DisciplinaService } from './service/disciplina.service';
 
+import { DisciplinaService } from './service/disciplina.service';
+import { AuthenticationService } from '../signin/service/authentication.service';
 
 @Component({
   selector: 'app-home',
@@ -13,30 +13,25 @@ import { DisciplinaService } from './service/disciplina.service';
 
 export class HomeComponent implements OnInit {
   currentUser: any;
-  materias$: Observable<Disciplina[]> | undefined;
+  disciplinas$: Observable<Disciplina[]> | undefined;
   constructor(
-    private userService: UserService,
-    private disciplinaService: DisciplinaService
+    private disciplinaService: DisciplinaService,
+    private authenticationService: AuthenticationService
    ) {
-    this.currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
+
    }
 
   ngOnInit() {
-    this.userService.currentUser.subscribe(user => {
+    this.authenticationService.getCurrentUser().subscribe(user => {
       if (user) {
         this.currentUser = user;
-        localStorage.setItem('currentUser', JSON.stringify(user));
+        console.log(this.currentUser)
+        // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
     });
 
-    const currentUser = JSON.parse(localStorage.getItem('currentUser') ?? "");
-    if (currentUser) {
-      this.currentUser = currentUser;
-    }
 
-    this.materias$ = this.disciplinaService.getAllDisciplinas();
+    this.disciplinas$ = this.disciplinaService.getAllDisciplinas();
 
-  }
-
-
+}
 }

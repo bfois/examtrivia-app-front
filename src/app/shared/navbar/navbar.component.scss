@@ -1,0 +1,26 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+.userNavbar{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  img{
+    width: 50px;
+    border-radius: 50%;
+  }
+  button{
+    background-color: transparent;
+    cursor: pointer;
+    border: none;
+  }
+  span{
+    padding-left: 10px;
+  }
+}
+mat-toolbar{
+  background-color: black;
+  color: white;
+  overflow: hidden;
+}

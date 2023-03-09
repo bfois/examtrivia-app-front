@@ -1,0 +1,13 @@
+<mat-toolbar>
+  <div class="userNavbar">
+    <button>
+      <img [src]=" currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{ currentUser?.displayName }}" class="user-photo">
+    </button>
+
+    <span>{{ currentUser?.displayName || 'username'}}</span>
+
+  </div>
+  <span class="example-spacer"></span>
+  <span>ExamTrivia</span>
+</mat-toolbar>
+

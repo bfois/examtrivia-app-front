@@ -30,7 +30,9 @@ export class AuthenticationService {
       })
     );
   }
-
+  getCurrentUser(): Observable<firebase.User | null> {
+    return this.Afauth.authState;
+  }
 
   restorePassword(email: string): Observable<void> {
     return from(this.Afauth.sendPasswordResetEmail(email))

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { UserService } from 'src/app/shared/UserService';
 import { passwordMatch } from 'src/app/validators/passwordMatch';
 import { AuthenticationService } from '../service/authentication.service';
 
@@ -18,7 +17,6 @@ export class RegisterComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
-    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -48,7 +46,6 @@ export class RegisterComponent implements OnInit {
       await userCredential.user.sendEmailVerification();
 
       this.snackBar.open('Usuario registrado exitosamente', 'Cerrar', { duration: 3000 });
-      this.userService.setUser(userCredential);
       this.currentUser = user;
       this.posRegister = true;
 

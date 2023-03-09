@@ -7,6 +7,7 @@ import { HomeComponent } from './home.component';
 
 //HTTP
 import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 
 //RUTAS
 const routes: Routes = [
@@ -14,13 +15,14 @@ const routes: Routes = [
 ]
 
 @NgModule({
-  declarations: [
-    HomeComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule.forChild(routes),
-    HttpClientModule
-  ]
+    declarations: [
+        HomeComponent
+    ],
+    imports: [
+        CommonModule,
+        RouterModule.forChild(routes),
+        HttpClientModule,
+        NavbarComponent
+    ]
 })
 export class HomeModule { }
