@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Disciplina } from 'src/app/interfaces/Disciplina';
 
-import { DisciplinaService } from './service/disciplina.service';
 import { AuthenticationService } from '../signin/service/authentication.service';
 
 @Component({
@@ -13,9 +10,8 @@ import { AuthenticationService } from '../signin/service/authentication.service'
 
 export class HomeComponent implements OnInit {
   currentUser: any;
-  disciplinas$: Observable<Disciplina[]> | undefined;
+  mostrarDisciplina = true;
   constructor(
-    private disciplinaService: DisciplinaService,
     private authenticationService: AuthenticationService
    ) {
 
@@ -29,9 +25,13 @@ export class HomeComponent implements OnInit {
         // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
     });
+}
 
-
-    this.disciplinas$ = this.disciplinaService.getAllDisciplinas();
-
+onDisciplinaSelected(disciplinaId: number) {
+  this.mostrarDisciplina = false;
+  // hacer algo con la disciplina seleccionada...
+}
+volverDisciplina(){
+  this.mostrarDisciplina = true;
 }
 }

@@ -7,7 +7,7 @@
    providedIn: 'root'
  })
  export class DisciplinaService {
-  URL = "http://localhost:8080/api/v1";   constructor(private http: HttpClient) {
+  URL = "http://localhost:8080/api/v1/home";   constructor(private http: HttpClient) {
   }
   getAllDisciplinas(): Observable<Disciplina[]> {
      return this.http.get<Disciplina[]>(`${this.URL}/disciplinas`);

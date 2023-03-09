@@ -1,8 +1,11 @@
 
   <app-navbar [currentUser]="currentUser"></app-navbar>
 <ul>
+  <div class="content">
+    <div class="disciplinas" *ngIf="mostrarDisciplina"> <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina></div>
+    <div class="materias" *ngIf="!mostrarDisciplina" ><button mat-raised-button (click)="volverDisciplina()">BACK</button><p>Funcionando</p></div>
+  </div>
 
 
-  <!-- <li *ngFor="let disciplina of disciplinas$ | async">{{disciplina.name}}</li> -->
 </ul>
 

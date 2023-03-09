@@ -1,0 +1,12 @@
+<div class="disciplina-container">
+
+    <mat-form-field appearance="fill">
+      <mat-label>Disciplina academica</mat-label>
+      <mat-select [(ngModel)]="selectedDisciplinaId" name="selectedDisciplinaId" (ngModelChange)="onSelectDisciplina()">
+        <mat-option *ngFor="let disciplina of disciplinas$ | async" [value]="disciplina.id">
+          {{disciplina.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+</div>
+
