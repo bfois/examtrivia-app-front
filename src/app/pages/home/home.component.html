@@ -3,7 +3,7 @@
 <ul>
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina"> <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina></div>
-    <div class="materias" *ngIf="!mostrarDisciplina" ><button mat-raised-button (click)="volverDisciplina()">BACK</button><p>Funcionando</p></div>
+    <div class="materias" *ngIf="!mostrarDisciplina" ><button mat-raised-button (click)="volverDisciplina()">BACK</button><div *ngFor="let materia of materias"><span>{{materia.name}}</span></div></div>
   </div>
 
 

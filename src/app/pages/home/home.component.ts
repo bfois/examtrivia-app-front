@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Materia } from 'src/app/interfaces/Materia';
+
 import { AuthenticationService } from '../signin/service/authentication.service';
+import { DisciplinaService } from './service/disciplina.service';
 
 @Component({
   selector: 'app-home',
@@ -11,8 +14,11 @@ import { AuthenticationService } from '../signin/service/authentication.service'
 export class HomeComponent implements OnInit {
   currentUser: any;
   mostrarDisciplina = true;
+  materias: Materia[] | undefined;
+
   constructor(
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private disciplinaService: DisciplinaService
    ) {
 
    }
@@ -30,6 +36,15 @@ export class HomeComponent implements OnInit {
 onDisciplinaSelected(disciplinaId: number) {
   this.mostrarDisciplina = false;
   // hacer algo con la disciplina seleccionada...
+  this.disciplinaService.getMateriasByDisciplinaId(disciplinaId).subscribe(
+    (data: Materia[]) => {
+      this.materias = data;
+    },
+    error => {
+      console.log(error);
+    }
+  );
+
 }
 volverDisciplina(){
   this.mostrarDisciplina = true;
