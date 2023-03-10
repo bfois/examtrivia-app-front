@@ -1,159 +1,61 @@
-// import { ComponentFixture, TestBed } from '@angular/core/testing';
-// import { ReactiveFormsModule } from '@angular/forms';
-// import { SigninComponent } from './signin.component';
-// import {RouterTestingModule} from '@angular/router/testing'
-// import {Location} from '@angular/common'
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouterTestingModule } from '@angular/router/testing';
+import { AuthGuard } from 'src/app/guards/auth.guard';
+import { AuthenticationService } from './service/authentication.service';
+import { SigninComponent } from './signin.component';
 
-// import { Subject } from 'rxjs';
-// import { AuthenticationService } from './service/authentication.service';
+describe('SigninComponent', () => {
+  let component: SigninComponent;
+  let fixture: ComponentFixture<SigninComponent>;
+  let authServiceSpy: jasmine.SpyObj<AuthenticationService>;
+  let snackbarSpy: jasmine.SpyObj<MatSnackBar>;
+  let authGuardSpy: jasmine.SpyObj<AuthGuard>;
 
-// describe('SigninComponent', () => {
-//   let component: SigninComponent;
-//   let fixture: ComponentFixture<SigninComponent>;
-//   let page: any;
-//   let location: Location;
-//   let authenticationService: AuthenticationServiceMock;
-
-
-//   beforeEach(async () => {
-//     authenticationService = new AuthenticationServiceMock()
-//     await TestBed.configureTestingModule({
-//       declarations: [ SigninComponent ],
-//       imports:[ReactiveFormsModule ]
-//     })
-//     .overrideProvider(AuthenticationService, {useValue:authenticationService})
-//     .compileComponents();
-
-//     fixture = TestBed.createComponent(SigninComponent);
-//     location = TestBed.inject(Location);
-
-//     component = fixture.componentInstance;
-//     page = fixture.debugElement.nativeElement
-//     fixture.detectChanges();
-//   });
+  beforeEach(async () => {
+    const authSpy = jasmine.createSpyObj('AuthenticationService', ['signIn', 'loginGoogle']);
+    const snackbar = jasmine.createSpyObj('MatSnackBar', ['open']);
+    const authGuard = jasmine.createSpyObj('AuthGuard', ['resetIsNotAuthenticatedOrEmailNotVerified', 'getIsNotAuthenticatedOrEmailNotVerified']);
+    await TestBed.configureTestingModule({
+      imports: [ReactiveFormsModule, RouterTestingModule],
+      declarations: [SigninComponent],
+      providers: [
+        { provide: AuthenticationService, useValue: authSpy },
+        { provide: MatSnackBar, useValue: snackbar },
+        { provide: AuthGuard, useValue: authGuard }
+      ],
+    }).compileComponents();
 
 
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(SigninComponent);
+    component = fixture.componentInstance;
+    authServiceSpy = TestBed.inject(AuthenticationService) as jasmine.SpyObj<AuthenticationService>;
+    snackbarSpy = TestBed.inject(MatSnackBar) as jasmine.SpyObj<MatSnackBar>;
+    authGuardSpy = TestBed.inject(AuthGuard) as jasmine.SpyObj<AuthGuard>;
+    fixture.detectChanges();
+  });
+
+  it('should create the component', () => {
+    expect(component).toBeTruthy();
+  });
+
+})
 
 
-//   describe("given form", ()=>{
 
-//     it('when email is empty, then login button should be disabled', () => {
-//         setEmail('');
-//         setPassword('anyPassword');
+    /*
+    ### Explicación del archivo de prueba
 
-//         expect(loginButton().disabled).toBeTruthy();
-//       })
+El archivo de prueba `dashboard.component.spec.ts` verifica el comportamiento del componente `DashboardComponent`. Este componente es el componente principal que se muestra cuando un usuario inicia sesión y tiene acceso a la página principal de la aplicación.
 
-//       it('when email is invalid, then login button should be disabled', () => {
-//         setEmail('invalidEmail');
-//         setPassword('anyPassword');
+El archivo de prueba contiene tres casos de prueba que cubren diferentes situaciones en las que el usuario puede estar. El primer caso de prueba comprueba que si el usuario está autenticado y su correo electrónico está verificado, el componente se carga correctamente y no se muestra ningún mensaje de error.
 
-//         expect(loginButton().disabled).toBeTruthy();
-//       })
+El segundo caso de prueba comprueba que si el usuario no está autenticado, el componente redirecciona al usuario a la página de inicio de sesión y muestra un mensaje de error.
 
-//       it('when password is empty, then login button should be disabled', () => {
-//         setEmail('valid@email.com');
-//         setPassword('');
+El tercer caso de prueba comprueba que si el correo electrónico del usuario no está verificado, el componente muestra un mensaje de error y redirecciona al usuario a la página principal.
 
-//         expect(loginButton().disabled).toBeTruthy();
-//       })
-
-//       it('when form is valid, then login button should be enabled', () => {
-//         setEmail('valid@email.com');
-//         setPassword('anyPassword');
-
-//         expect(loginButton().disabled).toBeFalsy();
-//       })
-//       it('when email is empty, then recover password button should be disabled', () => {
-//         setEmail('');
-
-//         expect(recoverPasswordButton().disabled).toBeTruthy();
-//       })
-
-//       it('when email is invalid, then recover password button should be disabled', () => {
-//         setEmail('invalidEmail');
-
-//         expect(recoverPasswordButton().disabled).toBeTruthy();
-//       })
-
-//       it('when email is valid, then recover password button should be enabled', () => {
-//         setEmail('valid@email.com');
-
-//         expect(recoverPasswordButton().disabled).toBeFalsy();
-//       })
-//   })
-
-
-// describe('Login flow', () => {
-
-//   describe('given user clicks on login button', ()=>{
-
-//     beforeEach(()=>{
-//       setEmail('valid@email.com');
-//       setPassword('anyPassword');
-//       loginButton().click()
-//       fixture.detectChanges();
-//     })
-
-//     it('the show login loader',()=>{
-//         expect(loginLoader()).not.toBeNull();
-// })
-
-//   it('the hide login button',()=>{
-//         expect(loginButton()).toBeNull();
-//     })
-
-//   })
-
-//   describe('when login is succesful',()=>{
-
-//     beforeEach(()=>{
-//       authenticationService._signInResponse.next({});
-//     })
-
-//   })
-//   describe('when login fail',()=>{
-
-//     it('then do not go to home page', done=>{
-//       setTimeout(()=>{
-//         expect(location.path()).toEqual('/home');
-//         done()
-//       },100)
-
-//     })
-
-
-//   })
-
-// })
-
-
-// function setEmail(value:string){
-//     component.form.get('email')?.setValue(value)
-//     fixture.detectChanges();
-//   }
-//   function setPassword(value:string){
-//     component.form.get('password')?.setValue(value);
-//     fixture.detectChanges();
-//   }
-
-//   function recoverPasswordButton(){
-//     return page.querySelector('[test-id="recover-password-button"]')
-//   }
-
-//   function loginButton(){
-//     return page.querySelector('[test-id="login-button"]')
-//   }
-
-//   function loginLoader(){
-//     return page.querySelector('[test-id="login-loader"]');
-//   }
-
-// });
-
-// class AuthenticationServiceMock {
-//   _signInResponse = new Subject();
-//   signIn(){
-//     return this._signInResponse.asObservable();
-//   }
-// }
+Para realizar las pruebas, se utilizan stubs y espías de las dependencias del componente, como el servicio de autenticación (`authService`) y el servicio de Snackbar (`snackBar`). Se simulan diferentes situaciones utilizando estos stubs y espías para verificar que el componente se comporte correctamente en cada caso.*/
