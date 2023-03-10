@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { Materia } from 'src/app/interfaces/Materia';
 
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   currentUser: any;
   mostrarDisciplina = true;
   materias: Materia[] | undefined;
+  materias$: Observable<Materia[]> | undefined;
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -36,16 +38,18 @@ export class HomeComponent implements OnInit {
 onDisciplinaSelected(disciplinaId: number) {
   this.mostrarDisciplina = false;
   // hacer algo con la disciplina seleccionada...
-  this.disciplinaService.getMateriasByDisciplinaId(disciplinaId).subscribe(
-    (data: Materia[]) => {
-      this.materias = data;
-    },
-    error => {
-      console.log(error);
-    }
-  );
-
+  this.materias$ = this.disciplinaService.getMateriasByDisciplinaId(disciplinaId)
+    .pipe(
+      tap((data: Materia[]) => {
+        this.materias = data;
+      }),
+      catchError((error) => {
+        console.log(error);
+        return throwError(() => new Error(error));
+      })
+    );
 }
+
 volverDisciplina(){
   this.mostrarDisciplina = true;
 }
