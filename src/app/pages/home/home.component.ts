@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   materias: Materia[] | undefined;
   materias$: Observable<Materia[]> | undefined;
   materiaSeleccionada!:Materia;
+  nombreMateriaSeleccionada:string="Materia"
   mostrarTemas = false;
   constructor(
     private authenticationService: AuthenticationService,
@@ -59,6 +60,7 @@ onMateriaSelected(materia: Materia) {
     return;
   }
   this.materiaSeleccionada = materia;
+  this.nombreMateriaSeleccionada = materia.name;
   this.mostrarTemas = true;
 }
 volverMateria(){

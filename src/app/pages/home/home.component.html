@@ -12,7 +12,7 @@
 
         <h4>Selecciona la materia que mas se ajuste a tu disciplina!</h4>
         <mat-form-field appearance="fill">
-        <mat-label>Materia</mat-label>
+        <mat-label>{{nombreMateriaSeleccionada}}</mat-label>
         <mat-select >
           <mat-option *ngFor="let materia of materias" (click)="onMateriaSelected(materia)">
             {{materia.name}}
