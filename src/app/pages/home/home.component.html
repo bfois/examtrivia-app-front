@@ -3,8 +3,26 @@
 
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina"> <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina></div>
-    <div class="materias" *ngIf="!mostrarDisciplina" ><button mat-raised-button (click)="volverDisciplina()">BACK</button> <div *ngIf="materias$ | async as materias"></div><div *ngFor="let materia of materias"><span>{{materia.name}}</span></div></div>
+
+    <div class="materias" *ngIf="!mostrarDisciplina" >
+
+      <button mat-button (click)="volverDisciplina()">BACK</button>
+
+      <div *ngIf="materias$ | async as materias" class="materiasDiv">
+
+        <h4>Selecciona la materia que mas se ajuste a tu disciplina!</h4>
+        <mat-form-field appearance="fill">
+        <mat-label>Materia</mat-label>
+        <mat-select >
+          <mat-option *ngFor="let materia of materias">
+            {{materia.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
   </div>
+    </div>
+    </div>
+
 
 
 

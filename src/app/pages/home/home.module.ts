@@ -12,6 +12,7 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 //Angular material
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { MatButtonModule } from '@angular/material/button';
 //RUTAS
 const routes: Routes = [
   {path:"", component:HomeComponent}
@@ -29,7 +30,8 @@ const routes: Routes = [
         NavbarComponent,
         MatSelectModule,
         MatFormFieldModule,
-        FormsModule
+        FormsModule,
+        MatButtonModule
 
     ]
 })

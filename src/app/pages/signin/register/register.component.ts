@@ -21,8 +21,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      lastname: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
       confirmPassword: ['', [Validators.required]]
@@ -36,8 +34,8 @@ export class RegisterComponent implements OnInit {
       return;
     }
 
-    const { name, lastname, email, password } = this.formRegister.value;
-    const user = { name, lastname, email, password };
+    const { email, password } = this.formRegister.value;
+    const user = { email, password };
 
     try {
       const userCredential = await this.authenticationService.signUp(user.email, user.password);
