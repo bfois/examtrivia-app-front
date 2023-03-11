@@ -17,7 +17,8 @@ export class HomeComponent implements OnInit {
   mostrarDisciplina = true;
   materias: Materia[] | undefined;
   materias$: Observable<Materia[]> | undefined;
-
+  materiaSeleccionada!:Materia;
+  mostrarTemas = false;
   constructor(
     private authenticationService: AuthenticationService,
     private disciplinaService: DisciplinaService
@@ -52,5 +53,12 @@ onDisciplinaSelected(disciplinaId: number) {
 
 volverDisciplina(){
   this.mostrarDisciplina = true;
+}
+onMateriaSelected(materia: Materia) {
+  this.materiaSeleccionada = materia;
+  this.mostrarTemas = true;
+}
+volverMateria(){
+  this.mostrarTemas = false;
 }
 }

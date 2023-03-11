@@ -13,6 +13,8 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
+import { TemasComponent } from './temas/temas.component';
+
 //RUTAS
 const routes: Routes = [
   {path:"", component:HomeComponent}
@@ -21,7 +23,6 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         HomeComponent,
-        DisciplinaComponent
     ],
     imports: [
         CommonModule,
@@ -30,9 +31,9 @@ const routes: Routes = [
         NavbarComponent,
         MatSelectModule,
         MatFormFieldModule,
-        FormsModule,
-        MatButtonModule
-
+        MatButtonModule,
+        TemasComponent,
+        DisciplinaComponent
     ]
 })
 export class HomeModule { }

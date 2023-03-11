@@ -4,7 +4,7 @@
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina"> <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina></div>
 
-    <div class="materias" *ngIf="!mostrarDisciplina" >
+    <div class="materias" *ngIf="!mostrarDisciplina && !mostrarTemas" >
 
       <button mat-button (click)="volverDisciplina()">BACK</button>
 
@@ -14,13 +14,22 @@
         <mat-form-field appearance="fill">
         <mat-label>Materia</mat-label>
         <mat-select >
-          <mat-option *ngFor="let materia of materias">
+          <mat-option *ngFor="let materia of materias" (click)="onMateriaSelected(materia)">
             {{materia.name}}
           </mat-option>
         </mat-select>
       </mat-form-field>
+  </div> </div>
+
+<div *ngIf="mostrarTemas">
+  <button mat-button (click)="volverMateria()">BACK</button>
+  <div>
+    <app-temas [materia]="materiaSeleccionada"> </app-temas>
   </div>
-    </div>
+</div>
+
+
+
     </div>
 
 
