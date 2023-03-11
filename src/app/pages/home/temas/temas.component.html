@@ -1,9 +1,19 @@
+<div class="container">
 <div class="temas">
   <div class="titulo"> <h4>¡Selecciona los temas que te interesen revisar!</h4></div>
   <div class="contenedor_botones">
     <div class="button" *ngFor="let tema of temas">
-      <button mat-button [id]="tema.id">{{tema.name}}</button>
+      <button mat-button
+      [class.seleccionado]="temasSeleccionados.includes(tema)"
+      (click)="alternarSeleccion(tema)"
+       [id]="tema.id">{{tema.name}}</button>
     </div>
+
   </div>
 
+</div>
+<div class="start-game">
+  <button  class="start-game-button" mat-button *ngIf="temasSeleccionados.length > 0"
+ (click)="comenzar()" >COMENZAR</button>
+</div>
 </div>

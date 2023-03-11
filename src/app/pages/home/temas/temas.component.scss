@@ -19,3 +19,17 @@ button{
 .titulo{
   text-align: center;
 }
+.button .seleccionado {
+  background-color: blue;
+  color: white;
+}
+.start-game{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  button{
+    background-color: gold;
+  }
+}
+

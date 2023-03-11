@@ -65,5 +65,6 @@ onMateriaSelected(materia: Materia) {
 }
 volverMateria(){
   this.mostrarTemas = false;
+  this.nombreMateriaSeleccionada = "Materia"
 }
 }

@@ -24,4 +24,6 @@ import { Temas } from 'src/app/interfaces/Temas';
     getTemasByMateriaId(id:number): Observable<Temas[]>{
      return this.temas$ = this.http.get<Temas[]>(`${this.URL}/materias/${id}/temas`)
     }
+
+    getPreguntasByTemasIds(id:number){}
 }
