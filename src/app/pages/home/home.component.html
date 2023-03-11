@@ -6,7 +6,7 @@
 
     <div class="materias" *ngIf="!mostrarDisciplina" >
 
-      <button mat-button (click)="volverDisciplina()">BACK</button>
+      <button mat-button (click)="volverDisciplina()" (click)="volverMateria()" >BACK</button>
 
       <div *ngIf="materias$ | async as materias" class="materiasDiv">
 
