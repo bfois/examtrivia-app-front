@@ -1,0 +1,21 @@
+.temas{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 50vh;
+}
+.contenedor_botones{
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 600px;
+}
+button{
+  background-color: rgb(203, 203, 203);
+  border: 1px solid black;
+  margin: 5px;
+}
+.titulo{
+  text-align: center;
+}

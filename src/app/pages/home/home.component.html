@@ -4,7 +4,7 @@
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina"> <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina></div>
 
-    <div class="materias" *ngIf="!mostrarDisciplina && !mostrarTemas" >
+    <div class="materias" *ngIf="!mostrarDisciplina" >
 
       <button mat-button (click)="volverDisciplina()">BACK</button>
 
@@ -22,7 +22,7 @@
   </div> </div>
 
 <div *ngIf="mostrarTemas">
-  <button mat-button (click)="volverMateria()">BACK</button>
+
   <div>
     <app-temas [materia]="materiaSeleccionada"> </app-temas>
   </div>

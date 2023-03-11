@@ -1,3 +1,9 @@
-<p *ngFor="let tema of temas">
-  {{tema.name}}
-</p>
+<div class="temas">
+  <div class="titulo"> <h4>¡Selecciona los temas que te interesen revisar!</h4></div>
+  <div class="contenedor_botones">
+    <div class="button" *ngFor="let tema of temas">
+      <button mat-button [id]="tema.id">{{tema.name}}</button>
+    </div>
+  </div>
+
+</div>

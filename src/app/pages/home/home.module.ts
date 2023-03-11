@@ -11,7 +11,6 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 
 //Angular material
 import {MatSelectModule} from '@angular/material/select';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { TemasComponent } from './temas/temas.component';
 
@@ -30,7 +29,6 @@ const routes: Routes = [
         HttpClientModule,
         NavbarComponent,
         MatSelectModule,
-        MatFormFieldModule,
         MatButtonModule,
         TemasComponent,
         DisciplinaComponent

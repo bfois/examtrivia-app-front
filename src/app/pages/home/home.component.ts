@@ -55,6 +55,9 @@ volverDisciplina(){
   this.mostrarDisciplina = true;
 }
 onMateriaSelected(materia: Materia) {
+  if (!materia) {
+    return;
+  }
   this.materiaSeleccionada = materia;
   this.mostrarTemas = true;
 }
