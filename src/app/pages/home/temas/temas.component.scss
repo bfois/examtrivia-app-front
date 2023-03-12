@@ -9,7 +9,7 @@
 .contenedor_botones{
   display: flex;
   flex-wrap: wrap;
-  max-width: 600px;
+  max-width: 700px;
 }
 button{
   background-color: rgb(203, 203, 203);
@@ -32,4 +32,16 @@ button{
     background-color: gold;
   }
 }
-
+@media screen and (max-width: 480px) {
+  .temas {
+    height: auto;
+  }
+  .contenedor_botones {
+    max-width: 100%;
+  }
+  button {
+    margin: 5px 2px;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}

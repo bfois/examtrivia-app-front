@@ -1,8 +1,10 @@
 <mat-toolbar>
   <div class="userNavbar">
-    <button>
-      <img [src]=" currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{ currentUser?.displayName }}" class="user-photo">
-    </button>
+   <div class="info-user-navbar">
+    <img [src]=" currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{ currentUser?.displayName }}" class="user-photo">
+   </div>
+
+
 
     <span>{{ currentUser?.displayName || 'username'}}</span>
 
