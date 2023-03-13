@@ -11,12 +11,13 @@
     <div class="respuesta" *ngFor="let respuesta of respuestas">
       <p>{{respuesta.respuesta.texto}}</p>
     </div>
+    <div class="next-question-div"><button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button></div>
+    <div class="time"><img src="../../../../assets/tiempo.png" alt="reloj" width="30px"></div>
 
-    <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
   </div>
 
   <div class="resultados" *ngIf="noHayMasPreguntas">
-    FINALIZASTE EL CUESTIONARIO, YA PUEDES VER LOS RESULTADOS!
+    <p class="final-resultados"> FINALIZASTE EL CUESTIONARIO, YA PUEDES VER LOS RESULTADOS! </p>
     <button mat-button class="go-result">IR A LOS RESULTADOS</button>
   </div>
 
