@@ -1,7 +1,9 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component} from '@angular/core';
 import {  Router } from '@angular/router';
 import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
+
+
 
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
@@ -15,10 +17,11 @@ import { DisciplinaService } from '../../home/service/disciplina.service';
 export class TriviaComponent implements  AfterViewInit {
   temasSeleccionados: Temas[] = [];
   preguntas: Pregunta[] = [];
-
   yaSeleccionada = false;
   enunciado!: string;
   noHayMasPreguntas = false;
+  preguntaSeleccionada: Pregunta | null = null;
+
 
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
@@ -56,6 +59,7 @@ export class TriviaComponent implements  AfterViewInit {
     );
     if (preguntasDisponibles.length === 0) {
       this.noHayMasPreguntas = true;
+
       return null;
     }
     const selectedQuestionIndex = Math.floor(
@@ -70,12 +74,17 @@ export class TriviaComponent implements  AfterViewInit {
     const pregunta = this.getRandomQuestion();
     if (pregunta) {
       this.enunciado = pregunta.enunciado;
+      this.preguntaSeleccionada = pregunta;
+
     }
   }
 
   volverAtras(){
     this.router.navigate(['/home']);
   }
+
+
+
   resultados(){
 
   }
