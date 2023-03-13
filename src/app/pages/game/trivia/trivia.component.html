@@ -2,20 +2,22 @@
   <div class="button-back-div">
     <button class="button-back-element" mat-button (click)="volverAtras()">VOLVER AL INICIO</button>
   </div>
-  <div class="enunciado" *ngIf="!noHayMasPreguntas">
+  <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
+    <div class="enunciado">
+      <p >{{enunciado}}</p>
+    </div>
 
-    <p >{{enunciado}}</p>
 
-    <div *ngFor="let respuesta of respuestas">
+    <div class="respuesta" *ngFor="let respuesta of respuestas">
       <p>{{respuesta.respuesta.texto}}</p>
     </div>
 
-    <button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
+    <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
   </div>
 
   <div class="resultados" *ngIf="noHayMasPreguntas">
     FINALIZASTE EL CUESTIONARIO, YA PUEDES VER LOS RESULTADOS!
-    <button>IR A LOS RESULTADOS</button>
+    <button mat-button class="go-result">IR A LOS RESULTADOS</button>
   </div>
 
 </div>

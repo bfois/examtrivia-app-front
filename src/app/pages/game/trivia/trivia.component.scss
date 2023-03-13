@@ -1,4 +1,87 @@
+.container{
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+
+}
+
 .button-back-element{
   background-color: red;
   color: white;
+}
+
+.button-back-div{
+  margin: 10px;
+}
+
+.pregunta-respuesta{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+
+  .enunciado{
+    width: 500px;
+    @media only screen and (max-width: 500px) {
+      width: 100%;
+    }
+  }
+
+  .enunciado, .respuesta{
+    border-radius: 10px;
+    border: 1px solid black;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    margin: 10px;
+    text-align: center;
+    padding: 20px;
+
+    @media only screen and (max-width: 500px) {
+      width: 85%;
+    }
+  }
+
+  .respuesta{
+    width: 400px;
+    padding: 10px;
+
+    @media only screen and (max-width: 500px) {
+      width: 70%;
+    }
+  }
+
+  .respuesta:hover{
+    cursor: pointer;
+  }
+}
+
+.resultados {
+  text-align: center;
+
+  button {
+    margin: 20px;
+  }
+}
+.next-question{
+ border: 1px solid black;
+}
+.resultados{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 90vh;
+  flex-direction: column;
+}
+.go-result{
+  background-image: url("../../../../assets/background.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
