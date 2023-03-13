@@ -1,4 +1,7 @@
+import { Pregunta } from "./Pregunta";
+
 export interface Temas {
   id:number,
-  name:string
+  name:string,
+  preguntas:Pregunta[]
 }
