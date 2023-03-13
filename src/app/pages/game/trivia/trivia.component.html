@@ -6,6 +6,10 @@
 
     <p >{{enunciado}}</p>
 
+    <div *ngFor="let respuesta of respuestas">
+      <p>{{respuesta.respuesta.texto}}</p>
+    </div>
+
     <button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
   </div>
 

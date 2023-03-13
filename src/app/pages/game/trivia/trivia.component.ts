@@ -2,6 +2,8 @@ import { AfterViewInit, Component} from '@angular/core';
 import {  Router } from '@angular/router';
 import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
+import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
+import { Respuesta } from 'src/app/interfaces/Respuesta';
 
 
 
@@ -21,6 +23,7 @@ export class TriviaComponent implements  AfterViewInit {
   enunciado!: string;
   noHayMasPreguntas = false;
   preguntaSeleccionada: Pregunta | null = null;
+  respuestas!: PreguntaRespuesta[]
 
 
   constructor(private triviaDataService: TriviaDataService,
@@ -76,6 +79,11 @@ export class TriviaComponent implements  AfterViewInit {
       this.enunciado = pregunta.enunciado;
       this.preguntaSeleccionada = pregunta;
 
+     this.disciplinaService.getRespuestasByPregunta(this.preguntaSeleccionada.id).subscribe(
+      data => {
+        this.respuestas = data
+      }
+     )
     }
   }
 

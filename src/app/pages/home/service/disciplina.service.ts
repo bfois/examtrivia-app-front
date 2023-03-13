@@ -4,6 +4,8 @@
  import { Disciplina } from 'src/app/interfaces/Disciplina';
 import { Materia } from 'src/app/interfaces/Materia';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
+import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
+import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
 
  @Injectable({
@@ -30,5 +32,9 @@ import { Temas } from 'src/app/interfaces/Temas';
 
     getPreguntasByTemas(id:number): Observable<Pregunta[]> {
       return this.http.get<Pregunta[]>(`${this.TRIVIA}/temas/${id}/preguntas`);
+    }
+
+    getRespuestasByPregunta(id:number): Observable<PreguntaRespuesta[]> {
+      return this.http.get<PreguntaRespuesta[]>(`${this.TRIVIA}/pregunta/${id}/respuestas`);
     }
 }
