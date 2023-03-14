@@ -2,13 +2,14 @@
 
 
   <app-navbar [currentUser]="currentUser"></app-navbar>
-  <div class="bienvenida" *ngIf="currentUser">
-    ¡Bienvenido/a, {{currentUser.displayName}}!
-  </div>
+
 
 
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina">
+      <div class="bienvenida" *ngIf="currentUser">
+        ¡Bienvenido/a, {{currentUser.displayName}}!
+      </div>
        <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina>
 
 
