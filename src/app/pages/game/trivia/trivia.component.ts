@@ -3,13 +3,14 @@ import {  Router } from '@angular/router';
 import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
-import { Respuesta } from 'src/app/interfaces/Respuesta';
+
 
 
 
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { DisciplinaService } from '../../home/service/disciplina.service';
+
 
 @Component({
   selector: 'app-trivia',
@@ -24,6 +25,11 @@ export class TriviaComponent implements  AfterViewInit {
   noHayMasPreguntas = false;
   preguntaSeleccionada: Pregunta | null = null;
   respuestas!: PreguntaRespuesta[]
+  respuestaSeleccionada: PreguntaRespuesta | null = null;
+  respuestaCorrecta = false;
+  seleccionada = false;
+
+
 
 
   constructor(private triviaDataService: TriviaDataService,
@@ -54,6 +60,7 @@ export class TriviaComponent implements  AfterViewInit {
       .subscribe((preguntas: Pregunta[]) => {
         this.preguntas.push(...preguntas);
         this.siguientePregunta();
+
       });
   }
   getRandomQuestion(): Pregunta | null {
@@ -84,6 +91,9 @@ export class TriviaComponent implements  AfterViewInit {
         this.respuestas = data
       }
      )
+     this.seleccionada = false;
+
+
     }
   }
 
@@ -91,7 +101,12 @@ export class TriviaComponent implements  AfterViewInit {
     this.router.navigate(['/home']);
   }
 
+  verificarRespuesta(respuesta: PreguntaRespuesta): void {
+    this.respuestaSeleccionada = respuesta;
+    this.respuestaCorrecta = respuesta.esVerdadera;
+    this.seleccionada = true;
 
+  }
 
   resultados(){
 

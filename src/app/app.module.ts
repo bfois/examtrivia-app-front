@@ -19,10 +19,11 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
-    StartComponent,
+    StartComponent
   ],
   imports: [
     BrowserModule,

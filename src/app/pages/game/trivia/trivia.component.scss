@@ -57,6 +57,9 @@
     @media only screen and (max-width: 500px) {
       width: 70%;
     }
+
+
+
   }
 
   .respuesta:hover{
@@ -98,4 +101,14 @@
 }
 .final-resultados{
   color: white;
+}
+.bg-success{
+  background: greenyellow;
+  color: black;
+  font-weight: bold;
+}
+.bg-danger{
+  background: red;
+  color: black;
+  font-weight: bold;
 }

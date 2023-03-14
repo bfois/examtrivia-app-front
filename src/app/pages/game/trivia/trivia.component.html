@@ -8,11 +8,17 @@
     </div>
 
 
-    <div class="respuesta" *ngFor="let respuesta of respuestas">
-      <p>{{respuesta.respuesta.texto}}</p>
-    </div>
+    <button class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)"  [disabled]="seleccionada" >
+  <p >{{respuesta.respuesta.texto}}</p>
+  <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
+  [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
+    {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
+  </span>
+
+</button>
+
     <div class="next-question-div"><button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button></div>
-    <div class="time"><img src="../../../../assets/tiempo.png" alt="reloj" width="30px"></div>
+    <app-timer></app-timer>
 
   </div>
 
