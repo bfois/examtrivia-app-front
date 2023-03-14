@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { Materia } from 'src/app/interfaces/Materia';
@@ -20,6 +20,9 @@ export class HomeComponent implements OnInit {
   materiaSeleccionada!:Materia;
   nombreMateriaSeleccionada:string="Materia"
   mostrarTemas = false;
+
+
+
   constructor(
     private authenticationService: AuthenticationService,
     private disciplinaService: DisciplinaService
@@ -27,13 +30,15 @@ export class HomeComponent implements OnInit {
 
    }
 
-  ngOnInit() {
+  ngOnInit(){
+
     this.authenticationService.getCurrentUser().subscribe(user => {
       if (user) {
         this.currentUser = user;
         console.log(this.currentUser)
         // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
+
     });
 }
 

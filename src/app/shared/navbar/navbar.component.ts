@@ -1,8 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
-
 import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-navbar',
@@ -12,13 +11,11 @@ import { CommonModule } from '@angular/common';
   imports:[MatToolbarModule,MatIconModule, MatButtonModule, CommonModule]
 
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   @Input() currentUser: any;
-  photoUrl: string | undefined;
+
   constructor() { }
 
-  ngOnInit(): void {
 
-  }
 
 }
