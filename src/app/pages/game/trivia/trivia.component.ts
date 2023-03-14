@@ -1,15 +1,13 @@
-import { AfterViewInit, Component} from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {  Router } from '@angular/router';
 import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
-
-
-
-
+import { RespuestaUsuario } from 'src/app/interfaces/RespuestaUsuario';
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { DisciplinaService } from '../../home/service/disciplina.service';
+import { TimerComponent } from '../timer/timer.component';
 
 
 @Component({
@@ -25,12 +23,13 @@ export class TriviaComponent implements  AfterViewInit {
   noHayMasPreguntas = false;
   preguntaSeleccionada: Pregunta | null = null;
   respuestas!: PreguntaRespuesta[]
-  respuestaSeleccionada: PreguntaRespuesta | null = null;
+  respuestaSeleccionada!: PreguntaRespuesta | null;
   respuestaCorrecta = false;
   seleccionada = false;
-
-
-
+  restartInterval = true;
+  tiempoTerminado = false;
+  respuestasUsuario: RespuestaUsuario[] = [];
+  @ViewChild(TimerComponent) timerComponent!: TimerComponent;
 
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
@@ -40,6 +39,12 @@ export class TriviaComponent implements  AfterViewInit {
    ngAfterViewInit(): void {
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
     this.obtenerPreguntas();
+    this.timerComponent.tiempoTerminadoEvent.subscribe((tiempoTerminado: boolean) => {
+      this.tiempoTerminado = tiempoTerminado;
+      if (tiempoTerminado) {
+        this.onTiempoTerminado();
+      }
+    })
 
   }
 
@@ -62,6 +67,9 @@ export class TriviaComponent implements  AfterViewInit {
         this.siguientePregunta();
 
       });
+  }
+  onTiempoTerminado(): void {
+    this.tiempoTerminado  = true;
   }
   getRandomQuestion(): Pregunta | null {
      const preguntasDisponibles = this.preguntas.filter(
@@ -92,8 +100,14 @@ export class TriviaComponent implements  AfterViewInit {
       }
      )
      this.seleccionada = false;
+     this.tiempoTerminado = false;
+     this.timerComponent.reiniciarContador();
 
 
+      this.restartInterval = !this.restartInterval
+      setTimeout(()=>{
+        this.restartInterval = !this.restartInterval
+      },100)
     }
   }
 
@@ -106,9 +120,19 @@ export class TriviaComponent implements  AfterViewInit {
     this.respuestaCorrecta = respuesta.esVerdadera;
     this.seleccionada = true;
 
+    const respuestaUsuario: RespuestaUsuario = {
+      pregunta:this.preguntaSeleccionada!,
+      respuesta:respuesta.respuesta,
+      esCorrecta:respuesta.esVerdadera
+    };
+
+    this.respuestasUsuario.push(respuestaUsuario);
   }
 
-  resultados(){
 
+
+  resultados(): void {
+    this.router.navigate(['trivia/resultados'], { state: { respuestasUsuario: this.respuestasUsuario } });
   }
+
 }

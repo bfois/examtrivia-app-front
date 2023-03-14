@@ -4,27 +4,31 @@
   </div>
   <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
     <div class="enunciado">
-      <p >{{enunciado}}</p>
+      <p>{{enunciado}}</p>
     </div>
 
 
-    <button class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)"  [disabled]="seleccionada" >
-  <p >{{respuesta.respuesta.texto}}</p>
-  <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
-  [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
-    {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
-  </span>
+    <button class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)" [disabled]="seleccionada || tiempoTerminado">
+      <p>{{respuesta.respuesta.texto}}</p>
+      <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
+        [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
+        {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
+      </span>
 
-</button>
+    </button>
+    <div class="no-time" *ngIf="tiempoTerminado"><span>¡Te quedaste sin tiempo!</span></div>
+    <div class="next-question-div">
+      <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
+      <button mat-button class="finish-quiz" (click)="resultados()">FINALIZAR</button>
+    </div>
 
-    <div class="next-question-div"><button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button></div>
-    <app-timer></app-timer>
+    <app-timer *ngIf="restartInterval"></app-timer>
 
   </div>
 
   <div class="resultados" *ngIf="noHayMasPreguntas">
     <p class="final-resultados"> FINALIZASTE EL CUESTIONARIO, YA PUEDES VER LOS RESULTADOS! </p>
-    <button mat-button class="go-result">IR A LOS RESULTADOS</button>
+    <button mat-button class="go-result" (click)="resultados()">IR A LOS RESULTADOS</button>
   </div>
 
 </div>

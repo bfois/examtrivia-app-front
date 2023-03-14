@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { interval } from 'rxjs';
 
 @Component({
@@ -8,14 +8,20 @@ import { interval } from 'rxjs';
 })
 export class TimerComponent implements OnInit {
 
-  @Input() tiempoLimite: number = 30; // tiempo límite en segundos
+  @Input() tiempoLimite: number = 10; // tiempo límite en segundos
   tiempoRestante: number = this.tiempoLimite;
   tiempoTerminado = false;
   intervalo: any;
 
+  @Output() tiempoTerminadoEvent = new EventEmitter<boolean>();
   constructor() { }
 
   ngOnInit(): void {
+    if (this.tiempoRestante <= 0) {
+      this.intervalo.unsubscribe();
+      this.tiempoTerminado = true;
+      this.tiempoTerminadoEvent.emit(true);
+    }
     this.iniciarContador()
   }
 
@@ -24,7 +30,8 @@ export class TimerComponent implements OnInit {
       this.tiempoRestante--;
       if (this.tiempoRestante <= 0) {
         this.intervalo.unsubscribe();
-        this.tiempoTerminado = true;// detener el intervalo cuando el tiempo se acabe
+        this.tiempoTerminado = true;
+        this.tiempoTerminadoEvent.emit(true);
       }
     });
   }
