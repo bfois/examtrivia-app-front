@@ -5,7 +5,6 @@ import { MatButtonModule } from "@angular/material/button";
 import { RouterModule, Routes } from "@angular/router";
 import { NavbarComponent } from "src/app/shared/navbar/navbar.component";
 import { ResultadosComponent } from "../resultados/resultados.component";
-
 import { TriviaComponent } from "./trivia.component";
 
 //RUTAS
@@ -24,7 +23,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         HttpClientModule,
         NavbarComponent,
-        MatButtonModule,
+        MatButtonModule
     ]
 })
 export class TriviaModule { }

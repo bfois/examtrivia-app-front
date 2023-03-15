@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Pregunta } from '../interfaces/Pregunta';
+import { Respuesta } from '../interfaces/Respuesta';
 import { Temas } from '../interfaces/Temas';
 
 @Injectable({
@@ -6,7 +8,13 @@ import { Temas } from '../interfaces/Temas';
 })
 export class TriviaDataService {
   temasSeleccionados: Temas[] = [];
-  constructor() { }
+  private resultados: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] = [];
+
+  constructor() {
+    const resultadosGuardados = localStorage.getItem('resultados');
+    if (resultadosGuardados) {
+      this.resultados = JSON.parse(resultadosGuardados); }
+   }
 
   guardarTemasSeleccionados(temas: Temas[]) {
     this.temasSeleccionados = temas;
@@ -14,5 +22,13 @@ export class TriviaDataService {
 
   obtenerTemasSeleccionados(): Temas[] {
     return this.temasSeleccionados;
+  }
+
+  guardarResultados(resultados: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]): void {
+    this.resultados = resultados;
+    localStorage.setItem('resultados', JSON.stringify(this.resultados));
+  }
+  getResultados(): {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] {
+    return this.resultados;
   }
 }

@@ -115,8 +115,8 @@ export class TriviaComponent implements  AfterViewInit {
 
 
   resultados(): void {
-
-    this.router.navigate(['trivia/resultados'], { state: { respuestasUsuario: this.respuestasUsuario } });
+    this.triviaDataService.guardarResultados(this.respuestasUsuario)
+    this.router.navigate(['trivia/resultados']);
   }
 
 }

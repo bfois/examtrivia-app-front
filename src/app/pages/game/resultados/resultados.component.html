@@ -1,1 +1,25 @@
-<p>resultados works!</p>
+<app-navbar [currentUser]="currentUser"></app-navbar>
+<div class="analisis-completo">
+<h3 class="titulo">Analisis del cuestionario</h3>
+<div class="disciplina_container">
+  <h4 class="disciplina">Disciplina Seleccionada:</h4> <p class="disciplina-dinamica"> {{temasSeleccionados[0].materia.disciplina.name}} </p>
+</div>
+<div class="materia_container">
+  <p class="materia">Materia Seleccionada: </p> <p class="materia-dinamica">{{temasSeleccionados[0].materia.name}}</p>
+</div>
+
+<!-- Iterar sobre cada tema seleccionado -->
+<div *ngFor="let tema of temasSeleccionados">
+
+  <p>Tema: {{tema.name}}</p>
+  <!-- Iterar sobre cada pregunta correspondiente al tema -->
+  <div *ngFor="let respuesta of getRespuestasForTema(tema)">
+
+    <ng-container *ngIf="respuesta.pregunta.enunciado">
+      <p>{{respuesta.pregunta.enunciado}}</p>
+      <span class="respuesta-validacion">{{respuesta.esCorrecta ? '✔' : '❌'}}</span>
+
+    </ng-container>
+  </div>
+</div>
+</div>

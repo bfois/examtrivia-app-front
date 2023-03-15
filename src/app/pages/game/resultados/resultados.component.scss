@@ -1,0 +1,50 @@
+
+.respuesta-validacion{
+  font-size: 20px;
+  margin: 10px;
+}
+.analisis-completo{
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-direction: column;
+}
+.titulo{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.disciplina_container{
+display: flex;
+flex-wrap: wrap;
+  .disciplina{
+    margin-left:20px ;
+    text-decoration: underline;
+    margin-right: 10px;
+  }
+  .disciplina-dinamica{
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+.materia_container{
+  display: flex;
+  flex-wrap: wrap;
+    .materia{
+      margin-left:20px ;
+      text-decoration: underline;
+      margin-right: 10px;
+    }
+    .materia-dinamica{
+      font-size: 16px;
+      font-weight: bold;
+    }
+  }
+
+
+.materia{
+  margin-left:20px ;
+}
+
