@@ -14,6 +14,7 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
 export class ResultadosComponent implements OnInit {
   respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]
   temasSeleccionados: Temas[] = [];
+  nombreTemasSeleccionados: string[] = []
   currentUser: any;
   constructor(
     private triviaService: TriviaDataService,
@@ -22,11 +23,11 @@ export class ResultadosComponent implements OnInit {
   }
   ngOnInit(): void {
    this.respuestasUsuario = this.triviaService.getResultados();
-
    this.temasSeleccionados = this.respuestasUsuario.map(r => r.pregunta.temas);
-   this.temasSeleccionados = this.temasSeleccionados.filter((tema, index) => {
-     return this.temasSeleccionados.findIndex(t => t.materia.id === tema.materia.id) === index;
-   });
+   this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
+  .filter((nombre, index, self) => self.indexOf(nombre) === index);
+
+
    this.authenticationService.getCurrentUser().subscribe(user => {
     if (user) {
       this.currentUser = user;
@@ -37,6 +38,7 @@ export class ResultadosComponent implements OnInit {
   });
    console.log(this.respuestasUsuario);
    console.log(this.temasSeleccionados);
+   console.log(this.nombreTemasSeleccionados)
   }
 
   getRespuestasForTema(tema: Temas) {
