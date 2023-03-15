@@ -1,12 +1,23 @@
 
 .respuesta-validacion{
+  font-size: 18px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  border: 1px solid black;
+
+}
+.respuesta-validacion-container{
   font-size: 20px;
   margin: 10px;
+  display: flex;
+  flex-wrap: wrap;
+
 }
 .analisis-completo{
   display: flex;
   width: 100%;
-  height: 100vh;
+
   box-sizing: border-box;
   overflow: hidden;
   flex-direction: column;
@@ -43,8 +54,60 @@ flex-wrap: wrap;
     }
   }
 
+.temas{
 
+  text-decoration: underline;
+}
 .materia{
   margin-left:20px ;
 }
+.container_temas_seleccionados{
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+  .temas_seleccionados{
+    margin: 10px;
+    padding: 5px;
+    background-color: gainsboro;
+    border: 1px solid black;
+  }
+}
 
+.temas_titulo_container{
+  display: flex;
+  justify-content: center;
+}
+.cuesitonario_desarrollo{
+  margin:20px  0  -10px 20px;
+}
+.cuestionario_titulo{
+  text-decoration: underline;
+}
+h4,p{
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+}
+.emoticon{
+  margin-left: 5px;
+  font-size: 16px;
+}
+.temas_preguntas_respuestas{
+  display: flex;
+  flex-direction: column;
+}
+.tema_titulo_preguntas{
+  margin: 20px;
+}
+.red{
+  background-color: rgba(255, 0, 0, 0.437);
+}
+.green{
+  background-color: rgba(0, 128, 0, 0.437);
+}
+.analisis_titulo_container{
+  background-color: rgba(0, 0, 255, 0.639);
+  color: white;
+  font-size: 20px;
+  padding: 10px;
+font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
