@@ -6,6 +6,6 @@ export interface Pregunta {
 id:number,
 enunciado:string,
 imgURL?:string,
-yaSeleccionada:boolean;
-respuestas: Respuesta[]
+yaSeleccionada:boolean,
+respuestas: Respuesta[],
 }

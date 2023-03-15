@@ -8,7 +8,7 @@
     </div>
 
 
-    <button class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)" [disabled]="seleccionada || tiempoTerminado">
+    <button class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)" [disabled]="seleccionada">
       <p>{{respuesta.respuesta.texto}}</p>
       <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
         [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
@@ -16,13 +16,13 @@
       </span>
 
     </button>
-    <div class="no-time" *ngIf="tiempoTerminado"><span>¡Te quedaste sin tiempo!</span></div>
+
     <div class="next-question-div">
       <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
       <button mat-button class="finish-quiz" (click)="resultados()">FINALIZAR</button>
     </div>
 
-    <app-timer *ngIf="restartInterval"></app-timer>
+
 
   </div>
 
