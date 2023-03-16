@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import html2canvas from 'html2canvas';
+import jsPDF from 'jspdf';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
@@ -67,5 +69,17 @@ export class ResultadosComponent implements OnInit {
     return  Object.keys(temasPreguntas);
   }
 
+  public convertToPDF()
+{
+html2canvas(document.body.querySelector('.analisis-completo') as HTMLElement).then(canvas => {
+// Few necessary setting options
 
+const contentDataURL = canvas.toDataURL('image/png')
+let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
+var width = pdf.internal.pageSize.getWidth();
+var height = canvas.height * width / canvas.width;
+pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
+pdf.save('Cuestionario.pdf'); // Generated PDF
+});
+}
 }
