@@ -143,8 +143,17 @@ img{
 }
 .respuestas{
  width: 50%;
-
 }
+@media (max-width: 767px) {
+  .preguntas_respuestas_container {
+    flex-direction: column;
+  }
+
+  .all-for-bucles, .respuestas {
+    width: 95%;
+  }
+}
+
 .show-respuestas{
   border: 1px solid black;
 }

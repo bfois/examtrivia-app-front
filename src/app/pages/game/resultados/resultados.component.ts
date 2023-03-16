@@ -1,14 +1,9 @@
-
 import { Component, OnInit } from '@angular/core';
-
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { AuthenticationService } from '../../signin/service/authentication.service';
-
-
-
 
 @Component({
   selector: 'app-resultados',
