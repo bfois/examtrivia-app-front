@@ -12,7 +12,7 @@ import 'firebase/compat/storage';
   providedIn: 'root'
 })
 export class AuthenticationService {
-  private firestore = firebase.firestore();
+   private firestore = firebase.firestore();
   private storage = firebase.storage();
   public user$: Observable<firebase.User | null>
   constructor(
@@ -48,33 +48,33 @@ export class AuthenticationService {
         })
       );
   }
-
-  uploadImage(file: File): Observable<string> {
-    const filePath = `images/${file.name}`;
+  //subir imagen a firebase storage
+   uploadImage(file: File): Observable<string> {
+     const filePath = `images/${file.name}`;
     const storageRef = this.storage.ref(filePath);
-    const uploadTask = storageRef.put(file);
+     const uploadTask = storageRef.put(file);
 
     return from(uploadTask).pipe(
-      switchMap(() => storageRef.getDownloadURL()),
-      catchError((error: any) => {
-        // manejo del error
+       switchMap(() => storageRef.getDownloadURL()),
+     catchError((error: any) => {
+         // manejo del error
         return throwError(error);
-      })
-    );
-  }
-
-  updateUserProfile(uid: string, displayName: string, photoURL: string): Observable<void> {
-    return from(this.firestore.collection('users').doc(uid).update({
-        displayName: displayName,
-        photoURL: photoURL
+       })
+     );
+   }
+   //actualizar usuario
+   updateUserProfile(uid: string, displayName: string, photoURL: string): Observable<void> {
+     return from(this.firestore.collection('users').doc(uid).update({
+         displayName: displayName,
+         photoURL: photoURL
       }))
-      .pipe(
-        catchError((error: any) => {
+       .pipe(
+         catchError((error: any) => {
           // manejo del error
           return throwError(error);
         })
-      );
-  }
+       );
+   }
 }
 
 

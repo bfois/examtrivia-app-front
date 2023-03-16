@@ -9,8 +9,9 @@ import { StartComponent } from './pages/public/start/start.component';
 //FIREBASE API
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
-
 //ANGULAR MATERIAL
 import {MatButtonModule} from '@angular/material/button';
 
@@ -19,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 
+import firebase from 'firebase/compat/app';
+firebase.initializeApp(environment.firebase);
 
 
 
@@ -33,6 +36,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
+    AngularFireStorageModule, // Agregar Firebase Storage
+    AngularFirestoreModule,
     MatButtonModule,
     HttpClientModule
   ],

@@ -1,14 +1,9 @@
 <mat-toolbar>
   <div class="userNavbar">
-   <div class="info-user-navbar">
-    <img [src]=" currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{ currentUser?.displayName }}" class="user-photo">
-    <span>{{ currentUser?.displayName || 'username'}}</span>
-   </div>
-
-
-
-
-
+    <div class="info-user-navbar">
+      <img [src]="currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{currentUser?.displayName }}" class="user-photo">
+      <span>{{ currentUser?.displayName || 'username'}}</span>
+    </div>
   </div>
   <span class="example-spacer"></span>
   <img class="logo-navbar" src="../../../assets/logo.png" alt="logo" width="200px">
