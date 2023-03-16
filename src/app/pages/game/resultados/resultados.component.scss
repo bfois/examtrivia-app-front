@@ -119,9 +119,10 @@ align-items: center;
   color: white;
   margin:15px;
 }
-.descargar-analisis{
-  background-color: aqua;
+.inicio_button{
+  background-color: rgb(255, 0, 0);
   margin: 15px;
+  color: white;
 }
 .inside-button{
   display: flex;
@@ -131,5 +132,28 @@ align-items: center;
 }
 img{
   margin-right: 5px;
+}
+
+.preguntas_respuestas_container{
+  display: flex;
+  flex-direction: row;
+}
+.all-for-bucles{
+ width: 50%;
+}
+.respuestas{
+ width: 50%;
+
+}
+.show-respuestas{
+  border: 1px solid black;
+}
+.respuestas-correct{
+  display: flex;
+  flex-direction: column;
+  max-width: 500px;
+}
+.temas_respuestas{
+  font-weight: bold;
 }
 

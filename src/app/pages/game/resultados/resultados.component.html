@@ -3,6 +3,7 @@
 <div class="analisis-completo">
   <div class="titulo">
    <h3>Analisis del cuestionario</h3>
+
   </div>
 
 <div class="disciplina_container">
@@ -24,6 +25,8 @@
     <p class="cuestionario_titulo">Cuestionario:</p>
   </div>
 <!-- Iterar sobre cada tema seleccionado -->
+<div class="preguntas_respuestas_container">
+  <div class="all-for-bucles">
   <div *ngFor="let key of objectKeys(temasPreguntas)" class="preguntas_respondidas">
     <div class="titulo_tema_preguntas">
       <p>{{key}}</p>
@@ -33,9 +36,23 @@
         <div class="emoticon"><span>{{value.esCorrecta ? '✔️':'❌'}}</span></div>
       </div>
   </div>
+</div>
+  <div class="respuestas" >
+
+    <div *ngFor="let key of objectKeys(temasPreguntas)">
+      <p class="temas_respuestas">{{key}}: </p>
+      <div class="respuestas-correct" *ngFor="let value of temasPreguntas[key]">
+          <p class="respuestas_correctas_temas">#RESPUESTA CORRECTA:{{value.respuesta}}</p>
+      </div>
+
+
+  </div>
+  </div>
+</div>
+
   <div class="botones-resultados-descargas">
-    <button class="descargar-analisis" mat-button> <div class="inside-button"> <img src="../../../../assets/donwload.png" alt="analisis" width="20px"> <span>DESCARGAR ANÁLISIS</span></div>  </button>
-    <button class="descargar-resumen" mat-button><div class="inside-button"> <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
+    <button class="inicio_button" mat-button><div class="inside-button" routerLink="/home" >  <span>IR AL INICIO</span>  </div> </button>
+    <button class="descargar-resumen" mat-button ><div class="inside-button"> <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
   </div>
 </div>
 

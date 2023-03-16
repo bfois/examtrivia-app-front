@@ -1,4 +1,6 @@
+
 import { Component, OnInit } from '@angular/core';
+
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
@@ -6,23 +8,25 @@ import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { AuthenticationService } from '../../signin/service/authentication.service';
 
 
+
+
 @Component({
   selector: 'app-resultados',
   templateUrl: './resultados.component.html',
-  styleUrls: ['./resultados.component.scss']
+  styleUrls: ['./resultados.component.scss'],
 })
-export class ResultadosComponent implements OnInit {
+export class ResultadosComponent implements OnInit{
   respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]
   temasSeleccionados: Temas[] = [];
   nombreTemasSeleccionados: string[] = []
   currentUser: any;
   temasPreguntas:any = {}
-
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
 
   }
+
   ngOnInit(): void {
     //OBTIENE LOS DATOS DEL SERVICIO
    this.respuestasUsuario = this.triviaService.getResultados();
@@ -42,7 +46,7 @@ export class ResultadosComponent implements OnInit {
     }
 
     // Agregamos la pregunta al array del tema correspondiente
-    this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta, esCorrecta: respuesta.esCorrecta });
+    this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta,respuesta: respuesta.respuesta.texto, esCorrecta: respuesta.esCorrecta });
   });
 
   // Ahora tenemos un objeto con los temas como keys y un array de preguntas como valor
@@ -67,4 +71,6 @@ export class ResultadosComponent implements OnInit {
   objectKeys(temasPreguntas:any) {
     return  Object.keys(temasPreguntas);
   }
+
+
 }
