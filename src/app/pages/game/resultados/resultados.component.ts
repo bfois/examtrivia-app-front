@@ -10,7 +10,7 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
   templateUrl: './resultados.component.html',
   styleUrls: ['./resultados.component.scss'],
 })
-export class ResultadosComponent implements OnInit{
+export class ResultadosComponent implements OnInit {
   respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]
   temasSeleccionados: Temas[] = [];
   nombreTemasSeleccionados: string[] = []
