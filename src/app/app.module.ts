@@ -16,7 +16,7 @@ import {MatButtonModule} from '@angular/material/button';
 
 //HTTP
 import { HttpClientModule } from '@angular/common/http';
-import { ResultadosComponent } from './pages/game/resultados/resultados.component';
+
 
 
 
