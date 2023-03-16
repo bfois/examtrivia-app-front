@@ -1,31 +1,13 @@
-
-.respuesta-validacion{
-  font-size: 18px;
-  padding: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  border: 1px solid black;
-
-}
-.respuesta-validacion-container{
-  font-size: 20px;
-  margin: 10px;
-  display: flex;
-  flex-wrap: wrap;
-
-}
-.analisis-completo{
-  display: flex;
-  width: 100%;
-
-  box-sizing: border-box;
-  overflow: hidden;
-  flex-direction: column;
-}
 .titulo{
   display: flex;
   justify-content: center;
   margin-top: 10px;
+  h3{
+    background-color: rgba(0, 0, 255, 0.702);
+    padding: 10px;
+    color: white;
+    font-weight: bold;
+  }
 }
 .disciplina_container{
 display: flex;
@@ -91,23 +73,63 @@ h4,p{
   margin-left: 5px;
   font-size: 16px;
 }
-.temas_preguntas_respuestas{
-  display: flex;
-  flex-direction: column;
-}
+
 .tema_titulo_preguntas{
   margin: 20px;
 }
 .red{
+
   background-color: rgba(255, 0, 0, 0.437);
 }
 .green{
+
   background-color: rgba(0, 128, 0, 0.437);
 }
-.analisis_titulo_container{
-  background-color: rgba(0, 0, 255, 0.639);
-  color: white;
-  font-size: 20px;
-  padding: 10px;
-font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+.preguntas_respondidas{
+  display: flex;
+  flex-direction: column;
 }
+
+.titulo_tema_preguntas{
+  margin: 20px;
+}
+#preguntas_coleccion{
+display: flex;
+margin: 0 30px 5px ;
+max-width: 500px;
+text-align: center;
+justify-content: center;
+align-items: center;
+}
+.analisis-completo{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.botones-resultados-descargas{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 20px;
+
+}
+.descargar-resumen{
+  background-color: rgb(0, 0, 0);
+  color: white;
+  margin:15px;
+}
+.descargar-analisis{
+  background-color: aqua;
+  margin: 15px;
+}
+.inside-button{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+}
+img{
+  margin-right: 5px;
+}
+

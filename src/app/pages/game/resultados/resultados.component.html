@@ -1,8 +1,8 @@
 <app-navbar [currentUser]="currentUser"></app-navbar>
 
 <div class="analisis-completo">
-  <div class="titulo" >
-    <h3 class="analisis_titulo_container" >Analisis del cuestionario</h3>
+  <div class="titulo">
+   <h3>Analisis del cuestionario</h3>
   </div>
 
 <div class="disciplina_container">
@@ -16,25 +16,27 @@
 </div>
 
 <div class="container_temas_seleccionados">
-  <div class="temas_seleccionados" *ngFor="let tema of temasSeleccionados">
-    <span>{{tema.name}}</span>
+  <div class="temas_seleccionados" *ngFor="let nombre of nombreTemasSeleccionados">
+    <span>{{nombre}}</span>
   </div>
 </div>
   <div class="cuesitonario_desarrollo">
     <p class="cuestionario_titulo">Cuestionario:</p>
   </div>
 <!-- Iterar sobre cada tema seleccionado -->
-<div *ngFor="let tema of temasSeleccionados" class="temas_preguntas_respuestas">
-
-  <p class="tema_titulo_preguntas">Tema: {{tema.name}}</p>
-  <!-- Iterar sobre cada pregunta correspondiente al tema -->
-  <div *ngFor="let respuesta of getRespuestasForTema(tema)" class="respuesta-validacion-container">
-
-    <div *ngIf="respuesta.pregunta.enunciado" class="respuesta-validacion" [class]="respuesta.esCorrecta? 'green' : 'red'">
-        <p>{{respuesta.pregunta.enunciado}}</p>
-        <span  class="emoticon">{{respuesta.esCorrecta ? '✔️' : '❌'}}</span>
+  <div *ngFor="let key of objectKeys(temasPreguntas)" class="preguntas_respondidas">
+    <div class="titulo_tema_preguntas">
+      <p>{{key}}</p>
     </div>
-
+      <div id="preguntas_coleccion" [class]="value.esCorrecta ? 'green':'red'" *ngFor="let value of temasPreguntas[key]">
+        {{value.pregunta.enunciado}}
+        <div class="emoticon"><span>{{value.esCorrecta ? '✔️':'❌'}}</span></div>
+      </div>
+  </div>
+  <div class="botones-resultados-descargas">
+    <button class="descargar-analisis" mat-button> <div class="inside-button"> <img src="../../../../assets/donwload.png" alt="analisis" width="20px"> <span>DESCARGAR ANÁLISIS</span></div>  </button>
+    <button class="descargar-resumen" mat-button><div class="inside-button"> <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
   </div>
 </div>
-</div>
+
+
