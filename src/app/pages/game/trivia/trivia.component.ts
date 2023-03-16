@@ -1,6 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
+import { animate, style, transition, trigger } from '@angular/animations';
+import { AfterViewInit, Component} from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, forkJoin, mergeMap, catchError, of, map } from 'rxjs';
+import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
 import { RespuestaUsuario } from 'src/app/interfaces/RespuestaUsuario';
@@ -8,12 +9,23 @@ import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { DisciplinaService } from '../../home/service/disciplina.service';
 
-
+const slideInFromLeft = [
+  // Definimos un estado inicial
+  style({ transform: 'translateX(-200%)' }),
+  // Definimos el estado final
+  animate('500ms ease-in', style({ transform: 'translateX(0)' }))
+];
+const efectStart = transition('void => *', [
+  style({ opacity: 0 }),
+  animate('1.5s ease-in', style({ opacity: 1 })),
+])
+const animation = trigger('animation',[efectStart])
 
 @Component({
   selector: 'app-trivia',
   templateUrl: './trivia.component.html',
-  styleUrls: ['./trivia.component.scss']
+  styleUrls: ['./trivia.component.scss'],
+  animations:[trigger('slideInFromLeft',[transition('void=>*', slideInFromLeft)]), animation]
 })
 export class TriviaComponent implements  AfterViewInit {
   temasSeleccionados: Temas[] = [];
