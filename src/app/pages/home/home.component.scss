@@ -64,6 +64,12 @@ font-weight: bold;
   padding: 20px 0;
   text-align: center;
 }
-
-
-
+.disciplinas{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.introduccion{
+  margin: 100px;
+}

@@ -13,8 +13,8 @@
         ¡Bienvenido/a, {{currentUser.displayName}}!
       </div>
        <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina>
-
-
+      <div class="introduccion"></div>
+        <app-introduccion></app-introduccion>
       </div>
 
     <div class="materias" *ngIf="!mostrarDisciplina" >
