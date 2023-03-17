@@ -21,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import firebase from 'firebase/compat/app';
+import { FooterComponent } from './shared/footer/footer.component';
 firebase.initializeApp(environment.firebase);
 
 

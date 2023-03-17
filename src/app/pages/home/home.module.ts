@@ -13,6 +13,7 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { TemasComponent } from './temas/temas.component';
+import { FooterComponent } from 'src/app/shared/footer/footer.component';
 
 //RUTAS
 const routes: Routes = [
@@ -32,6 +33,7 @@ const routes: Routes = [
         MatButtonModule,
         TemasComponent,
         DisciplinaComponent,
+        FooterComponent
 
     ]
 })
