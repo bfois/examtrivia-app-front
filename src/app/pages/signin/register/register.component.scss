@@ -1,6 +1,6 @@
 
 main{
-
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -48,4 +48,8 @@ form{
   width: 100px;
   background-color: red;
   color: white;
+}
+.footer{
+  position: absolute;
+  bottom: 0;
 }

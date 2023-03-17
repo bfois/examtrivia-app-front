@@ -26,8 +26,7 @@ const routes: Routes = [
         RouterModule.forChild(routes),
         HttpClientModule,
         NavbarComponent,
-        MatButtonModule,
-        FooterComponent
+        MatButtonModule
     ]
 })
 export class TriviaModule { }

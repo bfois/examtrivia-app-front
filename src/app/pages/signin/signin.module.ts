@@ -16,6 +16,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 //HTTP
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from 'src/app/shared/footer/footer.component';
 
 //RUTAS DE LOGIN Y REGISTRO
 const routes: Routes = [
@@ -38,7 +39,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    HttpClientModule
+    HttpClientModule,
+    FooterComponent
   ]
 })
 export class SigninModule { }
