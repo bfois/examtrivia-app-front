@@ -1,6 +1,6 @@
 <app-navbar [currentUser]="currentUser"></app-navbar>
 
-<div class="analisis-completo">
+<div id="analisis-completo" >
   <div class="titulo">
    <h3>Analisis del cuestionario</h3>
 
@@ -52,7 +52,7 @@
 </div>
   <div class="botones-resultados-descargas">
     <button class="inicio_button" mat-button><div class="inside-button" routerLink="/home">  <span>IR AL INICIO</span>  </div> </button>
-    <button class="descargar-resumen" mat-button ><div class="inside-button" (click)="convertToPDF()"> <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
+    <button class="descargar-resumen" mat-button (click)="generatePDF()"><div class="inside-button" > <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
   </div>
 
 

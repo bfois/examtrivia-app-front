@@ -1,6 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { opacity } from 'html2canvas/dist/types/css/property-descriptors/opacity';
 const efectStart = transition('void => *', [
   style({ opacity: 0 }),
   animate('1.5s ease-in', style({ opacity: 1 })),

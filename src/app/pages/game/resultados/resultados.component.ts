@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import html2pdf from 'html2pdf.js';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
@@ -16,6 +17,9 @@ export class ResultadosComponent implements OnInit {
   nombreTemasSeleccionados: string[] = []
   currentUser: any;
   temasPreguntas:any = {}
+
+
+
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
@@ -67,6 +71,16 @@ export class ResultadosComponent implements OnInit {
     return  Object.keys(temasPreguntas);
   }
 
-  public convertToPDF() {
-  }
+  generatePDF(){
+    const element = document.getElementById('analisis-completo') as HTMLElement; // Replace 'my-element' with the ID of your HTML element
+
+    const opt = {
+        margin: 0,
+        filename: 'cuestionario.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+   return html2pdf(element, opt);}
 }
