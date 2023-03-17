@@ -137,12 +137,16 @@ img{
 .preguntas_respuestas_container{
   display: flex;
   flex-direction: row;
+
 }
 .all-for-bucles{
  width: 50%;
 }
 .respuestas{
  width: 50%;
+ display: flex;
+ flex-direction: column;
+
 }
 @media (max-width: 767px) {
   .preguntas_respuestas_container {
@@ -163,6 +167,20 @@ img{
   max-width: 500px;
 }
 .temas_respuestas{
+  background-color: black;
+  color: white;
   font-weight: bold;
+  display: flex;
+  padding: 5px;
+  text-align: center;
+  justify-content: center;
 }
+.temas_respuestas_container_correctas{
+  display: flex;
+  flex-direction: column;
 
+}
+.respuestas_correctas_{
+  font-weight: bold;
+
+}

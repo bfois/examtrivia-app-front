@@ -39,10 +39,10 @@
 </div>
   <div class="respuestas" >
 
-    <div *ngFor="let key of objectKeys(temasPreguntas)">
+    <div class="temas_respuestas_container_correctas" *ngFor="let key of objectKeys(temasPreguntas)">
       <p class="temas_respuestas">{{key}}: </p>
       <div class="respuestas-correct" *ngFor="let value of temasPreguntas[key]">
-          <p class="respuestas_correctas_temas">#RESPUESTA CORRECTA:{{value.respuesta}}</p>
+          <p class="respuestas_correctas_temas"> <span class="respuestas_correctas_">#RESPUESTA CORRECTA:</span>  {{value.respuesta}}</p>
       </div>
 
 
