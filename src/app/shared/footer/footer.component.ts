@@ -9,8 +9,7 @@ import { Component, OnInit } from '@angular/core';
 </footer>`,
   styles: [`
   footer {
-    background-color: #f5f5f5;
-    color: #333;
+    color: black;
     padding: 20px 0;
     text-align: center;
   }
