@@ -69,17 +69,24 @@ export class ResultadosComponent implements OnInit {
     return  Object.keys(temasPreguntas);
   }
 
-  public convertToPDF()
-{
-html2canvas(document.body.querySelector('.analisis-completo') as HTMLElement).then(canvas => {
-// Few necessary setting options
+  public convertToPDF() {
+    // Select the HTML element to convert to PDF
+    const element = document.querySelector('.analisis-completo') as HTMLElement;
 
-const contentDataURL = canvas.toDataURL('image/png')
-let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-var width = pdf.internal.pageSize.getWidth();
-var height = canvas.height * width / canvas.width;
-pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
-pdf.save('Cuestionario.pdf'); // Generated PDF
-});
-}
+    // Create a jsPDF object
+    const pdf = new jsPDF('p', 'pt', 'letter');
+
+    // Convert the HTML element to canvas
+    html2canvas(element).then(canvas => {
+      // Get the canvas content as an image and add it to the PDF
+      const imgData = canvas.toDataURL('image/png');
+      const imgProps = pdf.getImageProperties(imgData);
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+
+      // Download the PDF file
+      pdf.save('analisis.pdf');
+    });
+  }
 }
