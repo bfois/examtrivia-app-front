@@ -4,6 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import {  Router, RouterModule } from '@angular/router';
 import { Materia } from 'src/app/interfaces/Materia';
 import { Temas } from 'src/app/interfaces/Temas';
+import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { DisciplinaService } from '../service/disciplina.service';
 
@@ -12,7 +13,7 @@ import { DisciplinaService } from '../service/disciplina.service';
   templateUrl: './temas.component.html',
   styleUrls: ['./temas.component.scss'],
   standalone:true,
-  imports:[CommonModule, MatButtonModule, RouterModule]
+  imports:[CommonModule, MatButtonModule, RouterModule, FooterComponent]
 })
 export class TemasComponent implements OnInit, OnChanges{
   @Input() materia: Materia | undefined;
