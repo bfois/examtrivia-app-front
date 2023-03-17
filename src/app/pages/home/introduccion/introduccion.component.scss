@@ -5,16 +5,27 @@
   justify-content: space-around;
 }
 .ilustracion{
-  width: 200px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: rgba(0, 0, 0, 0.426);
+  border: 1px solid black;
+  color: white;
+  width: 400px;
+  height: 200px;
   justify-content: center;
   text-align: center;
-  padding: 10px;
+  padding: 20px;
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 span{
   font-weight: bold;
   font-size: 20px;
-  margin: 10px;
+  margin: 15px;
 }
+svg{
+  margin: 20px;
+  width: 200px;
+}
+

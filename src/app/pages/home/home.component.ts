@@ -1,11 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { Materia } from 'src/app/interfaces/Materia';
-import { FooterComponent } from 'src/app/shared/footer/footer.component';
+
 
 import { AuthenticationService } from '../signin/service/authentication.service';
 import { DisciplinaService } from './service/disciplina.service';
+
 
 @Component({
   selector: 'app-home',
