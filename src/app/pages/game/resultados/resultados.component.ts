@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
@@ -70,23 +68,5 @@ export class ResultadosComponent implements OnInit {
   }
 
   public convertToPDF() {
-    // Select the HTML element to convert to PDF
-    const element = document.querySelector('.analisis-completo') as HTMLElement;
-
-    // Create a jsPDF object
-    const pdf = new jsPDF('p', 'pt', 'letter');
-
-    // Convert the HTML element to canvas
-    html2canvas(element).then(canvas => {
-      // Get the canvas content as an image and add it to the PDF
-      const imgData = canvas.toDataURL('image/png');
-      const imgProps = pdf.getImageProperties(imgData);
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-
-      // Download the PDF file
-      pdf.save('analisis.pdf');
-    });
   }
 }
