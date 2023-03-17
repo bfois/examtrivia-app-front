@@ -4,7 +4,7 @@ import { NgModule } from "@angular/core";
 import { MatButtonModule } from "@angular/material/button";
 
 import { RouterModule, Routes } from "@angular/router";
-import { FooterComponent } from "src/app/shared/footer/footer.component";
+
 
 import { NavbarComponent } from "src/app/shared/navbar/navbar.component";
 import { ResultadosComponent } from "../resultados/resultados.component";
