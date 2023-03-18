@@ -9,8 +9,8 @@ const animation = trigger('animation',[efectStart])
 @Component({
   selector: 'app-start',
   template: `
-  <section class="first-page" >
-    <div class="inicio-animado" [@animation]>
+  <section class="firstPage" >
+    <div class="firstPage_div" [@animation]>
       <h1>EXAM</h1>
       <h4>TRIVIA</h4>
       <button mat-button routerLink="signin">JUGAR</button>
@@ -18,7 +18,7 @@ const animation = trigger('animation',[efectStart])
   </section>
 `,
   styles: [`
-  .first-page {
+  .firstPage {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -30,27 +30,27 @@ const animation = trigger('animation',[efectStart])
     background-color: black;
   }
 
-  .first-page h1, .first-page h4, .first-page button {
+  .firstPage h1, .firstPage h4, .firstPage button {
     color: white;
     padding: 10px;
   }
 
-  .first-page button {
+  .firstPage button {
     background-color: orange;
     width: 20rem;
   }
 
-  .first-page h1 {
+  .firstPage h1 {
     font-size: 6rem;
     font-weight: bold;
   }
 
-  .first-page h4 {
+  .firstPage h4 {
     font-size: 3rem;
     font-family: light italic;
   }
 
-  .inicio-animado {
+  .firstPage_div {
     display: flex;
     justify-content: center;
     align-items: center;
