@@ -24,7 +24,6 @@ const animation = trigger('animation',[efectStart])
     display: flex;
     justify-content: center;
     align-items: center;
-    box-sizing: border-box;
     overflow: hidden;
     flex-direction: column;
     background-color: black;
