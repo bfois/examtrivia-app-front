@@ -11,27 +11,26 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
   templateUrl: './resultados.component.html',
   styleUrls: ['./resultados.component.scss'],
 })
-export class ResultadosComponent implements OnInit {
-  respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]
+export class ResultadosComponent implements OnInit{
+  respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[];
   temasSeleccionados: Temas[] = [];
   nombreTemasSeleccionados: string[] = []
   currentUser: any;
   temasPreguntas:any = {}
-
-
-
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
-
   }
 
   ngOnInit(): void {
     //OBTIENE LOS DATOS DEL SERVICIO
+
    this.respuestasUsuario = this.triviaService.getResultados();
    //OBTIENE LOS TEMAS QUE SELECCIONO EL USUARIO
+   if(this.respuestasUsuario){
    this.temasSeleccionados = this.respuestasUsuario.map(r => r.pregunta.temas);
    //FILTRA POR NOMBRES UNICOS A LOS TEMAS, PARA MOSTRARLOS EN EL TEMPLATE
+
    this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
   .filter((nombre, index, self) => self.indexOf(nombre) === index);
 
@@ -57,7 +56,7 @@ export class ResultadosComponent implements OnInit {
       console.log(this.currentUser)
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
-  });
+  });}
    console.log(this.respuestasUsuario);
    console.log(this.nombreTemasSeleccionados)
   }

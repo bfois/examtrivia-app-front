@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(){
-
+if(this.authenticationService.getCurrentUser()){
     this.authenticationService.getCurrentUser().subscribe(user => {
       if (user) {
         this.currentUser = user;
@@ -41,7 +41,7 @@ export class HomeComponent implements OnInit {
         // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
 
-    });
+    });}
 }
 
 onDisciplinaSelected(disciplinaId: number) {

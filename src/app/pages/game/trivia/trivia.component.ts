@@ -53,6 +53,7 @@ export class TriviaComponent implements  AfterViewInit {
   }
 
   obtenerPreguntas(): void {
+    if(this.temasSeleccionados){
     const observables: Observable<Pregunta[]>[] = this.temasSeleccionados.map(
       (tema: Temas) => {
         return this.disciplinaService.getPreguntasByTemas(tema.id)
@@ -70,7 +71,7 @@ export class TriviaComponent implements  AfterViewInit {
         this.preguntas.push(...preguntas);
         this.siguientePregunta();
 
-      });
+      });}
   }
 
   getRandomQuestion(): Pregunta | null {
