@@ -28,6 +28,7 @@ describe('ResultadosComponent', () => {
   });
 
   it('should create', () => {
+
     expect(component).toBeTruthy();
   });
 });

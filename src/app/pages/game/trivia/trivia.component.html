@@ -3,20 +3,23 @@
     <button class="button-back-element" mat-button (click)="volverAtras()">VOLVER AL INICIO</button>
   </div>
   <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
-    <div class="enunciado">
-      <p>{{enunciado}}</p>
-    </div>
+    <div *ngFor="let pregunta of preguntasConRespuestas">
+      <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex">
+        <p class="enunciado">{{pregunta.enunciado}}</p>
 
 
-    <button [@slideInFromLeft] class="respuesta" *ngFor="let respuesta of respuestas" (click)="verificarRespuesta(respuesta)" [disabled]="seleccionada">
-      <p >{{respuesta.respuesta.texto}}</p>
-      <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
+        <ul>
+        <li *ngFor="let respuesta of pregunta.respuestas" class="respuesta" (click)="verificarRespuesta(respuesta)">
+          {{ respuesta.respuesta.texto }}
+          <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
         [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
         {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
       </span>
 
-    </button>
-
+        </li>
+      </ul>
+    </div>
+    </div>
     <div class="next-question-div" [@animation]>
       <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
       <button mat-button class="finish-quiz" (click)="resultados()">FINALIZAR</button>

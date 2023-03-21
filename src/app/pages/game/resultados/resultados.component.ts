@@ -12,7 +12,10 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
   styleUrls: ['./resultados.component.scss'],
 })
 export class ResultadosComponent implements OnInit{
+
   respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[];
+  materia: string = '';
+  disciplina:String = "";
   temasSeleccionados: Temas[] = [];
   nombreTemasSeleccionados: string[] = []
   currentUser: any;
@@ -29,8 +32,14 @@ export class ResultadosComponent implements OnInit{
    //OBTIENE LOS TEMAS QUE SELECCIONO EL USUARIO
    if(this.respuestasUsuario){
    this.temasSeleccionados = this.respuestasUsuario.map(r => r.pregunta.temas);
+   if(this.temasSeleccionados){
+    this.materia = this.temasSeleccionados[0].materia.name;
+    this.disciplina = this.temasSeleccionados[0].materia.disciplina.name;
+   }
+   console.log('temasSeleccionados:', this.temasSeleccionados);
+console.log('materia name:', this.temasSeleccionados[0]?.materia?.name);
+console.log('disciplina name:', this.temasSeleccionados[0]?.materia?.disciplina?.name);
    //FILTRA POR NOMBRES UNICOS A LOS TEMAS, PARA MOSTRARLOS EN EL TEMPLATE
-
    this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
   .filter((nombre, index, self) => self.indexOf(nombre) === index);
 

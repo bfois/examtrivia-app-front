@@ -1,7 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
 import { AfterViewInit, Component} from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, forkJoin, mergeMap, catchError, of } from 'rxjs';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
 import { RespuestaUsuario } from 'src/app/interfaces/RespuestaUsuario';
@@ -29,7 +28,6 @@ const animation = trigger('animation',[efectStart])
 })
 export class TriviaComponent implements  AfterViewInit {
   temasSeleccionados: Temas[] = [];
-  preguntas: Pregunta[] = [];
   yaSeleccionada = false;
   enunciado!: string;
   noHayMasPreguntas = false;
@@ -39,72 +37,37 @@ export class TriviaComponent implements  AfterViewInit {
   respuestaCorrecta = false;
   seleccionada = false;
   respuestasUsuario: RespuestaUsuario[] = [];
+  preguntasConRespuestas: (Pregunta & { respuestas: PreguntaRespuesta[] })[] = [];
+  preguntaSeleccionadaIndex = 0;
 
 
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
     private router:Router,
-   ) { }
+   ) {
+    }
 
    ngAfterViewInit(): void {
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
-    this.obtenerPreguntas();
-
-  }
-
-  obtenerPreguntas(): void {
-    if(this.temasSeleccionados){
-    const observables: Observable<Pregunta[]>[] = this.temasSeleccionados.map(
-      (tema: Temas) => {
-        return this.disciplinaService.getPreguntasByTemas(tema.id)
+    this.triviaDataService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
+      (preguntasConRespuestas) => {
+        this.preguntasConRespuestas = preguntasConRespuestas;
+        console.log(this.preguntasConRespuestas)
+      },
+      (error) => {
+        console.log('Error fetching preguntas con respuestas:', error);
       }
     );
-    forkJoin(observables)
-      .pipe(
-        mergeMap((respuestas: Pregunta[][]) => respuestas),
-        catchError((error) => {
-          console.log('Error fetching preguntas:', error);
-          return of([]);
-        })
-      )
-      .subscribe((preguntas: Pregunta[]) => {
-        this.preguntas.push(...preguntas);
-        this.siguientePregunta();
 
-      });}
-  }
 
-  getRandomQuestion(): Pregunta | null {
-     const preguntasDisponibles = this.preguntas.filter(
-      (pregunta: Pregunta) => !pregunta.yaSeleccionada
-    );
-    if (preguntasDisponibles.length === 0) {
-      this.noHayMasPreguntas = true;
-
-      return null;
-    }
-    const selectedQuestionIndex = Math.floor(
-      Math.random() * preguntasDisponibles.length
-    );
-    const selectedQuestion = preguntasDisponibles[selectedQuestionIndex];
-    selectedQuestion.yaSeleccionada = true;
-    return selectedQuestion;
   }
 
   siguientePregunta(): void {
-    const pregunta = this.getRandomQuestion();
-    if (pregunta) {
-      this.enunciado = pregunta.enunciado;
-      this.preguntaSeleccionada = pregunta;
-
-     this.disciplinaService.getRespuestasByPregunta(this.preguntaSeleccionada.id).subscribe(
-      data => {
-        this.respuestas = data
-      }
-     )
-     this.seleccionada = false;
-
+    if(this.preguntasConRespuestas.length === 0 || this.preguntaSeleccionadaIndex>this.preguntasConRespuestas.length - 2){
+      this.noHayMasPreguntas = true;
     }
+    else{
+      this.preguntaSeleccionadaIndex++}
   }
 
   volverAtras(){
@@ -117,18 +80,18 @@ export class TriviaComponent implements  AfterViewInit {
     this.seleccionada = true;
 
     const respuestaUsuario: RespuestaUsuario = {
-      pregunta:this.preguntaSeleccionada!,
+      pregunta:this.preguntasConRespuestas[this.preguntaSeleccionadaIndex],
       respuesta:respuesta.respuesta,
       esCorrecta:respuesta.esVerdadera
     };
 
     this.respuestasUsuario.push(respuestaUsuario);
+    console.log(this.respuestasUsuario)
   }
-
-
 
   resultados(): void {
     this.triviaDataService.guardarResultados(this.respuestasUsuario)
+    console.log(this.respuestasUsuario)
     this.router.navigate(['trivia/resultados']);
   }
 
