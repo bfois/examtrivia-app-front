@@ -5,7 +5,7 @@
   <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
     <div *ngFor="let pregunta of preguntasConRespuestas">
       <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex">
-        <p class="enunciado">{{pregunta.enunciado}}</p>
+        <p class="enunciado">{{pregunta.pregunta.enunciado}}</p>
 
 
         <ul>

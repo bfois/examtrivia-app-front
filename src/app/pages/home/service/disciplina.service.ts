@@ -1,11 +1,12 @@
  import { HttpClient } from '@angular/common/http';
  import { Injectable } from '@angular/core';
- import { Observable } from 'rxjs';
+ import { forkJoin, map, Observable, switchMap } from 'rxjs';
  import { Disciplina } from 'src/app/interfaces/Disciplina';
 import { Materia } from 'src/app/interfaces/Materia';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
+import { PreguntaConRespuestas } from 'src/app/interfaces/PreguntaConRespuesta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
-import { Respuesta } from 'src/app/interfaces/Respuesta';
+
 import { Temas } from 'src/app/interfaces/Temas';
 
  @Injectable({
@@ -30,11 +31,36 @@ import { Temas } from 'src/app/interfaces/Temas';
      return this.temas$ = this.http.get<Temas[]>(`${this.URL}/materias/${id}/temas`)
     }
 
-    getPreguntasByTemas(id:number): Observable<Pregunta[]> {
-      return this.http.get<Pregunta[]>(`${this.TRIVIA}/temas/${id}/preguntas`);
+    getPreguntasByTemas(ids: number[], startIndex: number): Observable<Pregunta[]> {
+      const temasIds = ids.join(',');
+      return this.http.get<Pregunta[]>(`${this.TRIVIA}/temas/${temasIds}/preguntas?startIndex=${startIndex}`);
     }
 
-    getRespuestasByPregunta(id:number): Observable<PreguntaRespuesta[]> {
-      return this.http.get<PreguntaRespuesta[]>(`${this.TRIVIA}/pregunta/${id}/respuestas`);
+    getRespuestasByPregunta(ids:number[]): Observable<PreguntaRespuesta[]> {
+      const preguntaIds = ids.join(',');
+      return this.http.get<PreguntaRespuesta[]>(`${this.TRIVIA}/pregunta/${preguntaIds}/respuestas`);
     }
+    getPreguntasConRespuestas(temas: Temas[], startIndex: number = 0): Observable<PreguntaConRespuestas[]> {
+      const temaIds = temas.map(tema => tema.id);
+      const preguntasObs = this.getPreguntasByTemas(temaIds,startIndex);
+      const respuestasObs = preguntasObs.pipe(
+        map(preguntas => preguntas.map(pregunta => pregunta.id)),
+        switchMap(preguntaIds => this.getRespuestasByPregunta(preguntaIds))
+      );
+
+      return forkJoin([preguntasObs, respuestasObs]).pipe(
+        map(([preguntas, respuestas]) => {
+          return preguntas.map(pregunta => {
+            const respuestasPregunta = respuestas.filter(respuesta => respuesta.pregunta.id === pregunta.id);
+            return {
+              pregunta,
+              respuestas: respuestasPregunta
+            };
+          }).slice(startIndex);;
+        })
+      );
+    }
+
+
 }
+

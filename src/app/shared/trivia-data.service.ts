@@ -34,29 +34,4 @@ export class TriviaDataService {
   getResultados(): {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] {
     return this.resultados;
   }
-  getPreguntasConRespuestas(temas: Temas[]): Observable<(Pregunta & { respuestas: PreguntaRespuesta[] })[]> {
-    const preguntasObservable: Observable<Pregunta[]>[] = temas.map(
-      (tema: Temas) => {
-        return this.disciplinaService.getPreguntasByTemas(tema.id)
-      }
-    );
-
-    return forkJoin(preguntasObservable).pipe(
-      // Merge las respuestas en cada pregunta
-      mergeMap((preguntas: Pregunta[][]) => preguntas.flat()),
-      mergeMap((pregunta: Pregunta) => {
-        return this.disciplinaService.getRespuestasByPregunta(pregunta.id).pipe(
-          map((respuestas: PreguntaRespuesta[]) => {
-            // Retorna un objeto que contiene la pregunta y sus respuestas
-            return { ...pregunta, respuestas } as Pregunta & { respuestas: PreguntaRespuesta[] };
-          })
-        );
-      }),
-      toArray(),
-      catchError((error) => {
-        console.log('Error fetching preguntas con respuestas:', error);
-        return of([]);
-      })
-    );
-  }
 }
