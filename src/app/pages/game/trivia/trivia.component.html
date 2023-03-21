@@ -10,7 +10,7 @@
 
         <ul>
         <li *ngFor="let respuesta of pregunta.respuestas" class="respuesta" (click)="verificarRespuesta(respuesta)">
-          {{ respuesta.respuesta.texto }}
+          <span> {{ respuesta.respuesta.texto }} </span>
           <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
         [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
         {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
