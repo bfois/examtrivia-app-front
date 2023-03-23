@@ -6,8 +6,7 @@
     <div *ngFor="let pregunta of preguntasConRespuestas">
       <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex">
         <p class="enunciado">{{pregunta.pregunta.enunciado}}</p>
-
-
+        <img *ngIf="pregunta.pregunta.imgURL" [src]="pregunta.pregunta.imgURL" alt="preguntaImagen">
         <ul>
         <li *ngFor="let respuesta of pregunta.respuestas" class="respuesta" (click)="verificarRespuesta(respuesta)">
           <span> {{ respuesta.respuesta.texto }} </span>
@@ -15,7 +14,6 @@
         [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
         {{respuestaCorrecta ? 'RESPUESTA CORRECTA' : 'RESPUESTA INCORRECTA'}}
       </span>
-
         </li>
       </ul>
     </div>
@@ -24,14 +22,9 @@
       <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
       <button mat-button class="finish-quiz" (click)="resultados()">FINALIZAR</button>
     </div>
-
-
-
   </div>
-
   <div class="resultados" *ngIf="noHayMasPreguntas">
     <p class="final-resultados"> FINALIZASTE EL CUESTIONARIO, YA PUEDES VER LOS RESULTADOS! </p>
     <button mat-button class="go-result" (click)="resultados()">IR A LOS RESULTADOS</button>
   </div>
-
 </div>
