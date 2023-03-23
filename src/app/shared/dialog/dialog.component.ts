@@ -4,24 +4,29 @@ import {MatButtonModule} from '@angular/material/button';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
   styleUrls: ['./dialog.component.scss'],
   standalone:true,
-  imports:[MatDialogModule,MatButtonModule ]
+  imports:[MatDialogModule,MatButtonModule, MatSnackBarModule,FormsModule]
 })
 export class DialogComponent{
   selectedImage!: any;
   selectedFile!: File;
   currentUser: any;
+  newName:string = "";
   constructor(@Inject(
     MAT_DIALOG_DATA) public data: any,
   public dialogRef: MatDialogRef<DialogComponent>,
   private afAuth: AngularFireAuth,
-    private storage: AngularFireStorage) {
+    private storage: AngularFireStorage,
+    private _snackBar: MatSnackBar) {
       this.afAuth.authState.subscribe(user => {
         this.currentUser = user;
+        this.newName = this.currentUser.displayName
       });
     }
 
@@ -36,6 +41,12 @@ export class DialogComponent{
     reader.readAsDataURL(this.selectedFile);
   }
   save() {
+    console.log(this.newName)
+    const updatedUser = {
+      displayName: this.newName,
+      photoURL: this.selectedFile ? null : this.data.usuario.photoURL
+    };
+
     if (this.selectedFile) {
       const path = `users/${this.currentUser.uid}/profile_picture`;
       const ref = this.storage.ref(path);
@@ -44,11 +55,8 @@ export class DialogComponent{
       task.snapshotChanges().pipe(
         finalize(() => {
           ref.getDownloadURL().subscribe(url => {
-            this.currentUser.updateProfile({
-              displayName: this.data.usuario.displayName,
-              photoURL: url
-            }).then(() => {
-              console.log('Perfil actualizado');
+            this.currentUser.updateProfile(updatedUser).then(() => {
+              this._snackBar.open('Perfil actualizado','OK',{duration:3000})
             }).catch((error:any) => {
               console.log(error);
             });
@@ -56,11 +64,8 @@ export class DialogComponent{
         })
       ).subscribe();
     } else {
-      this.currentUser.updateProfile({
-        displayName: this.data.usuario.displayName,
-        photoURL: this.data.usuario.photoURL
-      }).then(() => {
-        console.log('Perfil actualizado');
+      this.currentUser.updateProfile(updatedUser).then(() => {
+        this._snackBar.open('Perfil actualizado','OK',{duration:3000})
       }).catch((error:any) => {
         console.log(error);
       });

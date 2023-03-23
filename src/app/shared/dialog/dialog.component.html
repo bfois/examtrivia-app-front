@@ -3,7 +3,7 @@
 <div mat-dialog-content class="informacion_usuario">
   <div class="nombre_apellido">
   <p>Nombre y Apellido:</p>
-  <input type="text" [value]="data.usuario.displayName">
+  <input type="text" [value]="data.usuario.displayName" [(ngModel)]="newName">
 </div>
 <div class="profile_img">
   <img [src]="selectedImage?selectedImage:data.usuario.photoURL" alt="foto_perfil" width="100px" (click)="fileInput.click()" class="fotoPerfil">
