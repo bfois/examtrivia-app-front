@@ -3,9 +3,10 @@ import { MatDialogModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/materia
 import {MatButtonModule} from '@angular/material/button';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
+
+
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -13,17 +14,19 @@ import { FormsModule } from '@angular/forms';
   standalone:true,
   imports:[MatDialogModule,MatButtonModule, MatSnackBarModule,FormsModule]
 })
+
 export class DialogComponent{
   selectedImage!: any;
   selectedFile!: File;
   currentUser: any;
   newName:string = "";
+
   constructor(@Inject(
-    MAT_DIALOG_DATA) public data: any,
+  MAT_DIALOG_DATA) public data: any,
   public dialogRef: MatDialogRef<DialogComponent>,
   private afAuth: AngularFireAuth,
-    private storage: AngularFireStorage,
-    private _snackBar: MatSnackBar) {
+  private storage: AngularFireStorage,
+  private _snackBar: MatSnackBar) {
       this.afAuth.authState.subscribe(user => {
         this.currentUser = user;
         this.newName = this.currentUser.displayName
