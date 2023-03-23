@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
+import html2pdf from 'html2pdf.js';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { Temas } from 'src/app/interfaces/Temas';
@@ -12,8 +11,11 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
   templateUrl: './resultados.component.html',
   styleUrls: ['./resultados.component.scss'],
 })
-export class ResultadosComponent implements OnInit {
-  respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]
+export class ResultadosComponent implements OnInit{
+
+  respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[];
+  materia: string = '';
+  disciplina:String = "";
   temasSeleccionados: Temas[] = [];
   nombreTemasSeleccionados: string[] = []
   currentUser: any;
@@ -21,14 +23,22 @@ export class ResultadosComponent implements OnInit {
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
-
   }
 
   ngOnInit(): void {
     //OBTIENE LOS DATOS DEL SERVICIO
+
    this.respuestasUsuario = this.triviaService.getResultados();
    //OBTIENE LOS TEMAS QUE SELECCIONO EL USUARIO
+   if(this.respuestasUsuario){
    this.temasSeleccionados = this.respuestasUsuario.map(r => r.pregunta.temas);
+   if(this.temasSeleccionados){
+    this.materia = this.temasSeleccionados[0].materia.name;
+    this.disciplina = this.temasSeleccionados[0].materia.disciplina.name;
+   }
+   console.log('temasSeleccionados:', this.temasSeleccionados);
+console.log('materia name:', this.temasSeleccionados[0]?.materia?.name);
+console.log('disciplina name:', this.temasSeleccionados[0]?.materia?.disciplina?.name);
    //FILTRA POR NOMBRES UNICOS A LOS TEMAS, PARA MOSTRARLOS EN EL TEMPLATE
    this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
   .filter((nombre, index, self) => self.indexOf(nombre) === index);
@@ -55,7 +65,7 @@ export class ResultadosComponent implements OnInit {
       console.log(this.currentUser)
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
-  });
+  });}
    console.log(this.respuestasUsuario);
    console.log(this.nombreTemasSeleccionados)
   }
@@ -69,17 +79,16 @@ export class ResultadosComponent implements OnInit {
     return  Object.keys(temasPreguntas);
   }
 
-  public convertToPDF()
-{
-html2canvas(document.body.querySelector('.analisis-completo') as HTMLElement).then(canvas => {
-// Few necessary setting options
+  generatePDF(){
+    const element = document.getElementById('analisis-completo') as HTMLElement; // Replace 'my-element' with the ID of your HTML element
 
-const contentDataURL = canvas.toDataURL('image/png')
-let pdf = new jsPDF('p', 'mm', 'a4'); // A4 size page of PDF
-var width = pdf.internal.pageSize.getWidth();
-var height = canvas.height * width / canvas.width;
-pdf.addImage(contentDataURL, 'PNG', 0, 0, width, height)
-pdf.save('Cuestionario.pdf'); // Generated PDF
-});
-}
+    const opt = {
+        margin: 0,
+        filename: 'cuestionario.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+    };
+
+   return html2pdf(element, opt);}
 }

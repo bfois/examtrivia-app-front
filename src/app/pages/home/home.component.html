@@ -1,28 +1,17 @@
-
-
 <div class="container">
-
-
   <app-navbar [currentUser]="currentUser"></app-navbar>
-
-
-
   <div class="content">
     <div class="disciplinas" *ngIf="mostrarDisciplina">
       <div class="bienvenida" *ngIf="currentUser">
         ¡Bienvenido/a, {{currentUser.displayName}}!
       </div>
        <app-disciplina (disciplinaSelected)="onDisciplinaSelected($event)"></app-disciplina>
-
-
+      <div class="introduccion"></div>
+        <app-introduccion></app-introduccion>
       </div>
-
     <div class="materias" *ngIf="!mostrarDisciplina" >
-
       <button mat-button (click)="volverDisciplina()" (click)="volverMateria()" >BACK</button>
-
       <div *ngIf="materias$ | async as materias" class="materiasDiv">
-
         <h4>Selecciona la materia que mas se ajuste a tu disciplina!</h4>
         <mat-form-field appearance="fill">
         <mat-label>{{nombreMateriaSeleccionada}}</mat-label>
@@ -32,16 +21,15 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-  </div> </div>
-
-<div *ngIf="mostrarTemas">
-
-  <div>
+  </div>
+</div>
+<div  *ngIf="mostrarTemas">
+  <div class="temas_div">
     <app-temas [materia]="materiaSeleccionada"> </app-temas>
   </div>
 </div>
-
     </div>
+    <app-footer class="footer" *ngIf="mostrarDisciplina"></app-footer>
   </div>
 
 

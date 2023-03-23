@@ -1,16 +1,16 @@
 <app-navbar [currentUser]="currentUser"></app-navbar>
 
-<div class="analisis-completo">
+<div id="analisis-completo" >
   <div class="titulo">
    <h3>Analisis del cuestionario</h3>
 
   </div>
 
 <div class="disciplina_container">
-  <h4 class="disciplina">Disciplina Seleccionada:</h4> <p class="disciplina-dinamica"> {{temasSeleccionados[0].materia.disciplina.name}} </p>
+  <h4 class="disciplina" >Disciplina Seleccionada:</h4> <p class="disciplina-dinamica"> {{this.disciplina}} </p>
 </div>
 <div class="materia_container">
-  <p class="materia">Materia Seleccionada: </p> <p class="materia-dinamica">{{temasSeleccionados[0].materia.name}}</p>
+  <p class="materia">Materia Seleccionada: </p> <p class="materia-dinamica">{{this.materia}}</p>
 </div>
 <div class="temas_titulo_container">
   <p class="temas">Temas seleccionados: </p>
@@ -39,10 +39,10 @@
 </div>
   <div class="respuestas" >
 
-    <div *ngFor="let key of objectKeys(temasPreguntas)">
-      <p class="temas_respuestas">{{key}}: </p>
+    <div class="temas_respuestas_container_correctas" *ngFor="let key of objectKeys(temasPreguntas)">
+      <div class="temas_respuestas_container"><p class="temas_respuestas">{{key}}:</p></div>
       <div class="respuestas-correct" *ngFor="let value of temasPreguntas[key]">
-          <p class="respuestas_correctas_temas">#RESPUESTA CORRECTA:{{value.respuesta}}</p>
+          <p class="respuestas_correctas_temas"> <span class="respuestas_correctas_">#RESPUESTA CORRECTA:</span>  {{value.respuesta}}</p>
       </div>
 
 
@@ -51,8 +51,8 @@
 </div>
 </div>
   <div class="botones-resultados-descargas">
-    <button class="inicio_button" mat-button><div class="inside-button" >  <span>IR AL INICIO</span>  </div> </button>
-    <button class="descargar-resumen" mat-button ><div class="inside-button" (click)="convertToPDF()"> <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
+    <button class="inicio_button" mat-button><div class="inside-button" routerLink="/home">  <span>IR AL INICIO</span>  </div> </button>
+    <button class="descargar-resumen" mat-button (click)="generatePDF()"><div class="inside-button" > <img src="../../../../assets/pdf.png" alt="resumen" width="20px"> <span>DESCARGAR RESUMEN</span>  </div> </button>
   </div>
 
 

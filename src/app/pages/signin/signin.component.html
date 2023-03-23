@@ -1,6 +1,6 @@
 
 <main>
-  <div class="container" *ngIf="!restorePassword; else restore">
+  <div class="formLogin" *ngIf="!restorePassword; else restore">
     <form [formGroup]="form" (ngSubmit)="form.valid && login()">
       <h2>¡Hola de nuevo!</h2>
       <h3>Nos alegra mucho verte otra vez</h3>
@@ -49,5 +49,6 @@
       <app-restore-password></app-restore-password>
     </div>
   </ng-template>
+  <app-footer class="footer"></app-footer>
 </main>
 

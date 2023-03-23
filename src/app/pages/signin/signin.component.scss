@@ -1,11 +1,11 @@
 
 main {
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   width: 100%;
-  flex-direction: column;
   background-image: url("../../../assets/background.svg");
   background-position: center;
   background-size: cover;
@@ -14,9 +14,8 @@ main {
     color: white;
   }
 }
-.container{
+.formLogin{
   padding: 20px;
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,3 +58,7 @@ button{
   color: white;
 }
 
+.footer{
+  position: absolute;
+  bottom: 0;
+}

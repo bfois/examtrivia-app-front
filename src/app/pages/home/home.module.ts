@@ -13,6 +13,9 @@ import { NavbarComponent } from 'src/app/shared/navbar/navbar.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { TemasComponent } from './temas/temas.component';
+import { FooterComponent } from 'src/app/shared/footer/footer.component';
+import { IntroduccionComponent } from './introduccion/introduccion.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 
 //RUTAS
 const routes: Routes = [
@@ -22,6 +25,7 @@ const routes: Routes = [
 @NgModule({
     declarations: [
         HomeComponent,
+        IntroduccionComponent,
     ],
     imports: [
         CommonModule,
@@ -32,6 +36,8 @@ const routes: Routes = [
         MatButtonModule,
         TemasComponent,
         DisciplinaComponent,
+        FooterComponent,
+        NgxTypedJsModule
 
     ]
 })

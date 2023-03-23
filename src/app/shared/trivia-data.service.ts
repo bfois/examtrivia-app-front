@@ -1,7 +1,10 @@
 import { Injectable } from '@angular/core';
+import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
 import { Pregunta } from '../interfaces/Pregunta';
+import { PreguntaRespuesta } from '../interfaces/PreguntaRespuesta';
 import { Respuesta } from '../interfaces/Respuesta';
 import { Temas } from '../interfaces/Temas';
+import { DisciplinaService } from '../pages/home/service/disciplina.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +13,7 @@ export class TriviaDataService {
   temasSeleccionados: Temas[] = [];
   private resultados: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] = [];
 
-  constructor() {
+  constructor(private disciplinaService: DisciplinaService) {
     const resultadosGuardados = localStorage.getItem('resultados');
     if (resultadosGuardados) {
       this.resultados = JSON.parse(resultadosGuardados); }

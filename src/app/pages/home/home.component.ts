@@ -1,10 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
 
 import { Materia } from 'src/app/interfaces/Materia';
 
+
 import { AuthenticationService } from '../signin/service/authentication.service';
 import { DisciplinaService } from './service/disciplina.service';
+
 
 @Component({
   selector: 'app-home',
@@ -31,7 +33,7 @@ export class HomeComponent implements OnInit {
    }
 
   ngOnInit(){
-
+if(this.authenticationService.getCurrentUser()){
     this.authenticationService.getCurrentUser().subscribe(user => {
       if (user) {
         this.currentUser = user;
@@ -39,7 +41,7 @@ export class HomeComponent implements OnInit {
         // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
 
-    });
+    });}
 }
 
 onDisciplinaSelected(disciplinaId: number) {

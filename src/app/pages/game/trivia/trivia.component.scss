@@ -6,6 +6,7 @@
   box-sizing: border-box;
   overflow: auto;
   background-color: rgb(49, 49, 49);
+  position: relative;
 }
 
 .button-back-element{
@@ -124,3 +125,8 @@
   margin: 10px;
   color: white;
 }
+li{
+  display: flex;
+  flex-direction: column;
+}
+

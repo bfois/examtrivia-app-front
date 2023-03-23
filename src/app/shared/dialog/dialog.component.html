@@ -1,0 +1,17 @@
+<div class="dialog_container">
+<h2 mat-dialog-title>Editar usuario:</h2>
+<div mat-dialog-content class="informacion_usuario">
+  <div class="nombre_apellido">
+  <p>Nombre y Apellido:</p>
+  <input type="text" [value]="data.usuario.displayName" [(ngModel)]="newName">
+</div>
+<div class="profile_img">
+  <img [src]="selectedImage?selectedImage:data.usuario.photoURL || '../../../assets/noPhoto.png' " alt="foto_perfil" width="100px" (click)="fileInput.click()" class="fotoPerfil">
+  <input type="file" #fileInput style="display: none" (change)="selectFile($event)">
+</div>
+</div>
+<div mat-dialog-actions>
+  <button class="close" mat-button [mat-dialog-close]="true">Close</button>
+  <button class="save" mat-button (click)="save()">Guardar</button>
+</div>
+</div>

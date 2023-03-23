@@ -16,6 +16,7 @@ button{
   box-sizing: border-box;
   width: 100%;
   height: 100vh;
+  position: relative;
 }
 mat-grid-tile{
   background-color: black;
@@ -55,7 +56,29 @@ font-weight: bold;
 
   cursor: pointer;
 }
+.footer{
+  width: 100%;
+  height: 60px;
+  padding: 20px 0;
+  text-align: center;
 
+}
+.disciplinas{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+.introduccion{
+  margin-top: 190px;
+  margin-bottom: 20px;
+}
+@media (max-width: 767px) {
+  .introduccion {
+    margin-top: 20px;
+  }
+
+}
 
 
 
