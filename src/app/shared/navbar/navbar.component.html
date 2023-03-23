@@ -1,11 +1,11 @@
 <mat-toolbar>
   <div class="userNavbar">
     <div class="info-user-navbar">
-      <img [src]="currentUser?.photoURL || '../../../assets/noPhoto.png'" alt="{{currentUser?.displayName }}" class="user-photo">
-      <span>{{ currentUser?.displayName || 'username'}}</span>
+      <img [src]="currentUser?currentUser.photoURL:'../../../assets/noPhoto.png'" alt="{{currentUser?currentUser.displayName:'nombre_usuario' }}" class="user-photo" (click)="openDialog()">
+      <span>{{ currentUser?currentUser.displayName:'username'}}</span>
     </div>
   </div>
   <span class="example-spacer"></span>
-  <img class="logo-navbar" src="../../../assets/logo.png" alt="logo" width="200px">
+  <img [routerLink]="['/home']" routerLinkActive="router-link-active"  class="logo-navbar" src="../../../assets/logo.png" alt="logo" width="200px">
 </mat-toolbar>
 
