@@ -41,7 +41,6 @@ export class DialogComponent{
     reader.readAsDataURL(this.selectedFile);
   }
   save() {
-    console.log(this.newName)
     const updatedUser = {
       displayName: this.newName,
       photoURL: this.selectedFile ? null : this.data.usuario.photoURL
@@ -52,26 +51,27 @@ export class DialogComponent{
       const ref = this.storage.ref(path);
       const task = ref.put(this.selectedFile);
 
-      task.snapshotChanges().pipe(
-        finalize(() => {
-          ref.getDownloadURL().subscribe(url => {
-            this.currentUser.updateProfile(updatedUser).then(() => {
-              this._snackBar.open('Perfil actualizado','OK',{duration:3000})
-            }).catch((error:any) => {
-              console.log(error);
-            });
-          });
-        })
-      ).subscribe();
-    } else {
-      this.currentUser.updateProfile(updatedUser).then(() => {
-        this._snackBar.open('Perfil actualizado','OK',{duration:3000})
-      }).catch((error:any) => {
-        console.log(error);
+      const image = new Image();
+      image.src = URL.createObjectURL(this.selectedFile);
+      image.addEventListener('load', () => {
+        ref.getDownloadURL().subscribe(url => {
+          updatedUser.photoURL = url;
+          this.updateUserProfile(updatedUser);
+        });
       });
+    } else {
+      this.updateUserProfile(updatedUser);
     }
 
     // Cierra el diálogo
     this.dialogRef.close();
+  }
+
+  private updateUserProfile(updatedUser:any) {
+    this.currentUser.updateProfile(updatedUser).then(() => {
+      this._snackBar.open('Perfil actualizado', 'OK', { duration: 3000 })
+    }).catch((error: any) => {
+      console.log(error);
+    });
   }
 }
