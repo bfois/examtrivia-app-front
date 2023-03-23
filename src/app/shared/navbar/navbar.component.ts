@@ -18,7 +18,7 @@ import { DialogComponent } from '../dialog/dialog.component';
 
 })
 export class NavbarComponent {
-  @Input() currentUser!: Usuario;
+  @Input() currentUser!: Usuario | null;
 
 
   constructor(public dialog: MatDialog) { }

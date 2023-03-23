@@ -6,7 +6,7 @@
   <input type="text" [value]="data.usuario.displayName" [(ngModel)]="newName">
 </div>
 <div class="profile_img">
-  <img [src]="selectedImage?selectedImage:data.usuario.photoURL" alt="foto_perfil" width="100px" (click)="fileInput.click()" class="fotoPerfil">
+  <img [src]="selectedImage?selectedImage:data.usuario.photoURL || '../../../assets/noPhoto.png' " alt="foto_perfil" width="100px" (click)="fileInput.click()" class="fotoPerfil">
   <input type="file" #fileInput style="display: none" (change)="selectFile($event)">
 </div>
 </div>
