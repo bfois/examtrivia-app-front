@@ -14,7 +14,7 @@ describe('TriviaComponent', () => {
   let disciplinaServiceSpy: jasmine.SpyObj<DisciplinaService>
   beforeEach(async () => {
     const triviaSpy = jasmine.createSpyObj('TriviaDataService',['obtenerTemasSeleccionados','guardarResultados']);
-    const disciplinaSpy = jasmine.createSpyObj('DisciplinaService',['getPreguntasByTemas','getRespuestasByPregunta']);
+    const disciplinaSpy = jasmine.createSpyObj('DisciplinaService',['getPreguntasConRespuestas']);
     await TestBed.configureTestingModule({
       declarations: [ TriviaComponent ],
       imports:[HttpClientTestingModule, BrowserAnimationsModule],

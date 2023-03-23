@@ -50,6 +50,7 @@ export class TriviaComponent implements  AfterViewInit {
 
    ngAfterViewInit(): void {
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
+    if(this.temasSeleccionados){
     this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
       (preguntasConRespuestas) => {
         this.preguntasConRespuestas = preguntasConRespuestas;
@@ -60,7 +61,7 @@ export class TriviaComponent implements  AfterViewInit {
       }
     );
 
-
+    }
   }
 
   siguientePregunta(): void {
