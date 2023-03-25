@@ -43,3 +43,17 @@
 .fotoPerfil:hover{
   cursor: pointer;
 }
+.fotoPerfil{
+  border: 3px solid black;
+  animation: fotoPerfil 2s infinite;
+}
+@keyframes fotoPerfil {
+  0% {
+    border-color: rgb(0, 0, 0);
+  }
+  50% {
+    border-color: transparent;
+  }
+  100% {
+    border-color: rgb(0, 0, 0);
+  }}
