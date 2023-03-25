@@ -54,7 +54,6 @@ export class TriviaComponent implements  AfterViewInit {
     this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
       (preguntasConRespuestas) => {
         this.preguntasConRespuestas = preguntasConRespuestas;
-        console.log(this.preguntasConRespuestas)
       },
       (error) => {
         console.log('Error fetching preguntas con respuestas:', error);
@@ -65,6 +64,7 @@ export class TriviaComponent implements  AfterViewInit {
   }
 
   siguientePregunta(): void {
+    this.respuestaSeleccionada = null;
     if(this.preguntasConRespuestas.length === 0 || this.preguntaSeleccionadaIndex>this.preguntasConRespuestas.length - 2){
       this.noHayMasPreguntas = true;
     }else if(this.preguntaSeleccionadaIndex >= 20) {
@@ -72,7 +72,6 @@ export class TriviaComponent implements  AfterViewInit {
       this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados, startIndex).subscribe(
           (preguntasConRespuestas) => {
               this.preguntasConRespuestas = preguntasConRespuestas;
-              console.log(this.preguntasConRespuestas);
               this.preguntaSeleccionadaIndex++;
           },
           (error) => {
@@ -88,6 +87,7 @@ export class TriviaComponent implements  AfterViewInit {
   }
 
   verificarRespuesta(respuesta: PreguntaRespuesta): void {
+    if(!this.respuestaSeleccionada){
     this.respuestaSeleccionada = respuesta;
     this.respuestaCorrecta = respuesta.esVerdadera;
     this.seleccionada = true;
@@ -99,12 +99,11 @@ export class TriviaComponent implements  AfterViewInit {
     };
 
     this.respuestasUsuario.push(respuestaUsuario);
-    console.log(this.respuestasUsuario)
+  }
   }
 
   resultados(): void {
     this.triviaDataService.guardarResultados(this.respuestasUsuario)
-    console.log(this.respuestasUsuario)
     this.router.navigate(['trivia/resultados']);
   }
 

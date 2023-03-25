@@ -8,7 +8,11 @@
         <p class="enunciado">{{pregunta.pregunta.enunciado}}</p>
         <img *ngIf="pregunta.pregunta.imgURL" [src]="pregunta.pregunta.imgURL" alt="preguntaImagen">
         <ul>
-        <li *ngFor="let respuesta of pregunta.respuestas" class="respuesta" (click)="verificarRespuesta(respuesta)">
+        <li *ngFor="let respuesta of pregunta.respuestas"
+        class="respuesta"
+        (click)="verificarRespuesta(respuesta)"
+        [class.disabled]="respuesta !== respuestaSeleccionada && respuestaSeleccionada"
+        [@slideInFromLeft]>
           <span> {{ respuesta.respuesta.texto }} </span>
           <span *ngIf="respuesta === respuestaSeleccionada" [class.bg-success]="respuesta.esVerdadera && respuesta === respuestaSeleccionada"
         [class.bg-danger]="!respuesta.esVerdadera && respuesta === respuestaSeleccionada">
