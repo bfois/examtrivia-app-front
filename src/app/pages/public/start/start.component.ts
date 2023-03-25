@@ -18,7 +18,7 @@ const animation1 = trigger('animation1',[efectStart1])
   template: `
   <section class="firstPage" >
     <div class="firstPage_div" >
-      <h1 [@animation1]>Ñquiz</h1>
+      <h1 [@animation1]>Ñ<span class="quiz">quiz</span></h1>
       <div class="typed">
   <ngx-typed-js
   [strings]="['¡El trivia educativo mas grande de todo latinoamerica!']"
@@ -38,7 +38,7 @@ const animation1 = trigger('animation1',[efectStart1])
   styles: [`
   span{
     color:white;
-    margin:20px;
+    margin-bottom:20px;
     font-size:20px;
   }
   .firstPage {
@@ -50,6 +50,10 @@ const animation1 = trigger('animation1',[efectStart1])
     overflow: hidden;
     flex-direction: column;
     background-color: black;
+  }
+  .quiz{
+    font-size:5rem;
+    color:yellow;
   }
   h1{
     margin:20px;
