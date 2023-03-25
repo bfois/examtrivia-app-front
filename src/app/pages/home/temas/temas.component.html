@@ -2,6 +2,9 @@
 <div class="temas">
   <div class="titulo"> <h4>¡Selecciona los temas que te interesen revisar!</h4></div>
   <div class="contenedor_botones">
+    <div *ngIf="loading" class="cargando_datos">
+      <mat-spinner diameter="30"  class="spinner"></mat-spinner>
+    </div>
     <div class="button" *ngFor="let tema of temas">
       <button mat-button
       [class.seleccionado]="temasSeleccionados.includes(tema)"

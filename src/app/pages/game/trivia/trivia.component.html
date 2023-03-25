@@ -3,6 +3,9 @@
     <button class="button-back-element" mat-button (click)="volverAtras()">VOLVER AL INICIO</button>
   </div>
   <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
+    <div *ngIf="loading" class="cargando_datos">
+    <mat-spinner diameter="30"  class="spinner"></mat-spinner>
+  </div>
     <div *ngFor="let pregunta of preguntasConRespuestas">
       <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex">
         <p class="enunciado">{{pregunta.pregunta.enunciado}}</p>

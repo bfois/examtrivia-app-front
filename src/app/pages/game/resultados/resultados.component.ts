@@ -58,7 +58,6 @@ export class ResultadosComponent implements OnInit{
    this.authenticationService.getCurrentUser().subscribe(user => {
     if (user) {
       this.currentUser = user;
-      console.log(this.currentUser)
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
   });}

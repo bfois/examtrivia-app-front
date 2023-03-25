@@ -17,14 +17,19 @@
 .button-back-div{
   margin: 10px;
 }
-
+.cargando_datos{
+  min-height: 500px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
 .pregunta-respuesta{
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   width: 100%;
-
   .enunciado{
     width: 500px;
     @media only screen and (max-width: 500px) {

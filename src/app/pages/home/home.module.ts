@@ -16,7 +16,7 @@ import { TemasComponent } from './temas/temas.component';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { IntroduccionComponent } from './introduccion/introduccion.component';
 import { NgxTypedJsModule } from 'ngx-typed-js';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 //RUTAS
 const routes: Routes = [
   {path:"", component:HomeComponent}
@@ -37,8 +37,8 @@ const routes: Routes = [
         TemasComponent,
         DisciplinaComponent,
         FooterComponent,
-        NgxTypedJsModule
-
+        NgxTypedJsModule,
+        MatProgressSpinnerModule
     ]
 })
 export class HomeModule { }

@@ -7,18 +7,19 @@ import { Temas } from 'src/app/interfaces/Temas';
 import { FooterComponent } from 'src/app/shared/footer/footer.component';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { DisciplinaService } from '../service/disciplina.service';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 @Component({
   selector: 'app-temas',
   templateUrl: './temas.component.html',
   styleUrls: ['./temas.component.scss'],
   standalone:true,
-  imports:[CommonModule, MatButtonModule, RouterModule, FooterComponent]
+  imports:[CommonModule, MatButtonModule, RouterModule, FooterComponent,MatProgressSpinnerModule]
 })
 export class TemasComponent implements OnInit, OnChanges{
   @Input() materia: Materia | undefined;
   temas: Temas[] | undefined;
   temasSeleccionados: Temas[] = [];
+  loading=false;
   constructor(private disciplinaService: DisciplinaService,
     private triviaDataService: TriviaDataService,
     private router: Router) { }
@@ -34,10 +35,12 @@ export class TemasComponent implements OnInit, OnChanges{
   }
 
   private getTemas(): void {
+    this.loading=true;
     if (this.materia) {
       this.disciplinaService.getTemasByMateriaId(this.materia.id)
         .subscribe((data: Temas[]) => {
           this.temas = data;
+          this.loading=false;
         });
     }
   }

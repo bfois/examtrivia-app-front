@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
   materiaSeleccionada!:Materia;
   nombreMateriaSeleccionada:string="Materia"
   mostrarTemas = false;
-
+  loading = false;
 
 
   constructor(
@@ -44,12 +44,15 @@ if(this.authenticationService.getCurrentUser()){
 }
 
 onDisciplinaSelected(disciplinaId: number) {
+
   this.mostrarDisciplina = false;
+  this.loading=true;
   // hacer algo con la disciplina seleccionada...
   this.materias$ = this.disciplinaService.getMateriasByDisciplinaId(disciplinaId)
     .pipe(
       tap((data: Materia[]) => {
         this.materias = data;
+        this.loading=false;
       }),
       catchError((error) => {
         console.log(error);

@@ -11,6 +11,9 @@
       </div>
     <div class="materias" *ngIf="!mostrarDisciplina" >
       <button mat-button (click)="volverDisciplina()" (click)="volverMateria()" >BACK</button>
+      <div *ngIf="loading" class="cargando_datos">
+        <mat-spinner diameter="30"  class="spinner"></mat-spinner>
+      </div>
       <div *ngIf="materias$ | async as materias" class="materiasDiv">
         <h4>Selecciona la materia que mas se ajuste a tu disciplina!</h4>
         <mat-form-field appearance="fill">

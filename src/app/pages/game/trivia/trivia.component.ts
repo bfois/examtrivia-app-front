@@ -41,18 +41,23 @@ export class TriviaComponent implements  AfterViewInit {
   preguntasConRespuestas!:PreguntaConRespuestas[] ;
   preguntaSeleccionadaIndex = 0;
   startIndex:number = 0;
-
+  loading = false;
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
     private router:Router,
+
    ) {
+    this.loading = true;
     }
 
    ngAfterViewInit(): void {
+
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
     if(this.temasSeleccionados){
     this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
+
       (preguntasConRespuestas) => {
+        this.loading = false;
         this.preguntasConRespuestas = preguntasConRespuestas;
       },
       (error) => {
