@@ -2,22 +2,45 @@ import { animate, style, transition, trigger } from '@angular/animations';
 import { Component} from '@angular/core';
 const efectStart = transition('void => *', [
   style({ opacity: 0 }),
-  animate('1.5s ease-in', style({ opacity: 1 })),
+  animate('4s ease-in', style({ opacity: 1 })),
 ])
 const animation = trigger('animation',[efectStart])
+
+const efectStart1 = transition('void => *', [
+  style({ opacity: 0 }),
+  animate('1s ease-in', style({ opacity: 1 })),
+])
+const animation1 = trigger('animation1',[efectStart1])
+
 
 @Component({
   selector: 'app-start',
   template: `
   <section class="firstPage" >
-    <div class="firstPage_div" [@animation]>
-      <h1>EXAM</h1>
-      <h4>TRIVIA</h4>
-      <button mat-button routerLink="signin">JUGAR</button>
+    <div class="firstPage_div" >
+      <h1 [@animation1]>Ñquiz</h1>
+      <div class="typed">
+  <ngx-typed-js
+  [strings]="['¡El trivia educativo mas grande de todo latinoamerica!']"
+  [loop]="false"
+  [shuffle]="true" [typeSpeed]="30"
+  [startDelay]="1000"
+  [showCursor]="false"
+  >
+  <span class="typing"></span>
+  </ngx-typed-js>
+</div>
+
+      <button [@animation] mat-button routerLink="signin">JUGAR</button>
     </div>
   </section>
 `,
   styles: [`
+  span{
+    color:white;
+    margin:20px;
+    font-size:20px;
+  }
   .firstPage {
     width: 100%;
     height: 100vh;
@@ -28,8 +51,10 @@ const animation = trigger('animation',[efectStart])
     flex-direction: column;
     background-color: black;
   }
-
-  .firstPage h1, .firstPage h4, .firstPage button {
+  h1{
+    margin:20px;
+  }
+  .firstPage h1, .firstPage button {
     color: white;
     padding: 10px;
   }
@@ -55,8 +80,13 @@ const animation = trigger('animation',[efectStart])
     align-items: center;
     flex-direction: column;
   }
+  .typed{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
+  }
 `],
-  animations:[animation]
+  animations:[animation,animation1],
 })
 export class StartComponent {}
 

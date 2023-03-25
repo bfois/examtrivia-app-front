@@ -21,8 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 
 import firebase from 'firebase/compat/app';
-import { FooterComponent } from './shared/footer/footer.component';
-import { DialogComponent } from './shared/dialog/dialog.component';
+import { NgxTypedJsModule } from 'ngx-typed-js';
 firebase.initializeApp(environment.firebase);
 
 
@@ -41,7 +40,8 @@ firebase.initializeApp(environment.firebase);
     AngularFireStorageModule, // Agregar Firebase Storage
     AngularFirestoreModule,
     MatButtonModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxTypedJsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
