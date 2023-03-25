@@ -36,9 +36,6 @@ export class ResultadosComponent implements OnInit{
     this.materia = this.temasSeleccionados[0].materia.name;
     this.disciplina = this.temasSeleccionados[0].materia.disciplina.name;
    }
-   console.log('temasSeleccionados:', this.temasSeleccionados);
-console.log('materia name:', this.temasSeleccionados[0]?.materia?.name);
-console.log('disciplina name:', this.temasSeleccionados[0]?.materia?.disciplina?.name);
    //FILTRA POR NOMBRES UNICOS A LOS TEMAS, PARA MOSTRARLOS EN EL TEMPLATE
    this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
   .filter((nombre, index, self) => self.indexOf(nombre) === index);
@@ -57,7 +54,6 @@ console.log('disciplina name:', this.temasSeleccionados[0]?.materia?.disciplina?
   });
 
   // Ahora tenemos un objeto con los temas como keys y un array de preguntas como valor
-  console.log(this.temasPreguntas)
 
    this.authenticationService.getCurrentUser().subscribe(user => {
     if (user) {
@@ -66,8 +62,6 @@ console.log('disciplina name:', this.temasSeleccionados[0]?.materia?.disciplina?
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
   });}
-   console.log(this.respuestasUsuario);
-   console.log(this.nombreTemasSeleccionados)
   }
 
   getRespuestasForTema(tema: Temas) {
