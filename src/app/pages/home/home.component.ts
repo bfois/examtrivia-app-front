@@ -44,7 +44,6 @@ if(this.authenticationService.getCurrentUser()){
 }
 
 onDisciplinaSelected(disciplinaId: number) {
-
   this.mostrarDisciplina = false;
   this.loading=true;
   // hacer algo con la disciplina seleccionada...
