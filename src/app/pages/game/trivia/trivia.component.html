@@ -26,8 +26,8 @@
     </div>
     </div>
     <div class="next-question-div" [@animation]>
-      <button class="next-question" mat-button (click)="siguientePregunta()">SIGUIENTE PREGUNTA</button>
-      <button mat-button class="finish-quiz" (click)="resultados()">FINALIZAR</button>
+      <button class="next-question" mat-button (click)="siguientePregunta()" [disabled]="desactivar">SIGUIENTE PREGUNTA</button>
+      <button mat-button class="finish-quiz" (click)="resultados()" >FINALIZAR</button>
     </div>
   </div>
   <div class="resultados" *ngIf="noHayMasPreguntas">

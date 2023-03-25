@@ -56,7 +56,7 @@ import { Temas } from 'src/app/interfaces/Temas';
               pregunta,
               respuestas: respuestasPregunta
             };
-          }).slice(startIndex);;
+          })
         })
       );
     }

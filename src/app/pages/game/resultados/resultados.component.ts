@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import html2pdf from 'html2pdf.js';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { Respuesta } from 'src/app/interfaces/Respuesta';
+import { RespuestaUsuario } from 'src/app/interfaces/RespuestaUsuario';
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
 import { AuthenticationService } from '../../signin/service/authentication.service';
@@ -12,8 +13,7 @@ import { AuthenticationService } from '../../signin/service/authentication.servi
   styleUrls: ['./resultados.component.scss'],
 })
 export class ResultadosComponent implements OnInit{
-
-  respuestasUsuario!: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[];
+  respuestasUsuario!: RespuestaUsuario[];
   materia: string = '';
   disciplina:String = "";
   temasSeleccionados: Temas[] = [];
@@ -23,6 +23,7 @@ export class ResultadosComponent implements OnInit{
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
+      console.log(this.temasPreguntas)
   }
 
   ngOnInit(): void {
@@ -49,23 +50,23 @@ export class ResultadosComponent implements OnInit{
       this.temasPreguntas[tema] = [];
     }
 
-    // Agregamos la pregunta al array del tema correspondiente
-    this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta,respuesta: respuesta.respuesta.texto, esCorrecta: respuesta.esCorrecta });
+    // Agregamos las pregunta y respuestas al array del tema correspondiente
+    this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta,respuesta: respuesta.respuesta.texto, esCorrecta: respuesta.esCorrecta, opcionCorrecta: respuesta.opcionCorrecta});
+    console.log(this.temasPreguntas)
   });
-
-  // Ahora tenemos un objeto con los temas como keys y un array de preguntas como valor
-
    this.authenticationService.getCurrentUser().subscribe(user => {
     if (user) {
       this.currentUser = user;
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
   });}
+
+  this.temasSeleccionados.map(tema =>
+    this.getRespuestasForTema(tema))
   }
 
   getRespuestasForTema(tema: Temas) {
-    return this.respuestasUsuario.filter(r => r.pregunta.temas.id === tema.id);
-
+   return this.respuestasUsuario.filter(r => r.pregunta.temas.id === tema.id);
   }
 
   objectKeys(temasPreguntas:any) {

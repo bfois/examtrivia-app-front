@@ -1,8 +1,5 @@
 import { Injectable } from '@angular/core';
-import { catchError, forkJoin, map, mergeMap, Observable, of, toArray } from 'rxjs';
-import { Pregunta } from '../interfaces/Pregunta';
-import { PreguntaRespuesta } from '../interfaces/PreguntaRespuesta';
-import { Respuesta } from '../interfaces/Respuesta';
+import { RespuestaUsuario } from '../interfaces/RespuestaUsuario';
 import { Temas } from '../interfaces/Temas';
 import { DisciplinaService } from '../pages/home/service/disciplina.service';
 
@@ -11,7 +8,7 @@ import { DisciplinaService } from '../pages/home/service/disciplina.service';
 })
 export class TriviaDataService {
   temasSeleccionados: Temas[] = [];
-  private resultados: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] = [];
+  private resultados: RespuestaUsuario[] = [];
 
   constructor(private disciplinaService: DisciplinaService) {
     const resultadosGuardados = localStorage.getItem('resultados');
@@ -27,11 +24,11 @@ export class TriviaDataService {
     return this.temasSeleccionados;
   }
 
-  guardarResultados(resultados: {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[]): void {
+  guardarResultados(resultados: RespuestaUsuario[]): void {
     this.resultados = resultados;
     localStorage.setItem('resultados', JSON.stringify(this.resultados));
   }
-  getResultados(): {pregunta: Pregunta, respuesta: Respuesta, esCorrecta: boolean}[] {
+  getResultados(): RespuestaUsuario[] {
     return this.resultados;
   }
 }

@@ -1,6 +1,6 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { AfterViewInit, Component} from '@angular/core';
-import {  Router } from '@angular/router';
+import { Component, OnInit} from '@angular/core';
+import { Router } from '@angular/router';
 import { Pregunta } from 'src/app/interfaces/Pregunta';
 import { PreguntaConRespuestas } from 'src/app/interfaces/PreguntaConRespuesta';
 import { PreguntaRespuesta } from 'src/app/interfaces/PreguntaRespuesta';
@@ -27,10 +27,8 @@ const animation = trigger('animation',[efectStart])
   styleUrls: ['./trivia.component.scss'],
   animations:[trigger('slideInFromLeft',[transition('void=>*', slideInFromLeft)]), animation]
 })
-export class TriviaComponent implements  AfterViewInit {
+export class TriviaComponent implements OnInit {
   temasSeleccionados: Temas[] = [];
-  yaSeleccionada = false;
-  enunciado!: string;
   noHayMasPreguntas = false;
   preguntaSeleccionada: Pregunta | null = null;
   respuestas!: PreguntaRespuesta[]
@@ -38,20 +36,17 @@ export class TriviaComponent implements  AfterViewInit {
   respuestaCorrecta = false;
   seleccionada = false;
   respuestasUsuario: RespuestaUsuario[] = [];
-  preguntasConRespuestas!:PreguntaConRespuestas[] ;
+  preguntasConRespuestas!:PreguntaConRespuestas[];
   preguntaSeleccionadaIndex = 0;
-  startIndex:number = 0;
   loading = false;
+  desactivar= false;
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
     private router:Router,
-
    ) {
     this.loading = true;
     }
-
-   ngAfterViewInit(): void {
-
+  ngOnInit(): void {
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
     if(this.temasSeleccionados){
     this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
@@ -70,14 +65,16 @@ export class TriviaComponent implements  AfterViewInit {
 
   siguientePregunta(): void {
     this.respuestaSeleccionada = null;
-    if(this.preguntasConRespuestas.length === 0 || this.preguntaSeleccionadaIndex>this.preguntasConRespuestas.length - 2){
+    if(this.preguntasConRespuestas?.length === 0 || this.preguntaSeleccionadaIndex>this.preguntasConRespuestas.length - 1){
       this.noHayMasPreguntas = true;
-    }else if(this.preguntaSeleccionadaIndex >= 20) {
-      const startIndex = this.preguntaSeleccionadaIndex;
+    } else if(this.preguntaSeleccionadaIndex === 19) {
+      const startIndex = this.preguntaSeleccionadaIndex / 19;
+      this.desactivar = true;
       this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados, startIndex).subscribe(
           (preguntasConRespuestas) => {
-              this.preguntasConRespuestas = preguntasConRespuestas;
+              this.preguntasConRespuestas = this.preguntasConRespuestas.concat(preguntasConRespuestas);
               this.preguntaSeleccionadaIndex++;
+              this.desactivar=false;
           },
           (error) => {
               console.log('Error fetching preguntas con respuestas:', error);
@@ -100,7 +97,9 @@ export class TriviaComponent implements  AfterViewInit {
     const respuestaUsuario: RespuestaUsuario = {
       pregunta:this.preguntasConRespuestas[this.preguntaSeleccionadaIndex].pregunta,
       respuesta:respuesta.respuesta,
-      esCorrecta:respuesta.esVerdadera
+      esCorrecta:respuesta.esVerdadera,
+      opcionCorrecta:this.preguntasConRespuestas[this.preguntaSeleccionadaIndex].respuestas.find(opcion => opcion.esVerdadera)
+
     };
 
     this.respuestasUsuario.push(respuestaUsuario);
