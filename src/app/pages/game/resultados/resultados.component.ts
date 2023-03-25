@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import html2pdf from 'html2pdf.js';
-import { Pregunta } from 'src/app/interfaces/Pregunta';
-import { Respuesta } from 'src/app/interfaces/Respuesta';
 import { RespuestaUsuario } from 'src/app/interfaces/RespuestaUsuario';
 import { Temas } from 'src/app/interfaces/Temas';
 import { TriviaDataService } from 'src/app/shared/trivia-data.service';
@@ -23,7 +21,6 @@ export class ResultadosComponent implements OnInit{
   constructor(
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
-      console.log(this.temasPreguntas)
   }
 
   ngOnInit(): void {
@@ -52,7 +49,6 @@ export class ResultadosComponent implements OnInit{
 
     // Agregamos las pregunta y respuestas al array del tema correspondiente
     this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta,respuesta: respuesta.respuesta.texto, esCorrecta: respuesta.esCorrecta, opcionCorrecta: respuesta.opcionCorrecta});
-    console.log(this.temasPreguntas)
   });
    this.authenticationService.getCurrentUser().subscribe(user => {
     if (user) {

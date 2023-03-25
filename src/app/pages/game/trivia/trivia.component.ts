@@ -64,24 +64,22 @@ export class TriviaComponent implements OnInit {
   }
 
   siguientePregunta(): void {
+    let n = 1
     this.respuestaSeleccionada = null;
     if(this.preguntasConRespuestas?.length === 0 || this.preguntaSeleccionadaIndex>this.preguntasConRespuestas.length - 1){
       this.noHayMasPreguntas = true;
-    } else if(this.preguntaSeleccionadaIndex === 19) {
-      const startIndex = this.preguntaSeleccionadaIndex / 19;
-      this.desactivar = true;
+    } else if(this.preguntaSeleccionadaIndex === 15 * n) {
+      const startIndex = this.preguntaSeleccionadaIndex / 15;
       this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados, startIndex).subscribe(
           (preguntasConRespuestas) => {
               this.preguntasConRespuestas = this.preguntasConRespuestas.concat(preguntasConRespuestas);
-              this.preguntaSeleccionadaIndex++;
-              this.desactivar=false;
+              n++
           },
           (error) => {
               console.log('Error fetching preguntas con respuestas:', error);
           }
       );}
-    else{
-      this.preguntaSeleccionadaIndex++}
+      this.preguntaSeleccionadaIndex++
   }
 
   volverAtras(){

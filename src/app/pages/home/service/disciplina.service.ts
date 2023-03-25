@@ -16,8 +16,8 @@ import { Temas } from 'src/app/interfaces/Temas';
   materias$: Observable<Materia[]> = new Observable<Materia[]>();
   temas$: Observable<Temas[]> = new Observable<Temas[]>();
   preguntas$: Observable<Pregunta[]> = new Observable<Pregunta[]>()
-  URL = "http://localhost:8080/api/v1/home";
-  TRIVIA = "http://localhost:8080/api/v1"
+  URL = "http://localhost:8081/api/v1/home";
+  TRIVIA = "http://localhost:8081/api/v1"
   constructor(private http: HttpClient) {
   }
   getAllDisciplinas(): Observable<Disciplina[]> {
