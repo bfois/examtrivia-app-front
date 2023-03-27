@@ -7,9 +7,11 @@
     <mat-spinner diameter="30"  class="spinner"></mat-spinner>
   </div>
     <div *ngFor="let pregunta of preguntasConRespuestas">
-      <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex">
+      <div *ngIf="preguntasConRespuestas.indexOf(pregunta) === preguntaSeleccionadaIndex" class="pregunta_imagen">
         <p class="enunciado">{{pregunta.pregunta.enunciado}}</p>
-        <img *ngIf="pregunta.pregunta.imgURL" [src]="pregunta.pregunta.imgURL" alt="preguntaImagen">
+        <div class="imagen_contenedor">
+        <img *ngIf="pregunta.pregunta.imgURL" [src]="pregunta.pregunta.imgURL" alt="preguntaImagen" width="300px">
+      </div>
         <ul>
         <li *ngFor="let respuesta of pregunta.respuestas"
         class="respuesta"
