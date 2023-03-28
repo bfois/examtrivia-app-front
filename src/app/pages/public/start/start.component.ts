@@ -53,12 +53,12 @@ const animation1 = trigger('animation1',[efectStart1])
   }
 
   h1{
-    color:yellow;
     margin:20px;
+    color:yellow;
   }
   .firstPage h1, .firstPage button {
-    color: white;
     padding: 10px;
+
   }
 
   .firstPage button {
@@ -86,6 +86,10 @@ const animation1 = trigger('animation1',[efectStart1])
     text-align:center;
     margin-top:20px;
     margin-bottom:20px;
+  }
+  button{
+    font-size:16px;
+    font-weight:bold;
   }
 `],
   animations:[animation,animation1],

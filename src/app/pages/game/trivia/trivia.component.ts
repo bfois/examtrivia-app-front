@@ -40,6 +40,10 @@ export class TriviaComponent implements OnInit {
   preguntaSeleccionadaIndex = 0;
   loading = false;
   desactivar= false;
+  counterTrue= 0;
+  counterFalse = 0;
+
+
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
     private router:Router,
@@ -90,6 +94,12 @@ export class TriviaComponent implements OnInit {
     if(!this.respuestaSeleccionada){
     this.respuestaSeleccionada = respuesta;
     this.respuestaCorrecta = respuesta.esVerdadera;
+    if(this.respuestaCorrecta){
+      this.counterTrue++
+    }else{
+      this.counterFalse++
+    }
+
     this.seleccionada = true;
 
     const respuestaUsuario: RespuestaUsuario = {

@@ -2,6 +2,13 @@
   <div class="button-back-div">
     <button class="button-back-element" mat-button (click)="volverAtras()">VOLVER AL INICIO</button>
   </div>
+  <div class="puntaje">
+    <div class="puntaje_titulo"><span>PUNTAJE</span></div>
+    <div class="puntaje_score">
+    <span class="puntaje_correcta">Correctas: {{counterTrue}}</span>
+    <span class="puntaje_incorrecta">Incorrectas: {{counterFalse}}</span>
+  </div>
+  </div>
   <div class="pregunta-respuesta" *ngIf="!noHayMasPreguntas">
     <div *ngIf="loading" class="cargando_datos">
     <mat-spinner diameter="30"  class="spinner"></mat-spinner>
@@ -27,6 +34,7 @@
       </ul>
     </div>
     </div>
+
     <div class="next-question-div" [@animation]>
       <button class="next-question" mat-button (click)="siguientePregunta()" [disabled]="desactivar">SIGUIENTE PREGUNTA</button>
       <button mat-button class="finish-quiz" (click)="resultados()" >FINALIZAR</button>
