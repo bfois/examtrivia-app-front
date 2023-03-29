@@ -1,7 +1,5 @@
-
 import { Respuesta } from "./Respuesta";
 import { Temas } from "./Temas";
-
 
 export interface Pregunta {
 id:number,

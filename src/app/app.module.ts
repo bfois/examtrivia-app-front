@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 //COMPONENTES
 import { AppComponent } from './app.component';
 import { StartComponent } from './pages/public/start/start.component';
-
 //FIREBASE API
 import { AngularFireModule } from '@angular/fire/compat'
 import { AngularFireAuthModule } from '@angular/fire/compat/auth'
@@ -14,18 +13,11 @@ import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 //ANGULAR MATERIAL
 import {MatButtonModule} from '@angular/material/button';
-
 //HTTP
 import { HttpClientModule } from '@angular/common/http';
-
-
-
 import firebase from 'firebase/compat/app';
 import { NgxTypedJsModule } from 'ngx-typed-js';
 firebase.initializeApp(environment.firebase);
-
-
-
 @NgModule({
   declarations: [
     AppComponent,

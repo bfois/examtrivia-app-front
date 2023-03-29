@@ -27,7 +27,6 @@ export class AuthenticationService {
   signUp(email: string, password: string): Promise<any> {
     return this.Afauth.createUserWithEmailAndPassword(email, password);
   }
-
   loginGoogle(): Observable<any> {
     return from(this.Afauth.signInWithPopup(new GoogleAuthProvider())).pipe(
       catchError((error) => {
@@ -38,7 +37,6 @@ export class AuthenticationService {
   getCurrentUser(): Observable<firebase.User | null> {
     return this.Afauth.authState;
   }
-
   restorePassword(email: string): Observable<void> {
     return from(this.Afauth.sendPasswordResetEmail(email))
       .pipe(

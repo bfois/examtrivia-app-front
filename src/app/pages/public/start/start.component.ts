@@ -30,7 +30,6 @@ const animation1 = trigger('animation1',[efectStart1])
   <span class="typing"></span>
   </ngx-typed-js>
 </div>
-
       <button [@animation] mat-button routerLink="signin">JUGAR</button>
     </div>
   </section>
@@ -51,31 +50,25 @@ const animation1 = trigger('animation1',[efectStart1])
     flex-direction: column;
     background-color: black;
   }
-
   h1{
     margin:20px;
     color:yellow;
   }
   .firstPage h1, .firstPage button {
     padding: 10px;
-
   }
-
   .firstPage button {
     background-color: orange;
     width: 20rem;
   }
-
   .firstPage h1 {
     font-size: 4rem;
     font-weight: bold;
   }
-
   .firstPage h4 {
     font-size: 3rem;
     font-family: light italic;
   }
-
   .firstPage_div {
     display: flex;
     justify-content: center;

@@ -19,17 +19,12 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class NavbarComponent {
   @Input() currentUser!: Usuario | null;
-
-
   constructor(public dialog: MatDialog) { }
-
-
   openDialog(): void {
     const dialogRef = this.dialog.open(DialogComponent, {
       width: '500px',
       data: {usuario:this.currentUser }
     });
-
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });

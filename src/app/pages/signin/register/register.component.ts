@@ -18,7 +18,6 @@ export class RegisterComponent implements OnInit {
     private authenticationService: AuthenticationService,
     private snackBar: MatSnackBar,
   ) { }
-
   ngOnInit(): void {
     this.formRegister = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -28,21 +27,17 @@ export class RegisterComponent implements OnInit {
       validator: passwordMatch('password', 'confirmPassword')
     });
   }
-
   async createUser() {
     if (!this.formRegister) {
       return;
     }
-
     const { email, password } = this.formRegister.value;
     const user = { email, password };
 
     try {
       const userCredential = await this.authenticationService.signUp(user.email, user.password);
       console.log('Usuario registrado:', userCredential.user);
-
       await userCredential.user.sendEmailVerification();
-
       this.snackBar.open('Usuario registrado exitosamente', 'Cerrar', { duration: 3000 });
       this.currentUser = user;
       this.posRegister = true;

@@ -6,7 +6,6 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { FormsModule } from '@angular/forms';
 
-
 @Component({
   selector: 'app-dialog',
   templateUrl: './dialog.component.html',
@@ -14,13 +13,11 @@ import { FormsModule } from '@angular/forms';
   standalone:true,
   imports:[MatDialogModule,MatButtonModule, MatSnackBarModule,FormsModule]
 })
-
 export class DialogComponent{
   selectedImage!: any;
   selectedFile!: File;
   currentUser: any;
   newName:string = "";
-
   constructor(@Inject(
   MAT_DIALOG_DATA) public data: any,
   public dialogRef: MatDialogRef<DialogComponent>,
@@ -32,11 +29,8 @@ export class DialogComponent{
         this.newName = this.currentUser.displayName
       });
     }
-
   selectFile(event:any) {
     this.selectedFile = <File>event.target.files[0];
-    console.log(this.selectedFile)
-
     const reader = new FileReader();
     reader.onload = e => {
       this.selectedImage = e.target?.result;
@@ -48,12 +42,10 @@ export class DialogComponent{
       displayName: this.newName,
       photoURL: this.selectedFile ? null : this.data.usuario.photoURL
     };
-
     if (this.selectedFile) {
       const path = `users/${this.currentUser.uid}/profile_picture`;
       const ref = this.storage.ref(path);
       const task = ref.put(this.selectedFile);
-
       const image = new Image();
       image.src = URL.createObjectURL(this.selectedFile);
       image.addEventListener('load', () => {
@@ -65,11 +57,9 @@ export class DialogComponent{
     } else {
       this.updateUserProfile(updatedUser);
     }
-
     // Cierra el diálogo
     this.dialogRef.close();
   }
-
   private updateUserProfile(updatedUser:any) {
     this.currentUser.updateProfile(updatedUser).then(() => {
       this._snackBar.open('Perfil actualizado', 'OK', { duration: 3000 })

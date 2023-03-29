@@ -8,12 +8,10 @@
   background-color: rgb(49, 49, 49);
   position: relative;
 }
-
 .button-back-element{
   background-color: red;
   color: white;
 }
-
 .button-back-div{
   margin: 10px;
 }
@@ -37,7 +35,6 @@
       width: 100%;
     }
   }
-
   .enunciado, .respuesta{
     border-radius: 10px;
     border: 1px solid black;
@@ -50,7 +47,6 @@
       width: 85%;
     }
   }
-
   .respuesta{
     width: 400px;
     padding: 10px;
@@ -64,25 +60,19 @@
     @media only screen and (max-width: 500px) {
       width: 70%;
     }
-
-
   }
   .respuesta.disabled {
     opacity: 0.5;
     pointer-events: none;
   }
-
   .respuesta:hover{
     cursor: pointer;
   }
 }
-
 .resultados {
   text-align: center;
-
   button {
     margin: 20px;
-
   }
 }
 .next-question{
@@ -138,7 +128,6 @@ li{
   display: flex;
   flex-direction: column;
 }
-
 .pregunta_imagen{
   display: flex;
   justify-content: center;

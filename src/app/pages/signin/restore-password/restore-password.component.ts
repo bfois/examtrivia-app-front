@@ -4,8 +4,6 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 
-
-
 @Component({
   selector: 'app-restore-password',
   templateUrl: './restore-password.component.html',
@@ -21,7 +19,6 @@ export class RestorePasswordComponent implements OnInit {
     email:["",[Validators.required, Validators.email]]
    })
   }
-
   ngOnInit(): void {
   }
   restorePassword(){
@@ -36,6 +33,5 @@ export class RestorePasswordComponent implements OnInit {
       })
     }
     )
-
   }
 }

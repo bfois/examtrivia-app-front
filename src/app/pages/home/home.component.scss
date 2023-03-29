@@ -9,8 +9,6 @@ button{
   color: white;
   margin: 10px;
 }
-
-
 .container{
   overflow: auto;
   box-sizing: border-box;
@@ -53,7 +51,6 @@ font-weight: bold;
   height: 60vh;
 }
 .cuadro-info:hover{
-
   cursor: pointer;
 }
 .footer{
@@ -61,7 +58,6 @@ font-weight: bold;
   height: 60px;
   padding: 20px 0;
   text-align: center;
-
 }
 .disciplinas{
   display: flex;
@@ -77,15 +73,12 @@ font-weight: bold;
   .introduccion {
     margin-top: 20px;
   }
-
 }
-
 .cargando_datos{
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
   min-height: 500px;
-
 }
 

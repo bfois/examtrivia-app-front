@@ -53,7 +53,6 @@ export class SigninComponent implements OnInit {
       })
     }
   }
-
   async loginGoogle() {
     this.isLoggingIn = true;
     try {
@@ -66,7 +65,6 @@ export class SigninComponent implements OnInit {
       });
     }
   }
-
   toggleRestorePassword() {
       this.restorePassword = !this.restorePassword;
   }

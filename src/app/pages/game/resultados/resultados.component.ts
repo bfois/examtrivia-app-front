@@ -22,10 +22,8 @@ export class ResultadosComponent implements OnInit{
     private triviaService: TriviaDataService,
     private authenticationService: AuthenticationService) {
   }
-
   ngOnInit(): void {
     //OBTIENE LOS DATOS DEL SERVICIO
-
    this.respuestasUsuario = this.triviaService.getResultados();
    //OBTIENE LOS TEMAS QUE SELECCIONO EL USUARIO
    if(this.respuestasUsuario){
@@ -37,16 +35,13 @@ export class ResultadosComponent implements OnInit{
    //FILTRA POR NOMBRES UNICOS A LOS TEMAS, PARA MOSTRARLOS EN EL TEMPLATE
    this.nombreTemasSeleccionados = this.temasSeleccionados.map(tema => tema.name)
   .filter((nombre, index, self) => self.indexOf(nombre) === index);
-
   this.respuestasUsuario.forEach((respuesta) => {
     // Obtenemos el tema de la pregunta
     const tema = respuesta.pregunta.temas.name;
-
     // Si el tema aún no está en el objeto, lo agregamos con un array vacío
     if (!this.temasPreguntas[tema]) {
       this.temasPreguntas[tema] = [];
     }
-
     // Agregamos las pregunta y respuestas al array del tema correspondiente
     this.temasPreguntas[tema].push({ pregunta: respuesta.pregunta,respuesta: respuesta.respuesta.texto, esCorrecta: respuesta.esCorrecta, opcionCorrecta: respuesta.opcionCorrecta});
   });
@@ -56,22 +51,17 @@ export class ResultadosComponent implements OnInit{
       // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
     }
   });}
-
   this.temasSeleccionados.map(tema =>
     this.getRespuestasForTema(tema))
   }
-
   getRespuestasForTema(tema: Temas) {
    return this.respuestasUsuario.filter(r => r.pregunta.temas.id === tema.id);
   }
-
   objectKeys(temasPreguntas:any) {
     return  Object.keys(temasPreguntas);
   }
-
   generatePDF(){
     const element = document.getElementById('analisis-completo') as HTMLElement; // Replace 'my-element' with the ID of your HTML element
-
     const opt = {
         margin: 0,
         filename: 'cuestionario.pdf',
@@ -79,6 +69,5 @@ export class ResultadosComponent implements OnInit{
         html2canvas: { scale: 2 },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
     };
-
    return html2pdf(element, opt);}
 }

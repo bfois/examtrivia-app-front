@@ -22,12 +22,4 @@ const animation2 = trigger('animation2',[efectStart2])
   styleUrls: ['./introduccion.component.scss'],
   animations:[animation,animation1,animation2]
 })
-export class IntroduccionComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
-
-}
+export class IntroduccionComponent{}

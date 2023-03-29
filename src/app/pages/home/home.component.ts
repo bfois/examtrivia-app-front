@@ -1,19 +1,14 @@
 import { Component, OnInit} from '@angular/core';
 import { catchError, Observable, tap, throwError } from 'rxjs';
-
 import { Materia } from 'src/app/interfaces/Materia';
-
-
 import { AuthenticationService } from '../signin/service/authentication.service';
 import { DisciplinaService } from './service/disciplina.service';
-
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-
 export class HomeComponent implements OnInit {
   currentUser: any;
   mostrarDisciplina = true;
@@ -23,15 +18,11 @@ export class HomeComponent implements OnInit {
   nombreMateriaSeleccionada:string="Materia"
   mostrarTemas = false;
   loading = false;
-
-
   constructor(
     private authenticationService: AuthenticationService,
     private disciplinaService: DisciplinaService
    ) {
-
    }
-
   ngOnInit(){
 if(this.authenticationService.getCurrentUser()){
     this.authenticationService.getCurrentUser().subscribe(user => {
@@ -39,10 +30,8 @@ if(this.authenticationService.getCurrentUser()){
         this.currentUser = user;
         // Aquí puedes llamar a otro servicio para obtener más información del usuario si lo necesitas
       }
-
     });}
 }
-
 onDisciplinaSelected(disciplinaId: number) {
   this.mostrarDisciplina = false;
   this.loading=true;
@@ -59,7 +48,6 @@ onDisciplinaSelected(disciplinaId: number) {
       })
     );
 }
-
 volverDisciplina(){
   this.mostrarDisciplina = true;
 }

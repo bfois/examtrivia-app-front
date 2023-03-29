@@ -35,9 +35,7 @@ flex-wrap: wrap;
       font-weight: bold;
     }
   }
-
 .temas{
-
   text-decoration: underline;
 }
 .materia{
@@ -54,7 +52,6 @@ justify-content: center;
     border: 1px solid black;
   }
 }
-
 .temas_titulo_container{
   display: flex;
   justify-content: center;
@@ -73,24 +70,19 @@ h4,p{
   margin-left: 5px;
   font-size: 16px;
 }
-
 .tema_titulo_preguntas{
   margin: 20px;
 }
 .red{
-
   background-color: rgba(255, 0, 0, 0.437);
 }
 .green{
-
   background-color: rgba(0, 128, 0, 0.437);
 }
-
 .preguntas_respondidas{
   display: flex;
   flex-direction: column;
 }
-
 .titulo_tema_preguntas{
   margin: 20px;
 }
@@ -114,7 +106,6 @@ align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   margin: 20px;
-
 }
 .descargar-resumen{
   background-color: rgb(0, 0, 0);
@@ -150,19 +141,16 @@ img{
  width: 50%;
  display: flex;
  flex-direction: column;
-
 }
 @media (max-width: 767px) {
   .preguntas_respuestas_container {
     flex-direction: column;
   }
-
   .all-for-bucles, .respuestas {
     width: 95%;
     margin: 10px;
   }
 }
-
 .show-respuestas{
   border: 1px solid black;
 }
@@ -172,7 +160,6 @@ img{
   justify-content: flex-start;
   text-align: justify;
 }
-
 .temas_respuestas_container_correctas{
   display: flex;
   flex-direction: column;
@@ -186,7 +173,6 @@ img{
 }
 .respuestas_correctas_{
   font-weight: bold;
-
 }
 .temas_respuestas_container{
   display: flex;

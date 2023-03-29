@@ -1,6 +1,4 @@
-
-
-  export interface ProviderData {
+export interface ProviderData {
       providerId: string;
       uid: string;
       displayName: string;

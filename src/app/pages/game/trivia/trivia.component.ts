@@ -43,7 +43,6 @@ export class TriviaComponent implements OnInit {
   counterTrue= 0;
   counterFalse = 0;
 
-
   constructor(private triviaDataService: TriviaDataService,
     private disciplinaService: DisciplinaService,
     private router:Router,
@@ -54,7 +53,6 @@ export class TriviaComponent implements OnInit {
     this.temasSeleccionados = this.triviaDataService.obtenerTemasSeleccionados();
     if(this.temasSeleccionados){
     this.disciplinaService.getPreguntasConRespuestas(this.temasSeleccionados).subscribe(
-
       (preguntasConRespuestas) => {
         this.loading = false;
         this.preguntasConRespuestas = preguntasConRespuestas;
@@ -63,10 +61,8 @@ export class TriviaComponent implements OnInit {
         console.log('Error fetching preguntas con respuestas:', error);
       }
     );
-
     }
   }
-
   siguientePregunta(): void {
     let n = 1
     this.respuestaSeleccionada = null;
@@ -85,11 +81,9 @@ export class TriviaComponent implements OnInit {
       );}
       this.preguntaSeleccionadaIndex++
   }
-
   volverAtras(){
     this.router.navigate(['/home']);
   }
-
   verificarRespuesta(respuesta: PreguntaRespuesta): void {
     if(!this.respuestaSeleccionada){
     this.respuestaSeleccionada = respuesta;
@@ -99,24 +93,18 @@ export class TriviaComponent implements OnInit {
     }else{
       this.counterFalse++
     }
-
     this.seleccionada = true;
-
     const respuestaUsuario: RespuestaUsuario = {
       pregunta:this.preguntasConRespuestas[this.preguntaSeleccionadaIndex].pregunta,
       respuesta:respuesta.respuesta,
       esCorrecta:respuesta.esVerdadera,
       opcionCorrecta:this.preguntasConRespuestas[this.preguntaSeleccionadaIndex].respuestas.find(opcion => opcion.esVerdadera)
-
     };
-
     this.respuestasUsuario.push(respuestaUsuario);
   }
   }
-
   resultados(): void {
     this.triviaDataService.guardarResultados(this.respuestasUsuario)
     this.router.navigate(['trivia/resultados']);
   }
-
 }

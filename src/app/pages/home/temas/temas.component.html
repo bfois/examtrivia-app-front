@@ -11,13 +11,10 @@
       (click)="alternarSeleccion(tema)"
        [id]="tema.id">{{tema.name}}</button>
     </div>
-
   </div>
-
 </div>
 <div class="start-game">
   <button  class="start-game-button" mat-button *ngIf="temasSeleccionados.length > 0"
  (click)="comenzar()" >COMENZAR</button>
 </div>
-
 </div>

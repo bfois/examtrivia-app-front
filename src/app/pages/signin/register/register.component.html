@@ -1,10 +1,7 @@
-
 <body>
-
 <div class="container" *ngIf="!posRegister else emailSend">
   <button class="back" mat-raised-button routerLink="/signin" > BACK </button>
   <main>
-
   <form [formGroup]="formRegister">
     <h1>Registrarse en el sitio:</h1>
       <mat-form-field>
@@ -12,9 +9,7 @@
       <input type="email" matInput placeholder="Ex. pat@example.com" formControlName="email"  #emailInput>
       <mat-error *ngIf="formRegister.get('email')!.hasError('required')"> Email is required</mat-error>
       <mat-error *ngIf="formRegister.get('email')!.hasError('email')">Email is invalid</mat-error>
-
     </mat-form-field>
-
     <mat-form-field>
       <mat-label>Password</mat-label>
       <input type="password" matInput placeholder="Password" formControlName="password" #passwordInput>
@@ -25,7 +20,6 @@
     <input type="password" matInput placeholder="Confirm password" formControlName="confirmPassword">
     <mat-error *ngIf="formRegister.errors?.['passwordMissMatchError'] && formRegister.get('confirmPassword')!.hasError('required')"> Passwords do not match</mat-error>
   </mat-form-field>
-
     <button mat-stroked-button color="primary" (click)="createUser()" [disabled]="!formRegister.valid">REGISTRARSE</button>
   </form>
   <app-footer class="footer"></app-footer>
@@ -36,7 +30,5 @@
     <p>El usuario fue creado con exito, revisa la casilla del email: <strong>{{currentUser.email}}</strong>  para validiar su cuenta</p>
     <button class="backTemplate" mat-raised-button routerLink="/signin" > BACK </button>
   </div>
-
 </ng-template>
-
 </body>

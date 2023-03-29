@@ -23,17 +23,14 @@ export class TemasComponent implements OnInit, OnChanges{
   constructor(private disciplinaService: DisciplinaService,
     private triviaDataService: TriviaDataService,
     private router: Router) { }
-
   ngOnInit(): void {
     this.getTemas()
   }
-
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['materia'] && !changes['materia'].firstChange) {
       this.getTemas();
     }
   }
-
   private getTemas(): void {
     this.loading=true;
     if (this.materia) {
@@ -52,10 +49,8 @@ export class TemasComponent implements OnInit, OnChanges{
       this.temasSeleccionados.splice(index, 1);
     }
   }
-
   comenzar(){
     this.triviaDataService.guardarTemasSeleccionados(this.temasSeleccionados);
     this.router.navigate(['/trivia']);
   }
-
 }

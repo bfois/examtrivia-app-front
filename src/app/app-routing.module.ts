@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
 import { AuthGuard } from './guards/auth.guard';
 import { StartComponent } from './pages/public/start/start.component';
-
 //RUTAS A LOS MODULOS
 const routes: Routes = [
   { path:"",component:StartComponent

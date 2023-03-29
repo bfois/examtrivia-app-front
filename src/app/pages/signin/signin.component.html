@@ -1,10 +1,8 @@
-
 <main>
   <div class="formLogin" *ngIf="!restorePassword; else restore">
     <form [formGroup]="form" (ngSubmit)="form.valid && login()">
       <h2>¡Hola de nuevo!</h2>
       <h3>Nos alegra mucho verte otra vez</h3>
-
       <mat-form-field appearance="fill">
         <mat-label>Email</mat-label>
         <input matInput type="email" placeholder="Ex. pat@example.com" formControlName="email" required email>
@@ -13,7 +11,6 @@
           <span *ngIf="form.get('email')?.errors?.['email']">Email is invalid</span>
         </mat-error>
       </mat-form-field>
-
       <mat-form-field appearance="fill">
         <mat-label>Password</mat-label>
         <input matInput type="password" placeholder="Password" formControlName="password" required>
@@ -21,27 +18,19 @@
           <span *ngIf="form.get('password')?.errors?.['required']">Password is required</span>
         </mat-error>
       </mat-form-field>
-
       <button mat-button type="button" test-id="recover-password-button" (click)="toggleRestorePassword()"
         class="recover-password-button" [disabled]="!form.get('email')?.valid">
         Recuperar contraseña
       </button>
-
       <button mat-raised-button color="primary" type="submit" test-id="login-button" [disabled]="!form.valid"
         class="login-button" *ngIf="!loading">INICIAR SESION</button>
-
       <mat-spinner diameter="30" *ngIf="loading" class="spinner"></mat-spinner>
-
-
-
       <button mat-stroked-button color="primary" routerLink="register" class="register-button">REGISTRARSE</button>
     </form>
-
     <button mat-raised-button class="button-google" test-id="google-button" (click)="loginGoogle()">
       <img src="../../../assets/google.png" alt="google" width="17px"> Sign in with Google
     </button>
   </div>
-
   <ng-template #restore>
     <div class="restore">
       <button mat-button class="back-to-sign-button" (click)="toggleRestorePassword()">BACK TO SIGN IN</button>
