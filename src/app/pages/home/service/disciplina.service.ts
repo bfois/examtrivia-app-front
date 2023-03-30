@@ -15,7 +15,7 @@ import { Temas } from 'src/app/interfaces/Temas';
   materias$: Observable<Materia[]> = new Observable<Materia[]>();
   temas$: Observable<Temas[]> = new Observable<Temas[]>();
   preguntas$: Observable<Pregunta[]> = new Observable<Pregunta[]>()
-  URL = "https://examtrivia-app-back-production-4732.up.railway.app/examtrivia-app-back-production-4732.up.railway.app/api/v1/home";
+  URL = "https://examtrivia-app-back-production-4732.up.railway.app/api/v1/home";
   TRIVIA = "https://examtrivia-app-back-production-4732.up.railway.app/api/v1"
   constructor(private http: HttpClient) {
   }
