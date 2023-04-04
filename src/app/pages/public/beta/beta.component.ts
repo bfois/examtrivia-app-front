@@ -50,7 +50,9 @@ const animation = trigger('animation',[efectStart])
   @media (max-width: 767px){
     ngx-typed-js{
       width:90%;
+      height:30%;
     }
+
   }
   `],
   animations:[animation]
