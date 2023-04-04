@@ -17,11 +17,13 @@ import {MatButtonModule} from '@angular/material/button';
 import { HttpClientModule } from '@angular/common/http';
 import firebase from 'firebase/compat/app';
 import { NgxTypedJsModule } from 'ngx-typed-js';
+import { BetaComponent } from './pages/public/beta/beta.component';
 firebase.initializeApp(environment.firebase);
 @NgModule({
   declarations: [
     AppComponent,
-    StartComponent
+    StartComponent,
+    BetaComponent
   ],
   imports: [
     BrowserModule,

@@ -30,7 +30,7 @@ const animation1 = trigger('animation1',[efectStart1])
   <span class="typing"></span>
   </ngx-typed-js>
 </div>
-      <button [@animation] mat-button routerLink="signin">JUGAR</button>
+      <button [@animation] mat-button routerLink="beta">JUGAR</button>
     </div>
   </section>
 `,
