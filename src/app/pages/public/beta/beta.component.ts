@@ -26,6 +26,13 @@ import { Component, OnInit } from '@angular/core';
     color:white;
     font-size:20px;
   }
+  button{
+    background-color:orange;
+    font-weight:bold;
+    font-size:20px;
+    padding:5px;
+    color:black;
+  }
   `]
 })
 export class BetaComponent implements OnInit {
