@@ -15,8 +15,8 @@ import { Temas } from 'src/app/interfaces/Temas';
   materias$: Observable<Materia[]> = new Observable<Materia[]>();
   temas$: Observable<Temas[]> = new Observable<Temas[]>();
   preguntas$: Observable<Pregunta[]> = new Observable<Pregunta[]>()
-  URL = "https://statuesque-peony-c4da6d.netlify.app/api/v1/home";
-  TRIVIA = "https://statuesque-peony-c4da6d.netlify.app/api/v1"
+  URL = "https://examtrivia-back-bfois.koyeb.app/api/v1/home";
+  TRIVIA = "https://examtrivia-back-bfois.koyeb.app/api/v1"
   constructor(private http: HttpClient) {
   }
   getAllDisciplinas(): Observable<Disciplina[]> {
